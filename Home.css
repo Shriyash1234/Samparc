@@ -433,13 +433,13 @@ Removes white gap between slides
     align-items: center;
     margin-top: 50px;
     padding: 20px;
-    background-color: #f9fbfb;
 }
 .destination{
+  font-size: 2.6rem;
     text-align: center;
 }
-.learn{
-    font-size: 2rem;
+.learn-cycle{
+    font-size: 2.2rem;
     text-align: center;
 }
 .bold-text{
@@ -476,6 +476,178 @@ Removes white gap between slides
     flex-wrap: wrap;
 }
 /* stats complete */
+
+/* real stats starts */
+.real-stats{
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+}
+.start-learning{
+  width: 50%;
+  padding: 0% 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.start-learning h2{
+  color: #3c4852;
+  font-size: 40px;
+  line-height: 4rem;
+  font-weight: 900;
+  font-family: poppins;
+}
+.start-learning p{
+  color: #000;
+  font-size: 2rem;
+  line-height: 3rem;
+  font-weight: 500;
+}
+.start-learning button{
+  font-size: 2rem;
+  margin-top: 20px;
+  padding: 5px 35px;
+  background-color: #08BD80;
+  border: 0px;
+  border-radius: 10px;
+  color: #fff;
+}
+.stats-numbers{
+  width: 50%;
+  display: flex;
+
+}
+.stats-numbers-1,.stats-numbers-2{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.stats-rectangle{
+  width: 250px;
+  height: 170px;
+  background-color: #fff;
+  margin: 20px;
+  border-radius: 10px;
+  padding: 20px 0px 0px 20px;
+}
+.stats-name{
+  font-size: 2.5rem;
+}
+.stats-number{
+  font-size: 3rem;
+  color: #3c4852;
+  font-weight: 600;
+}
+.plus{
+  color: #08bd80;
+}
+.stats-img{
+  position: relative;
+  width: 80px;
+  left: 140px;
+  bottom: 40px;
+}
+@media all and (max-width:991px) {
+  .real-stats{
+    width: 100%;
+  }
+  .start-learning{
+    width: 40%;
+  }
+  .stats-numbers{
+    width: 60%;
+  }
+  .stats-rectangle{
+    width: 170px;
+    height: 110px;
+    margin: 20px;
+    padding: 20px 0px 0px 20px;
+  }
+  .stats-name{
+    font-size: 2rem;
+  }
+  .stats-number{
+    font-size: 2.5rem;
+    color: #3c4852;
+    font-weight: 600;
+  }
+  .stats-img{
+    width: 50px;
+    left: 90px;
+    bottom: 60px;
+  }
+}
+@media all and (max-width:768px) {
+  .start-learning h2{
+    font-size: 35px;
+    line-height: 4rem;
+  }
+  .start-learning p{
+    font-size: 1.7rem;
+    line-height: 3rem;
+    font-weight: 500;
+  }
+  .start-learning button{
+    font-size: 1.6rem;
+  }
+  .real-stats{
+    flex-direction: column;
+  }
+  .start-learning,.stats-numbers{
+    width: 100%;
+  }
+  .stats-rectangle{
+    width: 250px;
+    height: 170px;
+  }
+  .stats-name{
+    font-size: 2.5rem;
+  }
+  .stats-number{
+    font-size: 3rem;
+  }
+
+  .stats-img{
+    position: relative;
+    width: 100px;
+    left: 120px;
+    bottom: 60px;
+  }
+}
+@media all and (max-width:500px) {
+  .start-learning{
+    justify-content: center;
+    align-items: center;
+  }
+  .real-stats{
+    flex-direction: column;
+  }
+  .start-learning,.stats-numbers{
+    width: 100%;
+  }
+  .stats-rectangle{
+    width: 150px;
+    height: 100px;
+    margin: 25px;
+    padding: 10px 0px 0px 10px;
+  }
+  .stats-name{
+    font-size: 1.7rem;
+  }
+  .stats-number{
+    font-size: 2.2rem;
+    color: #3c4852;
+    font-weight: 600;
+  }
+  .stats-img{
+    width: 40px;
+    left: 90px;
+    bottom: 30px;
+  }
+}
+/* real stats complete */
 /* Popular exams :start */
 .popular-exams{
   padding: 50px;
@@ -514,6 +686,7 @@ Removes white gap between slides
   padding-top: 30px;
 }
 @media all and (max-width:768px) {
+  
   .popular-exams{
     padding: 0px;
   }
@@ -528,7 +701,11 @@ Removes white gap between slides
     margin-top: 0px;
     margin: 10px 30px 10px 10px ;
   }
+  .rectangle p{
+    padding-top: 12px;
+  }
 }
+
 /* popular exams complete */
 
 /* super coaching starts */
