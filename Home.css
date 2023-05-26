@@ -1,67 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins:wght@200&display=swap');
-/* Navbar start */
-:root {
-    /* Color shades */
-    --s-0: 0%;
-    --s-10: 10%;
-    --s-20: 20%;
-    --s-30: 30%;
-    --s-40: 40%;
-    --s-50: 50%;
-    --s-60: 60%;
-    --s-70: 70%;
-    --s-80: 80%;
-    --s-90: 90%;
-    --s-100: 100%;
-  
-    /* White */
-    --white: var(--white-100);
-    --white-0: hsl(0, 0%, var(--s-0));
-    --white-10: hsl(0, 0%, var(--s-10));
-    --white-20: hsl(0, 0%, var(--s-20));
-    --white-30: hsl(0, 0%, var(--s-30));
-    --white-40: hsl(0, 0%, var(--s-40));
-    --white-50: hsl(0, 0%, var(--s-50));
-    --white-60: hsl(0, 0%, var(--s-60));
-    --white-70: hsl(0, 0%, var(--s-70));
-    --white-80: hsl(0, 0%, var(--s-80));
-    --white-90: hsl(0, 0%, var(--s-90));
-    --white-100: hsl(0, 0%, var(--s-100));
-  
-    /* Background color */
-    --background-light: var(--white);
-    --background: var(--white-90);
-    --background-dark: var(--white-80);
-  
-    /* Text colors */
-    --text: var(--white-20);
-    --text-secondary: var(--white-60);
-    --text-button: var(--white-100);
-  
-    /* Primary color */
-    --primary-hue: 190;
-    --primary: var(--primary-50);
-    --primary-10: hsl(var(--primary-hue), 100%, var(--s-10));
-    --primary-20: hsl(var(--primary-hue), 100%, var(--s-20));
-    --primary-30: hsl(var(--primary-hue), 100%, var(--s-30));
-    --primary-40: hsl(var(--primary-hue), 100%, var(--s-40));
-    --primary-50: hsl(var(--primary-hue), 100%, var(--s-50));
-    --primary-60: hsl(var(--primary-hue), 100%, var(--s-60));
-    --primary-70: hsl(var(--primary-hue), 100%, var(--s-70));
-    --primary-80: hsl(var(--primary-hue), 100%, var(--s-80));
-    --primary-90: hsl(var(--primary-hue), 100%, var(--s-90));
-    --primary-100: hsl(var(--primary-hue), 100%, var(--s-100));
-  }
-  
-  /* Reset */
-  * {
-    margin: 0;
-    padding: 0;
-  }
-  
-  a {
-    text-decoration: none;
-  }
+
   
   /* Setup body */
   body {
@@ -74,33 +12,66 @@
     font-family: Arial, Helvetica, sans-serif;
     background-color: #f6f8f9;
   }
+ 
+
+/* Banner*/
+
+.cm-header-wrap {
+  z-index: 11;
+}
+
+.banner {
+  position: relative;
+  z-index: 10;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.banner h1 {
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 40px;
+    text-align: center;
+    background: #f6f8f9;
+    padding: 16px;
+    border-radius: 5px;
+    color: #000;
+    font-family: Oswald, sans-serif;
+    letter-spacing: 1px;
+    width: 700px;
+    text-transform: capitalize;
+}
+
+.banner h1 a {
+  color: #000;
+    text-decoration: none;
+    text-decoration: underline;
+    display: inline-block;
+    padding-top: 20px;
+    font-size: 45px;
+    text-shadow: 9px -1px 6px #000;
+  transition: all 300ms ease;
+}
+
+
+.banner h1 a:hover {
+    text-shadow: 5px -1px 14px #000;
+}
+.carousel-inner{
+  margin-top: 80px !important;
+}
+@media(max-width: 767px) {
   
-  /* Setup header */
-  header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 6rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: var(--background-light);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-    z-index: 1000000;
+  .banner h1 {
+      max-width: 90%;
+      width: 100%;
   }
   
-  header .logo-box {
-    position: relative;
-    margin-left: 2rem;
-    width: auto;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    gap: 0.7rem;
-  }
-  
+}
+ 
   .logo-box .logo {
     width: 2.5rem;
     height: 2.5rem;
@@ -121,29 +92,6 @@
     color: var(--text);
   }
   
-  header nav {
-    position: relative;
-    margin-right: 2rem;
-    width: auto;
-    height: auto;
-    display: flex;
-    gap: 0.5rem;
-  }
-  
-  nav .header-link {
-    font-size: 18px;
-    padding: 6px 12px;
-    color: var(--text-secondary);
-    /* border-bottom: 5px solid transparent; */
-    margin-top: 5px;
-  }
-  
-  /* nav .header-link:hover {
-    transition: 0.3s ease;
-    cursor: pointer;
-    border-bottom: 5px solid var(--primary);
-  }
-   */
   .menu-button,
   .sidebar {
     display: none;
