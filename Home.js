@@ -41,6 +41,8 @@ function form1Next(){
 }
 function closeForm(){
 	document.getElementsByClassName('registeration-form')[0].style.display = 'none'
+	document.getElementsByClassName('form-1')[0].style.display = 'block'
+	document.getElementsByClassName('form-2')[0].style.display = 'none'
 	document.getElementsByClassName('cm-header-wrap')[0].style.filter = 'brightness(100%)'
 	document.getElementsByClassName('comapny-logo')[0].style.filter = 'brightness(100%)'
 	document.getElementsByClassName('sidebar')[0].style.filter = 'brightness(100%)'
