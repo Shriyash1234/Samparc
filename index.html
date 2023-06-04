@@ -140,7 +140,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <button class="get-started">Get Started</button>
+                        <button onclick="registerationForm()" class="get-started">Get Started</button>
                     </ul>
                 </div>
             </div>
@@ -227,16 +227,67 @@
         <!-- /.carousel -->
     </section>
 
-    <section class="Stats">
+    <section class="registeration-form">
+        <div class="registeration-form-images">
+            <img class='registeration-form-logo' src="./Assests/Images/icons/logo.png"></img>
+            <img class="close-form" onClick="closeForm()" src="./Assests/Images/icons/close.png"></img>
+        </div>
+        <h2 class="registeration-form-get-started">Get Started with Samparc!</h2>
+        <h3 class='registeration-form-continue' >Continue with your mobile number</h3>
+        <div class="mobile-form">
+            <form class="mobile-from-form">
+                <div class="form-1">
+                    <div class="icon-input">
+                        <img class='mobile-icon' src="./Assests/Images/icons/name.png"></img>
+                        <input type="text" class='input-mobile' placeholder="Please Enter your name"></input>
+                    </div>
+                    <div class="icon-input">
+                        <img class='mobile-icon' src="./Assests/Images/icons/smartphone.png"></img>
+                        <input type="text" class='input-mobile' placeholder="Please Enter your mobile number"></input>
+                    </div>
+                    <div class="icon-input">
+                        <img class='mail-icon' src="./Assests/Images/icons/mail.png"></img>
+                        <input type="text" class='input-mobile' placeholder="Please Enter your email address"></input>
+                    </div>
+                    <div onClick="form1Next()" class="Continue-button">Next</div>
+                </div>
+                <div class="form-2">
+                    <div class="icon-input">
+                        <img class='mobile-icon' src="./Assests/Images/icons/work.png"></img>
+                        <input type="text" class='input-mobile' placeholder="Type of work"></input>
+                    </div>
+                    <div class="icon-input">
+                        <img class='mobile-icon' src="./Assests/Images/icons/categories.png"></img>
+                        <!-- <label for="cars" class="categories-option">Categories</label> -->
+                            <select id="cars" name="cars" class="dropdown">
+                                <option value="Domestic">Choose a category</option>
+                                <option value="Domestic">Domestic workers</option>
+                                <option value="Farmers">Farmers</option>
+                                <option value="Labours">Labours</option>
+                                <option value="Drivers">Drivers</option>
+                                <option value="Students">Students</option>
+                                <option value="Others">Others</option>
+                        </select>
+                    </div>
+                    <div class="icon-input">
+                        <img class='mail-icon' src="./Assests/Images/icons/mail.png"></img>
+                        <input type="text" class='input-mobile' placeholder="Please Enter your email address"></input>
+                    </div>
+                    <div class="Continue-button">Next</div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- <section class="Stats">
         <h2 class="destination">One Destination for <span class="bold-text">Complete Exam Preparation<span><h2>
         <p class="learn-cycle">Learn <img src="./Assests/Images/icons/arrow.png" alt=""> Practice <img src="./Assests/Images/icons/arrow.png" alt=""> Improve <img src="./Assests/Images/icons/arrow.png" alt=""> Succeed<p>
         <div class="buttons">
             <button class="get-started-for-free">Get started for free</button>
             <button class="download"><img src="./Assests/Images/icons/playstore.png" alt=""> Download app</button>
         </div>
-    </section>
+    </section> -->
 
-    <section class="real-stats">
+    <!-- <section class="real-stats">
         <div class="start-learning">
             <h2>Start learning with TestBook <h2>
             <p>Get unlimited access to structured courses & doubt clearing sessions</p>
@@ -273,7 +324,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <section class="popular-exams">
         <h2>Popular Exams</h2>
@@ -313,7 +364,7 @@
         <div>
     </section>
 
-    <section class="super-coaching">
+    <!-- <section class="super-coaching">
         <div class="big-rectangle">
             <div class="small-rectangle">
                 <h2 class="coaching">Super- Coaching</h2>
@@ -343,9 +394,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
-    <section class="what-you-get">
+    <!-- <section class="what-you-get">
         <h2 class="what-heading">What you will get with SuperCoaching<h2>
             <div class="benfits-section">
                 <div class="benifts">
@@ -374,9 +425,9 @@
                 </div>
             <div>   
             <button class="expolre-button">Explore SuperCoaching</button>
-    </section>
+    </section> -->
 
-    <section class="videos">
+    <!-- <section class="videos">
         <h2 class="videos-heading">Top cousres and all the study material</h2>
         <div class="videos-section">
             <div class="video">
@@ -432,7 +483,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <script src="./Home.js"></script>
 </body>
 </html>

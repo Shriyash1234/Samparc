@@ -26,5 +26,24 @@ $(document).ready(function(){
 
 
 	});
-
 });
+function registerationForm(){
+	document.getElementsByClassName('cm-header-wrap')[0].style.filter = 'brightness(15%)'
+	document.getElementsByClassName('comapny-logo')[0].style.filter = 'brightness(15%)'
+	document.getElementsByClassName('sidebar')[0].style.filter = 'brightness(15%)'
+	document.getElementsByClassName('caro')[0].style.filter = 'brightness(15%)'
+	document.getElementsByClassName('popular-exams')[0].style.filter = 'brightness(15%)'
+	document.getElementsByClassName('registeration-form')[0].style.display = 'block'
+}
+function form1Next(){
+	document.getElementsByClassName('form-1')[0].style.display = 'none'
+	document.getElementsByClassName('form-2')[0].style.display = 'block'
+}
+function closeForm(){
+	document.getElementsByClassName('registeration-form')[0].style.display = 'none'
+	document.getElementsByClassName('cm-header-wrap')[0].style.filter = 'brightness(100%)'
+	document.getElementsByClassName('comapny-logo')[0].style.filter = 'brightness(100%)'
+	document.getElementsByClassName('sidebar')[0].style.filter = 'brightness(100%)'
+	document.getElementsByClassName('caro')[0].style.filter = 'brightness(100%)'
+	document.getElementsByClassName('popular-exams')[0].style.filter = 'brightness(100%)'
+}
