@@ -36,13 +36,90 @@ function registerationForm(){
 	document.getElementsByClassName('registeration-form')[0].style.display = 'block'
 }
 function form1Next(){
-	document.getElementsByClassName('form-1')[0].style.display = 'none'
-	document.getElementsByClassName('form-2')[0].style.display = 'block'
+	var nameInput = document.querySelector('input[name="name"]');
+    var phoneInput = document.querySelector('input[name="phone"]');
+    var emailInput = document.querySelector('input[name="email"]');
+    var inputs = [nameInput, phoneInput, emailInput];
+	inputs.forEach(function(input) {
+        var parent = input.parentNode;
+        parent.classList.remove('invalid');
+        var validationMessage = parent.querySelector('.validation-message');
+        validationMessage.textContent = '';
+    });
+  
+    // Validate input fields
+    var isValid = true;
+    inputs.forEach(function(input) {
+        var value = input.value.trim();
+        if (value === '') {
+            var parent = input.parentNode;
+            parent.classList.add('invalid');
+            var validationMessage = parent.querySelector('.validation-message');
+            validationMessage.textContent = '*Please enter the ' + input.name;
+            isValid = false;
+        }
+    });
+
+    if (!isValid) {
+        return; 
+    }
+	else{
+		document.getElementsByClassName('form-1')[0].style.display = 'none'
+		document.getElementsByClassName('form-3')[0].style.display = 'none'
+		document.getElementsByClassName('form-2')[0].style.display = 'block'
+	}
+}
+function form2Next(){
+	var workInput = document.querySelector('input[name="work"]');
+    var categoriesInput = document.querySelector('select[name="categories"]');
+    var addressInput = document.querySelector('input[name="address"]');
+
+    // Reset validation messages
+    var inputs = [workInput, categoriesInput, addressInput];
+    inputs.forEach(function(input) {
+        var parent = input.parentNode;
+        parent.classList.remove('invalid');
+        var validationMessage = parent.querySelector('.validation-message');
+        validationMessage.textContent = '';
+    });
+
+    // Validate input fields
+    var isValid = true;
+
+    if (categoriesInput.value === 'Choose') {
+        categoriesInput.nextElementSibling.textContent = 'Please choose a category';
+        parent = categoriesInput.parentNode;
+		parent.classList.add('invalid');
+        var validationMessage = parent.querySelector('.validation-message');
+        validationMessage.textContent = '*Please Choose a Category ' ;
+        isValid = false;
+    }
+
+    inputs.forEach(function(input) {
+        var value = input.value.trim();
+        if (value === '') {
+            var parent = input.parentNode;
+            parent.classList.add('invalid');
+            var validationMessage = parent.querySelector('.validation-message');
+            validationMessage.textContent = '*Please enter the ' + input.name;
+            isValid = false;
+        }
+    });
+
+    if (!isValid) {
+        return; // Stop execution and don't proceed to the next page
+    }
+	else{
+		document.getElementsByClassName('form-1')[0].style.display = 'none'
+		document.getElementsByClassName('form-2')[0].style.display = 'none'
+		document.getElementsByClassName('form-3')[0].style.display = 'block'
+	}
 }
 function closeForm(){
 	document.getElementsByClassName('registeration-form')[0].style.display = 'none'
 	document.getElementsByClassName('form-1')[0].style.display = 'block'
 	document.getElementsByClassName('form-2')[0].style.display = 'none'
+	document.getElementsByClassName('form-3')[0].style.display = 'none'
 	document.getElementsByClassName('cm-header-wrap')[0].style.filter = 'brightness(100%)'
 	document.getElementsByClassName('comapny-logo')[0].style.filter = 'brightness(100%)'
 	document.getElementsByClassName('sidebar')[0].style.filter = 'brightness(100%)'

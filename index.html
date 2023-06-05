@@ -140,7 +140,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <button onclick="registerationForm()" class="get-started">Get Started</button>
+                        <button class="get-started">Get Started</button>
                     </ul>
                 </div>
             </div>
@@ -227,6 +227,9 @@
         <!-- /.carousel -->
     </section>
 
+    <section>
+        
+    </section>
     <section class="registeration-form">
         <div class="registeration-form-images">
             <img class='registeration-form-logo' src="./Assests/Images/icons/logo.png"></img>
@@ -239,41 +242,53 @@
                 <div class="form-1">
                     <div class="icon-input">
                         <img class='mobile-icon' src="./Assests/Images/icons/name.png"></img>
-                        <input type="text" class='input-mobile' placeholder="Please Enter your name"></input>
+                        <input type="text" name="name" class='input-mobile' placeholder="Please Enter your name"></input>
+                        <span class="validation-message"></span>
                     </div>
                     <div class="icon-input">
                         <img class='mobile-icon' src="./Assests/Images/icons/smartphone.png"></img>
-                        <input type="text" class='input-mobile' placeholder="Please Enter your mobile number"></input>
+                        <input type="text" name="phone" class='input-mobile' placeholder="Please Enter your mobile number"></input>
+                        <span class="validation-message"></span>
                     </div>
                     <div class="icon-input">
                         <img class='mail-icon' src="./Assests/Images/icons/mail.png"></img>
-                        <input type="text" class='input-mobile' placeholder="Please Enter your email address"></input>
+                        <input type="text" name="email" class='input-mobile' placeholder="Please Enter your email address"></input>
+                        <span class="validation-message"></span>
                     </div>
                     <div onClick="form1Next()" class="Continue-button">Next</div>
                 </div>
                 <div class="form-2">
                     <div class="icon-input">
-                        <img class='mobile-icon' src="./Assests/Images/icons/work.png"></img>
-                        <input type="text" class='input-mobile' placeholder="Type of work"></input>
+                        <img class='mobile-icon' src="./Assests/Images/icons/work.png">
+                        <input type="text" name="work" class='input-mobile' placeholder="Type of work">
+                        <span class="validation-message"></span>
                     </div>
                     <div class="icon-input">
-                        <img class='mobile-icon' src="./Assests/Images/icons/categories.png"></img>
-                        <!-- <label for="cars" class="categories-option">Categories</label> -->
-                            <select id="cars" name="cars" class="dropdown">
-                                <option value="Domestic">Choose a category</option>
-                                <option value="Domestic">Domestic workers</option>
-                                <option value="Farmers">Farmers</option>
-                                <option value="Labours">Labours</option>
-                                <option value="Drivers">Drivers</option>
-                                <option value="Students">Students</option>
-                                <option value="Others">Others</option>
+                        <img class='mobile-icon' src="./Assests/Images/icons/categories.png">
+                        <select id="cars" name="categories" class="dropdown">
+                            <option value="Choose">Choose a category</option>
+                            <option value="Domestic">Domestic workers</option>
+                            <option value="Farmers">Farmers</option>
+                            <option value="Labours">Labours</option>
+                            <option value="Drivers">Drivers</option>
+                            <option value="Students">Students</option>
+                            <option value="Others">Others</option>
                         </select>
+                        <span class="validation-message"></span>
                     </div>
                     <div class="icon-input">
-                        <img class='mail-icon' src="./Assests/Images/icons/mail.png"></img>
-                        <input type="text" class='input-mobile' placeholder="Please Enter your email address"></input>
+                        <img class='mail-icon' src="./Assests/Images/icons/location.png">
+                        <input type="text" name="address" class='input-mobile' placeholder="Please Enter your address">
+                        <span class="validation-message"></span>
                     </div>
-                    <div class="Continue-button">Next</div>
+                    <div onClick="form2Next()" class="Continue-button">Next</div>
+                </div>                
+                <div class="form-3">
+                    <div class="icon-input-payment">
+                        <img class='payment-icon' src="./Assests/Images/icons/payment.png"></img>
+                        <h2 class='registeration-form-continue'>Payment Amonut:1000</h2>
+                    </div>
+                    <div class="Continue-button">Pay & Continue</div>
                 </div>
             </form>
         </div>
@@ -327,6 +342,9 @@
     </section> -->
 
     <section class="popular-exams">
+        <div class="registerationSection">
+            <button onclick="registerationForm()" class="get-started">REGISTER TO GET JOB & LOANS</button>
+        </div>
         <h2>Popular Exams</h2>
         <div class="exams">
             <div class="rectangle">

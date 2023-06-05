@@ -930,8 +930,8 @@ Removes white gap between slides
 }
 .input-mobile{
   border: 0px;
-  width: 100%;
-  padding-bottom: 10px;
+  width: 80%;
+  padding-bottom: 5px;
   margin-top: 8px;
 }
 .mobile-form{
@@ -942,7 +942,7 @@ Removes white gap between slides
   width: 100%;
   border: 1px solid grey;
   border-radius: 10px;
-  padding:25px 15px 5px 15px;
+  padding:15px 15px 5px 15px;
 }
 .mobile-from-form{
   width: 100%;
@@ -958,21 +958,35 @@ Removes white gap between slides
 .mobile-icon{
   width: 25px;
   height: 25px;
-  margin-right: 10px;
+  margin-right: 5px;
+}
+.payment-icon{
+  width: 35px;
+  height: 35px;
+  margin-right: 5px;
 }
 .mail-icon{
   width: 25px;
   height: 25px;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 .icon-input{
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   border-bottom: 1px solid #808080;
   margin-bottom: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
-.form-2{
+.icon-input-payment{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #808080;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+.form-2,.form-3{
   display: none;
 }
 .dropdown{
@@ -983,4 +997,27 @@ Removes white gap between slides
   color: #676767;
   font-weight: 100;
 }
+/* .enter-name::after{
+  content: "Please Enter the name";
+  color: red;
+  position: relative;
+  bottom: 10px;
+} */
+.validation-message {
+  display: none;
+  color: red;
+}
+
+.icon-input.invalid .validation-message {
+  display: block;
+}
+.registerationSection{
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+  text-transform: uppercase;
+}
+
 /* registeration complete */
