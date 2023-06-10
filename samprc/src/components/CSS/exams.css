@@ -1,0 +1,56 @@
+.popular-exams{
+    padding: 50px;
+    background-color: #f9fbfb;
+  }
+  .popular-exams h2{
+    text-align: center;
+    padding-bottom: 20px;
+  }
+  .exams{
+    justify-content: center;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .rectangle{
+    width:250px;
+    height: 300px;
+    margin: 20px;
+    background-color: #fff;
+    border: 1px solid #8b8ba7;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .exam-logo{
+    /* width: 150px; */
+    margin-top: 50px;
+    height: 150px;
+  }
+  .rectangle p{
+    font-size: 2rem;
+    font-weight: 600;
+    padding-top: 30px;
+  }
+  @media all and (max-width:768px) {
+    
+    .popular-exams{
+      padding: 0px;
+    }
+    .rectangle{
+      height: 80px;
+      width:300px;
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+    .exam-logo{
+      height: 60px;
+      margin-top: 0px;
+      margin: 10px 30px 10px 10px ;
+    }
+    .rectangle p{
+      padding-top: 12px;
+    }
+  }
