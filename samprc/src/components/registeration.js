@@ -89,6 +89,7 @@ function Registration() {
         document.getElementsByClassName('comapny-logo')[0].style.filter = 'brightness(100%)'
         document.getElementsByClassName('caro')[0].style.filter = 'brightness(100%)'
         document.getElementsByClassName('popular-exams')[0].style.filter = 'brightness(100%)'
+        document.getElementsByClassName('Daily-contests')[0].style.filter = 'brightness(100%)'
     }
     return(
         <div>

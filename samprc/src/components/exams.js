@@ -5,6 +5,7 @@ function Exams() {
         document.getElementsByClassName('comapny-logo')[0].style.filter = 'brightness(15%)'
         document.getElementsByClassName('caro')[0].style.filter = 'brightness(15%)'
         document.getElementsByClassName('popular-exams')[0].style.filter = 'brightness(15%)'
+        document.getElementsByClassName('Daily-contests')[0].style.filter = 'brightness(15%)'
         document.getElementsByClassName('registeration-form')[0].style.display = 'block'
     }
     

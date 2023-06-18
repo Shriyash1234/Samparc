@@ -7,6 +7,12 @@
     width: 100vw;
     object-fit: fill;
   }
+  .item,.carousel-indicators{
+    padding-top: 7rem;
+  }
+  .carousel-control-prev-icon,.carousel-control-next-icon{
+    margin-top: 7rem;
+  }
   
   /*
   Forces image to be 100% width and not max width of 100%

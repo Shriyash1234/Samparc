@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Open+Sans:wght@500&family=Poppins&family=Raleway:wght@500&display=swap');
+.Daily-contests{
+    margin-top: 5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center ;
+    background-color: #f9fbfb;
+}
+.Daily-contents-rectangle{
+    width: 75%;
+    height: 250px;
+    background-color: #cf92ff;
+    border-radius: 20px 20px 30px 30px;
+    padding-top: 30px;
+}
+.Daily-contests-heading{
+    color: #fff;
+    text-align: center;
+    font-family: Poppins;
+}
+.rectangles{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 80%;
+    position: relative;
+    bottom: 100px;
+}
+.Contest{
+    width: 380px;
+    height: 230px;
+    margin: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+}
+.contest-name{
+    text-align: center;
+    background-color: #9000ff;
+    height: 35px;
+    color: #fff;
+    border-radius: 15px 15px 0px 0px;
+    font-size: 1.8rem;
+    padding-top: 5px;
+    font-family: Poppins;
+    margin: 0px;
+}
+.contest-image{
+    height: 185px;
+    width: 185px;
+    border-radius: 0px 0px 0px 15px;
+}
+.contest-content{
+    display: flex;
+    flex-direction: row;
+}
+.contest-details{
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 195px;
+}
+.time-remaining{
+    text-align: center;
+    background-color: #ffcdcd;
+    width: fit-content;
+    margin: 0px auto;
+    padding: 5px 10px;
+    color: #f00;
+    border-radius: 5px;
+    font-weight: 500;
+}
+.time{
+    text-align: center;
+    font-weight: 500;
+    font-size: 2rem;
+    color: #808080;
+}
+.Duration,.No-Q,.Fee{
+    margin: 0px;
+    text-align: center;
+    color: #808080;
+    font-size: 1.5rem;
+    font-weight: 300;
+    font-family: "Open Sans";
+}
+.contest-register{
+    width: 60%;
+    margin: 10px auto;
+    border: 0px;
+    border-radius: 10px;
+    color: #fff;
+    background-color: #9000ff;
+    font-family: Poppins;
+    padding: 5px 8px;
+    font-size: 1.7rem;
+}
+
+@media all and (max-width:576px){
+    .Daily-contents-rectangle{
+        width: 90%;
+        height: 200px;
+        padding-top: 0px;
+    }
+    .Daily-contests-heading{
+        font-size: 2rem;
+    }
+    .Contest{
+        width: 320px;
+    }
+    .contest-image{
+        width: 150px;
+    }
+}

@@ -224,14 +224,14 @@
 }
 .get-started{
     padding: 10px 30px;
-    background-color: #25cd71;
+    background-color: #9000ff;
     color: #fff;
     border: none;
     border-radius: 5px;
     font-size: 2rem;
   }
   .get-started:hover{
-    background-color:#21b765;
+    background-color:#47007e;
   }
   .get-started-sidebar{
     padding: 10px 30px;

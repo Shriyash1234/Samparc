@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import './CSS/header.css'
-import './CSS/Home.css'
 import './loader'
 function Header()
 {
@@ -122,7 +121,7 @@ function Header()
                                 </li>
                             </ul>
                         </li>
-                        <button className="get-started">Get Started</button>
+                        <button className="get-started">Register</button>
                     </ul>
                 </div>
             </div>
