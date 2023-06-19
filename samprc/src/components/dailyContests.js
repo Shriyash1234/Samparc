@@ -1,4 +1,6 @@
-import React,{useState,useEffect} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, useAnimation } from 'framer-motion';
+import AnimationWrapper from './AnimationWrapper';
 import './CSS/dailyContests.css'
 function DailyContests(){
     const [remainingTime, setRemainingTime] = useState(findremainingTime());
@@ -15,7 +17,7 @@ function DailyContests(){
     function findremainingTime(){
         var currentTime = new Date();
         var targetTime = new Date();
-        targetTime.setHours(21, 0, 0); 
+        targetTime.setHours(23, 0, 0); 
         var remainingTime = targetTime - currentTime;
         var hours = Math.floor(remainingTime / (1000 * 60 * 60));
         var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
@@ -33,11 +35,9 @@ function DailyContests(){
         
         
     }
-    useEffect(()=>{
-        
-    },[])
     
     return(
+        <AnimationWrapper>
         <section className="Daily-contests">
             <div className='Daily-contents-rectangle'>
                 <h2 className='Daily-contests-heading'>Daily Public Contests</h2>
@@ -110,6 +110,7 @@ function DailyContests(){
                 </div>
             </div>
         </section>
+        </AnimationWrapper>
     )
 }
 export default DailyContests

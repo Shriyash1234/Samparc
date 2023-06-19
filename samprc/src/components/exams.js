@@ -1,5 +1,29 @@
+import react, {useState,useEffect} from 'react'
+import ScrollTrigger from 'react-scroll-trigger';
+
 import "./CSS/exams.css";
 function Exams() {
+    const [isVisible, setIsVisible] = useState(false);
+    const [prevScrollPos, setPrevScrollPos] = useState(0);
+
+    const handleVisibility = (isVisible) => {
+        setIsVisible(isVisible);
+    };
+    useEffect(() => {
+        const handleScroll = () => {
+          const trigger = document.getElementById('trigger');
+    
+          if (trigger) {
+            const rect = trigger.getBoundingClientRect();
+            setIsVisible(rect.top <= window.innerHeight * 0.5);
+          }
+        };
+    
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+          window.removeEventListener('scroll', handleScroll);
+        };
+      }, []);
     function registerationForm(){
         document.getElementsByClassName('cm-header-wrap')[0].style.filter = 'brightness(15%)'
         document.getElementsByClassName('comapny-logo')[0].style.filter = 'brightness(15%)'
@@ -11,7 +35,8 @@ function Exams() {
     
     return(
         <div>
-        <section className="popular-exams">
+        <ScrollTrigger onEnter={handleVisibility} onExit={handleVisibility}>
+        <section id="trigger" className={isVisible ? 'popular-exams animate' : 'popular-exams'}>
             <div className="registerationSection">
                 <button onClick={registerationForm} className="get-started">REGISTER TO GET JOB & LOANS</button>
             </div>
@@ -51,6 +76,7 @@ function Exams() {
                 </div>
             </div>
         </section>
+        </ScrollTrigger>
         </div>
     )
 }

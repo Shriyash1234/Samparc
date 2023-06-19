@@ -34,6 +34,14 @@
     font-weight: 600;
     padding-top: 30px;
   }
+  .popular-exams {
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+  
+  .animate {
+    opacity: 1;
+  }
   @media all and (max-width:768px) {
     
     .popular-exams{
