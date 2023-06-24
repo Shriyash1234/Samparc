@@ -1,29 +1,32 @@
 {
   "files": {
-    "main.css": "/Samparc/static/css/main.ff66dee7.css",
-    "main.js": "/Samparc/static/js/main.161cb0f7.js",
+    "main.css": "/Samparc/static/css/main.d742b820.css",
+    "main.js": "/Samparc/static/js/main.bf528573.js",
     "static/js/787.ab512afd.chunk.js": "/Samparc/static/js/787.ab512afd.chunk.js",
     "static/media/banner-3.png": "/Samparc/static/media/banner-3.e9197d66cc1a2a78504f.png",
     "static/media/banner-1.png": "/Samparc/static/media/banner-1.2f59cf3ca80973707039.png",
     "static/media/banner-2.png": "/Samparc/static/media/banner-2.00f56df5ab753a11fa89.png",
     "static/media/logo.png": "/Samparc/static/media/logo.b3179ee9e0eb1c2b5fa4.png",
-    "static/media/SSC-CGL.png": "/Samparc/static/media/SSC-CGL.1a764143925d30168f05.png",
-    "static/media/CA-exams.webp": "/Samparc/static/media/CA-exams.c19a28792d38d2e9fbe4.webp",
-    "static/media/CBSE-12.png": "/Samparc/static/media/CBSE-12.8f606131a851de046f36.png",
-    "static/media/cat.jpg": "/Samparc/static/media/cat.3d7ae357c8b672ce34f9.jpg",
-    "static/media/neet.png": "/Samparc/static/media/neet.5b81d219b4c44e76eb6e.png",
+    "static/media/upsc.png": "/Samparc/static/media/upsc.f314f926b0ddff4a780d.png",
+    "static/media/cat.png": "/Samparc/static/media/cat.ff6ff2e389e16849380e.png",
+    "static/media/current-affairs.png": "/Samparc/static/media/current-affairs.d1e0d44f0aeb110ef88f.png",
+    "static/media/ssc.png": "/Samparc/static/media/ssc.3a721cb073ec520ca3c9.png",
+    "static/media/ibps.png": "/Samparc/static/media/ibps.8fe7b18c64614c7e7bc7.png",
     "static/media/location.png": "/Samparc/static/media/location.4ba2450b71e973e57b09.png",
+    "static/media/jee.png": "/Samparc/static/media/jee.64215bbe8b6ab525c0eb.png",
+    "static/media/neet.png": "/Samparc/static/media/neet.8c8e6f438c4d71d4f543.png",
     "static/media/name.png": "/Samparc/static/media/name.512dc8ade05f5e0e6bb6.png",
     "static/media/payment.png": "/Samparc/static/media/payment.b7cb258cb0a629402fb5.png",
+    "static/media/school.png": "/Samparc/static/media/school.e3a187223a4407cef519.png",
     "static/media/work.png": "/Samparc/static/media/work.c68ab58a993a4e8ef309.png",
     "static/media/categories.png": "/Samparc/static/media/categories.c5587b259d4e4a001ba8.png",
     "index.html": "/Samparc/index.html",
-    "main.ff66dee7.css.map": "/Samparc/static/css/main.ff66dee7.css.map",
-    "main.161cb0f7.js.map": "/Samparc/static/js/main.161cb0f7.js.map",
+    "main.d742b820.css.map": "/Samparc/static/css/main.d742b820.css.map",
+    "main.bf528573.js.map": "/Samparc/static/js/main.bf528573.js.map",
     "787.ab512afd.chunk.js.map": "/Samparc/static/js/787.ab512afd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ff66dee7.css",
-    "static/js/main.161cb0f7.js"
+    "static/css/main.d742b820.css",
+    "static/js/main.bf528573.js"
   ]
 }
