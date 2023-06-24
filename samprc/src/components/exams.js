@@ -38,40 +38,40 @@ function Exams() {
         <ScrollTrigger onEnter={handleVisibility} onExit={handleVisibility}>
         <section id="trigger" className={isVisible ? 'popular-exams animate' : 'popular-exams'}>
             <div className="registerationSection">
-                <button onClick={registerationForm} className="get-started">REGISTER TO GET JOB & LOANS</button>
+                <button onClick={registerationForm} className="get-started">REGISTER TO GET SCHOLARSHPS AND LOANS</button>
             </div>
             <h2>Popular Exams</h2>
             <div className="exams">
                 <div className="rectangle">
-                    <img className="exam-logo" src={require("./Assests/Images/Exams/iit_jee.png")} alt=""/>
+                    <img className="exam-logo" src={require("./Assests/Images/icons/exams/jee.png")} alt=""/>
                     <p>JEE Advanced</p>
                 </div>
                 <div className="rectangle">
-                    <img className="exam-logo" src={require("./Assests/Images/Exams/upsc-logo.png")} alt=""/>
+                    <img className="exam-logo" src={require("./Assests/Images/icons/exams/upsc.png")} alt=""/>
                     <p>UPSC</p>
                 </div>
                 <div className="rectangle">
-                    <img className="exam-logo" src={require("./Assests/Images/Exams/cat.jpg")} alt=""/>
+                    <img className="exam-logo" src={require("./Assests/Images/icons/exams/cat.png")} alt=""/>
                     <p>CAT</p>
                 </div>
                 <div className="rectangle">
-                    <img className="exam-logo" src={require("./Assests/Images/Exams/neet.png")} alt=""/>
+                    <img className="exam-logo" src={require("./Assests/Images/icons/exams/neet.png")} alt=""/>
                     <p>NEET</p>
                 </div>
                 <div className="rectangle">
-                    <img className="exam-logo" src={require("./Assests/Images/Exams/bank-exams.jpg")} alt=""/>
+                    <img className="exam-logo" src={require("./Assests/Images/icons/exams/ibps.png")} alt=""/>
                     <p>IBPS</p>
                 </div>
                 <div className="rectangle">
-                    <img className="exam-logo" src={require("./Assests/Images/Exams/SSC-CGL.png")} alt=""/>
+                    <img className="exam-logo" src={require("./Assests/Images/icons/exams/ssc.png")} alt=""/>
                     <p>SSC-CGL</p>
                 </div>
-                <div className="rectangle">
+                {/* <div className="rectangle">
                     <img className="exam-logo" src={require("./Assests/Images/Exams/CA-exams.webp")} alt=""/>
                     <p>CA</p>
-                </div>
+                </div> */}
                 <div className="rectangle">
-                    <img className="exam-logo" src={require("./Assests/Images/Exams/CBSE-12.png")} alt=""/>
+                    <img className="exam-logo" src={require("./Assests/Images/icons/exams/school.png")} alt=""/>
                     <p>CBSE-12</p>
                 </div>
             </div>

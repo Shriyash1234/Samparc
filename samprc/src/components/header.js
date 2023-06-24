@@ -3,6 +3,14 @@ import './CSS/header.css'
 import './loader'
 function Header()
 {
+    function registerationForm(){
+        document.getElementsByClassName('cm-header-wrap')[0].style.filter = 'brightness(15%)'
+        document.getElementsByClassName('comapny-logo')[0].style.filter = 'brightness(15%)'
+        document.getElementsByClassName('caro')[0].style.filter = 'brightness(15%)'
+        document.getElementsByClassName('popular-exams')[0].style.filter = 'brightness(15%)'
+        document.getElementsByClassName('Daily-contests')[0].style.filter = 'brightness(15%)'
+        document.getElementsByClassName('registeration-form')[0].style.display = 'block'
+    }
     return(
     <div>
         <div> <img className='comapny-logo' src={require("./Assests/Images/icons/logo.png")}></img></div>
@@ -121,7 +129,7 @@ function Header()
                                 </li>
                             </ul>
                         </li>
-                        <button className="get-started">Register</button>
+                        <button onClick={registerationForm} className="get-started">Register</button>
                     </ul>
                 </div>
             </div>

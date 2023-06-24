@@ -48,7 +48,7 @@ function DailyContests(){
                     <p className='contest-name'>JEE Advanced</p>
                     <div className='contest-content'>
                         <div className='contest-image-div'>
-                            <img className='contest-image' src={require('./Assests/Images/Exams/iit_jee.png')}/>
+                            <img className='contest-image' src={require('./Assests/Images/icons/exams/jee.png')}/>
                         </div>
                         <div className='contest-details'>
                             <p className='time-remaining'>{remainingTime}</p>
@@ -56,7 +56,7 @@ function DailyContests(){
                             <p className='Duration'>Duration: 40 min</p>
                             <p className='No-Q'>No. of Questions:20</p>
                             <p className='Fee'>Fee:100rs</p>
-                            <button className='contest-register'>Register</button>
+                            <button className='contest-register'>Join</button>
                         </div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@ function DailyContests(){
                     <p className='contest-name'>UPSC</p>
                     <div className='contest-content'>
                         <div className='contest-image-div'>
-                            <img className='contest-image' src={require('./Assests/Images/Exams/upsc-logo.png')}/>
+                            <img className='contest-image' src={require('./Assests/Images/icons/exams/upsc.png')}/>
                         </div>
                         <div className='contest-details'>
                             <p className='time-remaining'>{remainingTime}</p>
@@ -72,7 +72,7 @@ function DailyContests(){
                             <p className='Duration'>Duration: 30 min</p>
                             <p className='No-Q'>No. of Questions:30</p>
                             <p className='Fee'>Fee:100rs</p>
-                            <button className='contest-register'>Register</button>
+                            <button className='contest-register'>Join</button>
                         </div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@ function DailyContests(){
                     <p className='contest-name'>SSC CGL</p>
                     <div className='contest-content'>
                         <div className='contest-image-div'>
-                            <img className='contest-image' src={require('./Assests/Images/Exams/SSC-CGL.png')}/>
+                            <img className='contest-image' src={require('./Assests/Images/icons/exams/ssc.png')}/>
                         </div>
                         <div className='contest-details'>
                             <p className='time-remaining'>{remainingTime}</p>
@@ -88,7 +88,7 @@ function DailyContests(){
                             <p className='Duration'>Duration: 60 min</p>
                             <p className='No-Q'>No. of Questions:60</p>
                             <p className='Fee'>Fee:100rs</p>
-                            <button className='contest-register'>Register</button>
+                            <button className='contest-register'>Join</button>
                         </div>
                     </div>
                 </div>
@@ -96,7 +96,7 @@ function DailyContests(){
                     <p className='contest-name'>CAT</p>
                     <div className='contest-content'>
                         <div className='contest-image-div'>
-                            <img className='contest-image' src={require('./Assests/Images/Exams/cat.jpg')}/>
+                            <img className='contest-image' src={require('./Assests/Images/icons/exams/cat.png')}/>
                         </div>
                         <div className='contest-details'>
                             <p className='time-remaining'>{remainingTime}</p>
@@ -104,7 +104,23 @@ function DailyContests(){
                             <p className='Duration'>Duration: 120 min</p>
                             <p className='No-Q'>No. of Questions:120</p>
                             <p className='Fee'>Fee:200rs</p>
-                            <button className='contest-register'>Register</button>
+                            <button className='contest-register'>Join</button>
+                        </div>
+                    </div>
+                </div>
+                <div className='Contest'>
+                    <p className='contest-name'>Current Affairs</p>
+                    <div className='contest-content'>
+                        <div className='contest-image-div'>
+                            <img className='contest-image' src={require('./Assests/Images/icons/exams/current-affairs.png')}/>
+                        </div>
+                        <div className='contest-details'>
+                            <p className='time-remaining'>{remainingTime}</p>
+                            <p className='time'>9:00 PM</p>
+                            <p className='Duration'>Duration: 120 min</p>
+                            <p className='No-Q'>No. of Questions:120</p>
+                            <p className='Fee'>Fee:200rs</p>
+                            <button className='contest-register'>Join</button>
                         </div>
                     </div>
                 </div>

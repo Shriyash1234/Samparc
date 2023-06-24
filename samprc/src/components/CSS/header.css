@@ -50,9 +50,11 @@
 
 .cm-menu-inner > ul  li a {
     display: block;
+	font-weight:600;
     color: #000;
     padding: 10px;
     text-decoration: none;
+	font-family: Inter;
 }
 .links{
     font-size: 16px;
