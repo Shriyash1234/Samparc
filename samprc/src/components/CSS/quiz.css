@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+.quiz{
+    background-color: #e6e8ff;
+    min-height: 100vh;
+    width: 100vw;
+}
+.question-block{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 35px;
+    width: 70vw;
+    height: 430px;
+    padding: 20px;
+    background-color: #fafafe;
+    box-shadow: 0px 0px 20px #c7caec;
+}
+.question-box{
+    width: 80%;
+    
+    background-color: #fff;
+    margin: auto;
+    box-shadow: 0px 0px 20px #c7caec;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 25px;
+}
+.question{
+    text-align: center;
+    font-family: Montserrat,sans-serif;
+    font-weight: 600;
+    font-size: 1.6rem;
+    margin: 0px;
+}
+.options{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    height: 50%;
+    margin: auto;
+    justify-content: space-between;
+}
+.option-set{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.option{
+    background-color: #fff;
+    box-shadow: 0px 0px 20px #c7caec;
+    width: min(300px,20vw);
+    height: 50px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.option-text{
+    text-align: center;
+    margin: 0px;
+}
+.question-number{
+    background-color: #9000ff;
+    width: fit-content;
+    text-align: center;
+    margin: auto;
+    position: relative;
+    top: 20px;
+    padding: 10px;
+    border-radius: 20px;
+}
+.question-number-text{
+    color: #fff;
+    margin: 0;
+}
+.buttons{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.prev-next{
+    color:#9000ff;
+    cursor: pointer;
+}
+.selected{
+    color: #9000ff;
+    background-color: #ebc8ff;
+    border: 1px solid #9000ff;
+}
+@media all and (max-width:768px) {
+    .question-block{
+        height: 550px;
+    }
+    .options{
+        flex-direction: column;
+        align-items: center;
+        height: 60%;
+        margin-bottom: 30px;
+    }
+    .option-set{
+        height: 50%;
+        width: 100%;
+        align-items: center;
+    }
+    .option{
+        width: 100%;
+    }
+}
+@media all and (max-width:479px) {
+    .question-block{
+        height: 550px;
+        width: 90%;
+    }
+    .options{
+        flex-direction: column;
+        align-items: center;
+        height: 60%;
+        margin-bottom: 30px;
+    }
+    .option-set{
+        height: 50%;
+        width: 100%;
+        align-items: center;
+    }
+}

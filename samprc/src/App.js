@@ -12,7 +12,6 @@ function App() {
       <DailyContests/>
       <Exams/>
       <Registration/>
-      <></>
     </div>
   );
 }
