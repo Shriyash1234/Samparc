@@ -4,6 +4,7 @@ import Exams from './components/exams'
 import Carousel from './components/carousel'
 import Registration from './components/registeration';
 import DailyContests from './components/dailyContests';
+import { FooterContainer } from './components/footercontainer';
 function App() {
   return (
     <div className="App">
@@ -12,6 +13,7 @@ function App() {
       <DailyContests/>
       <Exams/>
       <Registration/>
+      <FooterContainer/>
     </div>
   );
 }

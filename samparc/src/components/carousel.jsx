@@ -1,5 +1,13 @@
 import "./CSS/carousel.css";
 function Carousel() {
+  function registerationForm(){
+    document.getElementsByClassName('cm-header-wrap')[0].style.filter = 'brightness(15%)'
+    document.getElementsByClassName('comapny-logo')[0].style.filter = 'brightness(15%)'
+    document.getElementsByClassName('caro')[0].style.filter = 'brightness(15%)'
+    document.getElementsByClassName('popular-exams')[0].style.filter = 'brightness(15%)'
+    document.getElementsByClassName('Daily-contests')[0].style.filter = 'brightness(15%)'
+    document.getElementsByClassName('registeration-form')[0].style.display = 'block'
+}
   return (
     <div>
       <section className="caro">
@@ -10,7 +18,7 @@ function Carousel() {
           data-interval="6000"
         >
           <ol className="carousel-indicators">
-            <li data-target="#carousel-2" data-slide-to="0" className="active"></li>
+            <li data-target="#carousel-2" data-slide-to="0" className="active" ></li>
             <li data-target="#carousel-2" data-slide-to="1"></li>
             <li data-target="#carousel-2" data-slide-to="2"></li>
           </ol>
@@ -18,6 +26,7 @@ function Carousel() {
             <div className="item active">
               <a>
                 <img
+                  onClick={registerationForm}
                   src={require("./Assests/Images/Banner/banner-1.png")}
                   alt="responsive image"
                   className="d-block img-fluid"
