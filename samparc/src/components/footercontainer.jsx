@@ -39,7 +39,7 @@ export function FooterContainer() {
                 </Footer.Column>
             </Footer.Row>
             </Footer.Wrapper>
-            <hr classname='footer-hr'/>
+            <hr className='footer-hr'/>
             <p className='copyright'>Copyright © 2023 Samparc Pvt. Ltd.: All rights reserved</p>
         </Footer>
     )

@@ -1,5 +1,42 @@
+import { useState } from "react";
 import "./CSS/registration.css";
 function Registration() {
+    const [formData, setFormData] = useState({
+        name: '',
+        phone: '',
+        email: '',
+        work: '',
+        category: 'Choose',
+        address: ''
+      });
+    
+      const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+      };
+    
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        const jsonData = JSON.stringify(formData);
+        console.log(jsonData)
+        try {
+          const response = await fetch('http://localhost:4000/addRegistration', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: jsonData
+          });
+    
+          if (response.ok) {
+            const data = await response.json();
+            console.log(data); // Optional: Handle the response from the backend
+          } else {
+            throw new Error('Error submitting form');
+          }
+        } catch (error) {
+          console.error(error); // Optional: Handle any errors
+        }
+      };
     function form1Next(){
         var nameInput = document.querySelector('input[name="name"]');
         var phoneInput = document.querySelector('input[name="phone"]');
@@ -36,7 +73,7 @@ function Registration() {
     }
     function form2Next() {
         var workInput = document.querySelector('input[name="work"]');
-        var categoriesInput = document.querySelector('select[name="categories"]');
+        var categoriesInput = document.querySelector('select[name="category"]');
         var addressInput = document.querySelector('input[name="address"]');
       
         // Reset validation messages
@@ -104,31 +141,31 @@ function Registration() {
                     <form className="mobile-from-form">
                         <div className="form-1">
                             <div className="icon-input">
-                                <img className='mobile-icon' src={require("./Assests/Images/icons/name.png")}></img>
-                                <input type="text" name="name" className='input-mobile' placeholder="Please Enter your name"></input>
+                                <img className="mobile-icon" src={require("./Assests/Images/icons/name.png")} alt="Name Icon" />
+                                <input type="text" name="name" className="input-mobile" placeholder="Please Enter your name" value={formData.name} onChange={handleChange} />
                                 <span className="validation-message"></span>
                             </div>
                             <div className="icon-input">
-                                <img className='mobile-icon' src={require("./Assests/Images/icons/smartphone.png")}></img>
-                                <input type="text" name="phone" className='input-mobile' placeholder="Please Enter your mobile number"></input>
+                                <img className="mobile-icon" src={require("./Assests/Images/icons/smartphone.png")} alt="Phone Icon" />
+                                <input type="text" name="phone" className="input-mobile" placeholder="Please Enter your mobile number" value={formData.phone} onChange={handleChange} />
                                 <span className="validation-message"></span>
                             </div>
                             <div className="icon-input">
-                                <img className='mail-icon' src={require("./Assests/Images/icons/mail.png")}></img>
-                                <input type="text" name="email" className='input-mobile' placeholder="Please Enter your email address"></input>
+                                <img className="mail-icon" src={require("./Assests/Images/icons/mail.png")} alt="Email Icon" />
+                                <input type="text" name="email" className="input-mobile" placeholder="Please Enter your email address" value={formData.email} onChange={handleChange} />
                                 <span className="validation-message"></span>
                             </div>
                             <div onClick={form1Next} className="Continue-button">Next</div>
                         </div>
                         <div className="form-2">
                             <div className="icon-input">
-                                <img className='mobile-icon' src={require("./Assests/Images/icons/work.png")}/>
-                                <input type="text" name="work" className='input-mobile' placeholder="Type of work"/>
+                                <img className="mobile-icon" src={require("./Assests/Images/icons/work.png")} alt="Work Icon" />
+                                <input type="text" name="work" className="input-mobile" placeholder="Type of work" value={formData.work} onChange={handleChange} />
                                 <span className="validation-message"></span>
                             </div>
                             <div className="icon-input">
-                                <img className='mobile-icon' src={require("./Assests/Images/icons/categories.png")}/>
-                                <select id="cars" name="categories" className="dropdown">
+                                <img className="mobile-icon" src={require("./Assests/Images/icons/categories.png")} alt="Category Icon" />
+                                <select id="cars" name="category" className="dropdown" value={formData.category} onChange={handleChange}>
                                     <option value="Choose">Choose a category</option>
                                     <option value="Domestic">Domestic workers</option>
                                     <option value="Farmers">Farmers</option>
@@ -138,10 +175,10 @@ function Registration() {
                                     <option value="Others">Others</option>
                                 </select>
                                 <span className="validation-message"></span>
-                            </div>
+                                </div>
                             <div className="icon-input">
-                                <img className='mail-icon' src={require("./Assests/Images/icons/location.png")}/>
-                                <input type="text" name="address" className='input-mobile' placeholder="Please Enter your address"/>
+                                <img className="mail-icon" src={require("./Assests/Images/icons/location.png")} alt="Address Icon" />
+                                <input type="text" name="address" className="input-mobile" placeholder="Please Enter your address" value={formData.address} onChange={handleChange} />
                                 <span className="validation-message"></span>
                             </div>
                             <div onClick={form2Next} className="Continue-button">Next</div>
@@ -151,7 +188,7 @@ function Registration() {
                                 <img className='payment-icon' src={require("./Assests/Images/icons/payment.png")}></img>
                                 <h2 className='registeration-form-continue'>Payment Amonut:1000</h2>
                             </div>
-                            <div className="Continue-button">Pay & Continue</div>
+                            <button type="submit" onClick={handleSubmit} className="Continue-button">Pay & Continue</button>
                         </div>
                     </form>
                 </div>

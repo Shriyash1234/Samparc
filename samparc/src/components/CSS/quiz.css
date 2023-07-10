@@ -104,6 +104,9 @@
     -webkit-appearance: none;
   -moz-appearance: none;
 }
+.notvisible{
+    visibility: hidden;
+}
 @media all and (max-width:768px) {
     .question-block{
         min-height: 550px;

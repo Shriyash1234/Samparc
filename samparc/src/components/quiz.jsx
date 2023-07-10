@@ -1,9 +1,11 @@
 import React,{useState} from 'react';
 import axios from 'axios';
 import './CSS/quiz.css'
+import quiz from './data/quizData/quiz.json'
 function Quiz(){
     const [selectedOption, setSelectedOption] = useState('');
-
+    const [questionNum,setQuestionNum] = useState(0);
+    const [quizResponses,setQuizResponses] = useState([]);
     function handleOptionChange(event) {
         setSelectedOption(event.target.value);
       }
@@ -12,26 +14,41 @@ function Quiz(){
         event.preventDefault();
         console.log('Selected Option:', selectedOption);
       }
+      function handlePrevious(event) {
+        event.preventDefault();
+        setQuestionNum(questionNum-1)
+      }
       function handleNext(event) {
         event.preventDefault();
-        console.log('Selected Option:', selectedOption);
-        axios.post('https://samparc.onrender.com/addquizresponse', { selectedOption })
-        .then(() => {
-            console.log('Added');
-          })
-          .catch(error => {
-            console.error('Error:', error);
-          });
+        const response = {
+            question: quiz[questionNum].question,
+            selectedOption: selectedOption
+        };
+        const updatedResponses = [...quizResponses, response];
+        setQuizResponses(updatedResponses);
+        // console.log('previous',quizResponses)
+        if(questionNum<quiz.length-1) setQuestionNum(questionNum+1);
+        
+      }
+      function handleSubmit(){
+        console.log(quizResponses)
+        axios.post('http://localhost:4000/addquizresponses', { quizResponses })
+            .then(() => {
+                console.log('Added');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
       }
     return(
         <section className="quiz">
             <div className='question'>
                 <div className='question-block'>
                     <div className='question-number'>
-                        <p className='question-number-text'>Question 1 out of 1</p>
+                        <p className='question-number-text'>Question {quiz[questionNum].questionNumber} out of {quiz.length}</p>
                     </div>
                     <div className='question-box'>
-                        <p className='question'>Who was the first prime minister of India?</p>
+                        <p className='question'>{quiz[questionNum].question}</p>
                     </div>
                     <form className='quiz-form' onSubmit={handleSubmit}>
                     <div className='options'>
@@ -44,7 +61,7 @@ function Quiz(){
                             onChange={handleOptionChange}
                             className='option-text'
                             />
-                            Rajendra Prasad
+                            {quiz[questionNum].Option_1}
                         </label>
                         <label className={`option ${selectedOption === 'b' ? 'selected' : ''}`}>
                             <input
@@ -54,7 +71,7 @@ function Quiz(){
                             onChange={handleOptionChange}
                             className='option-text'
                             />
-                            Jawaharlal Nehru
+                            {quiz[questionNum].Option_2}
                         </label>
                         </div>
                         <div className='option-set'>
@@ -66,7 +83,7 @@ function Quiz(){
                             onChange={handleOptionChange}
                             className='option-text'
                             />
-                            Mahatma Gandhi
+                            {quiz[questionNum].Option_3}
                         </label>
                         <label className={`option ${selectedOption === 'd' ? 'selected' : ''}`}>
                             <input
@@ -76,16 +93,17 @@ function Quiz(){
                             onChange={handleOptionChange}
                             className='option-text'
                             />
-                            Sardar Vallabhbhai Patel
+                            {quiz[questionNum].Option_4}
                         </label>
                         </div>
                     </div>
-                    {/* <button type='submit'>Submit</button> */}
+                    
                     </form>
                     <div className='buttons'>
-                        <div className='prev-next'><img src={require('./Assests/Images/icons/previous.png')}></img> Previous</div>
-                        <div className='prev-next' onClick={handleNext}>Next <img src={require('./Assests/Images/icons/next.png')}></img></div>
+                        <div className={questionNum===0?'notvisible':'prev-next'} onClick={handlePrevious}><img src={require('./Assests/Images/icons/previous.png')}></img> Previous</div>
+                        <div className='prev-next' onClick={handleNext}>{questionNum===quiz.length-1?'Submit':'Next'}<img src={require('./Assests/Images/icons/next.png')}></img></div>
                     </div>
+                    <button className={questionNum===quiz.length-1?'prev-next':'notvisible'} onClick={handleSubmit} >Submit</button>
                 </div>
             </div>
         </section>
