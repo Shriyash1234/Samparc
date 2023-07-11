@@ -1,0 +1,72 @@
+.Monthly-tests{
+    background-color: #f9fbfb;
+}
+.monthly-test-heading{
+    text-align: center;
+    font-family: 'open sans';
+    margin: 0px;
+    font-size: 3rem;
+}
+.monthly-test{
+    background-color: #fff;
+    height: 300px;
+    width: 250px;
+    box-shadow: 0px 0px 5px #c376ff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.tests{
+    padding: 20px 10vw;
+}
+.tests-col-1{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+.monthly-test{
+    margin: 20px;
+}
+.exam-icon{
+    width: 50%;
+}
+.monthly-exam-name{
+    color: #022f68;
+    font-size: 2rem;
+    font-weight: 600;
+    font-family: 'open sans';
+}
+.questions-time{
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+    height: 40px;
+    width: 100%;
+}
+.no-of-question,.exam-time{
+    background-color: #d5d7d7;
+    display: flex;
+    justify-content: center;
+    width: 40%;
+    align-items: center;
+    border-radius: 10px;
+}
+.no-of-question br{
+    text-align: center;
+}
+.take-test{
+    font-family: 'poppins';
+    border: 0px;
+    padding: 10px 35px;
+    margin-top: 20px;
+    color: grey;
+    background-color: #f6f5fb;
+    border-radius: 20px;
+}
+.take-test:hover{
+    color: #fff;
+    background-color: #c376ff;
+}

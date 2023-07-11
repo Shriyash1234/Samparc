@@ -1,0 +1,17 @@
+.loans-heading{
+    font-size: 3rem;
+    text-align: center;
+    font-weight: 600;
+}
+.loans{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9fbfb;
+}
+.coming-soon-image{
+    width: 300px;
+    mix-blend-mode: multiply;
+    margin: 30px;
+}

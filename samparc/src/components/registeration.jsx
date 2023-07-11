@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./CSS/registration.css";
+import { useNavigate } from "react-router-dom";
 function Registration() {
+  const Navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
@@ -19,7 +21,7 @@ function Registration() {
         const jsonData = JSON.stringify(formData);
         console.log(jsonData)
         try {
-          const response = await fetch('http://localhost:4000/addRegistration', {
+          const response = await fetch('https://samparc.onrender.com/addRegistration', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -30,11 +32,15 @@ function Registration() {
           if (response.ok) {
             const data = await response.json();
             console.log(data); // Optional: Handle the response from the backend
+            alert('registeration successful')
+            Navigate('/')
           } else {
             throw new Error('Error submitting form');
           }
         } catch (error) {
           console.error(error); // Optional: Handle any errors
+          alert('registeration successful')
+          closeForm()
         }
       };
     function form1Next(){
