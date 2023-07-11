@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Samparc/static/css/main.6ef9a6e6.css",
-    "main.js": "/Samparc/static/js/main.271a3e51.js",
+    "main.css": "/Samparc/static/css/main.1a255f6a.css",
+    "main.js": "/Samparc/static/js/main.085a1053.js",
     "static/js/787.ab512afd.chunk.js": "/Samparc/static/js/787.ab512afd.chunk.js",
     "static/media/banner-3.png": "/Samparc/static/media/banner-3.e9197d66cc1a2a78504f.png",
     "static/media/banner-1.png": "/Samparc/static/media/banner-1.2f59cf3ca80973707039.png",
@@ -12,7 +12,9 @@
     "static/media/current-affairs.png": "/Samparc/static/media/current-affairs.d1e0d44f0aeb110ef88f.png",
     "static/media/ssc.png": "/Samparc/static/media/ssc.3a721cb073ec520ca3c9.png",
     "static/media/ibps.png": "/Samparc/static/media/ibps.8fe7b18c64614c7e7bc7.png",
+    "static/media/exam.png": "/Samparc/static/media/exam.b05f2fd089d546f3e374.png",
     "static/media/location.png": "/Samparc/static/media/location.4ba2450b71e973e57b09.png",
+    "static/media/coming-soon.jpg": "/Samparc/static/media/coming-soon.33eac02c5b74ecd17529.jpg",
     "static/media/jee.png": "/Samparc/static/media/jee.64215bbe8b6ab525c0eb.png",
     "static/media/neet.png": "/Samparc/static/media/neet.8c8e6f438c4d71d4f543.png",
     "static/media/name.png": "/Samparc/static/media/name.512dc8ade05f5e0e6bb6.png",
@@ -21,12 +23,12 @@
     "static/media/work.png": "/Samparc/static/media/work.c68ab58a993a4e8ef309.png",
     "static/media/categories.png": "/Samparc/static/media/categories.c5587b259d4e4a001ba8.png",
     "index.html": "/Samparc/index.html",
-    "main.6ef9a6e6.css.map": "/Samparc/static/css/main.6ef9a6e6.css.map",
-    "main.271a3e51.js.map": "/Samparc/static/js/main.271a3e51.js.map",
+    "main.1a255f6a.css.map": "/Samparc/static/css/main.1a255f6a.css.map",
+    "main.085a1053.js.map": "/Samparc/static/js/main.085a1053.js.map",
     "787.ab512afd.chunk.js.map": "/Samparc/static/js/787.ab512afd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6ef9a6e6.css",
-    "static/js/main.271a3e51.js"
+    "static/css/main.1a255f6a.css",
+    "static/js/main.085a1053.js"
   ]
 }
