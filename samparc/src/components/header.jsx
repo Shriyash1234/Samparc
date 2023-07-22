@@ -1,15 +1,19 @@
 import React, { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector} from 'react-redux';
 import './CSS/header.css'
 import './loader'
-function Header()
-{
+function Header(){
+    const Navigate = useNavigate();
+    const myState = useSelector((state)=>state.setUserNameMail)
     function registerationForm(){
-        document.getElementsByClassName('cm-header-wrap')[0].style.filter = 'brightness(15%)'
-        document.getElementsByClassName('comapny-logo')[0].style.filter = 'brightness(15%)'
-        document.getElementsByClassName('caro')[0].style.filter = 'brightness(15%)'
-        document.getElementsByClassName('popular-exams')[0].style.filter = 'brightness(15%)'
-        document.getElementsByClassName('Daily-contests')[0].style.filter = 'brightness(15%)'
-        document.getElementsByClassName('registeration-form')[0].style.display = 'block'
+        // document.getElementsByClassName('cm-header-wrap')[0].style.filter = 'brightness(15%)'
+        // document.getElementsByClassName('comapny-logo')[0].style.filter = 'brightness(15%)'
+        // document.getElementsByClassName('caro')[0].style.filter = 'brightness(15%)'
+        // document.getElementsByClassName('popular-exams')[0].style.filter = 'brightness(15%)'
+        // document.getElementsByClassName('Daily-contests')[0].style.filter = 'brightness(15%)'
+        // document.getElementsByClassName('registeration-form')[0].style.display = 'block'
+        Navigate(myState.name?'/':'/Login')
     }
     return(
     <div>
@@ -95,10 +99,9 @@ function Header()
                             <a href="#" className ='links'>Loans</a>
                             <ul className="menu-ul level2">
                                 <li >
-                                    <a href="#" className ='links'>Personal</a>
-                                    
+                                    <a href="#" className ='links'>Coming Soon</a>
                                 </li>
-                                <li className="has-child">
+                                {/* <li className="has-child">
                                     <a href="#" className ='links'>Education</a>
                                     <ul className="menu-ul level2">
                                         <li>
@@ -126,10 +129,10 @@ function Header()
                                             <a href="#" className ='links'>Class 12th</a>
                                         </li>
                                     </ul>
-                                </li>
+                                </li> */}
                             </ul>
                         </li>
-                        <button onClick={registerationForm} className="get-started">Register</button>
+                        <button onClick={registerationForm} className="get-started">{myState.name?'Registered':'Register'}</button>
                     </ul>
                 </div>
             </div>

@@ -4,13 +4,15 @@
     "Option_1":"Rajendra Prasad",
     "Option_2":"Jawaharlal Nehru",
     "Option_3":"Mahatma Gandhi",
-    "Option_4":"Sardar Vallabhbhai Patel"
+    "Option_4":"Sardar Vallabhbhai Patel",
+    "correct_option":"a"
     },
     {"questionNumber":2,
     "question":"The mountain Great Dividing Range is located in …",
     "Option_1":"India",
     "Option_2":"Australia",
     "Option_3":"New Zealand",
-    "Option_4":"South Africa"
+    "Option_4":"South Africa",
+    "correct_option":"b"
     }
 ]

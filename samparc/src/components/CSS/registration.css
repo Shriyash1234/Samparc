@@ -1,7 +1,7 @@
 .registeration-form{
     background-color: #fff;
     position: fixed;
-    height: 500px;
+    min-height: 450px;
     width: 350px;
     left: 50%;
     top: 50%;
@@ -9,7 +9,12 @@
     z-index: 20;
     padding: 20px;
     border-radius: 5px;
-    display: none;
+  }
+  .registeration-background{
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+    filter: brightness(0.4);
   }
   .registeration-form-images{
     display: flex;
@@ -127,5 +132,12 @@
     color: #fff;
     font-size: 15px;
     font-weight: 600;
+  }
+  .login-form-button{
+    background-color: #940dfe;
+    color: #fff;
+    padding: 5px 0px;
+    text-align: center;
+    margin: 0px;
   }
   

@@ -1,8 +1,10 @@
 import react, {useState,useEffect} from 'react'
 import ScrollTrigger from 'react-scroll-trigger';
+import { useNavigate } from 'react-router-dom';
 
 import "./CSS/exams.css";
 function Exams() {
+    const Navigate = useNavigate();
     const [isVisible, setIsVisible] = useState(false);
     const [prevScrollPos, setPrevScrollPos] = useState(0);
 
@@ -25,12 +27,7 @@ function Exams() {
         };
       }, []);
     function registerationForm(){
-        document.getElementsByClassName('cm-header-wrap')[0].style.filter = 'brightness(15%)'
-        document.getElementsByClassName('comapny-logo')[0].style.filter = 'brightness(15%)'
-        document.getElementsByClassName('caro')[0].style.filter = 'brightness(15%)'
-        document.getElementsByClassName('popular-exams')[0].style.filter = 'brightness(15%)'
-        document.getElementsByClassName('Daily-contests')[0].style.filter = 'brightness(15%)'
-        document.getElementsByClassName('registeration-form')[0].style.display = 'block'
+        Navigate('/Login')
     }
     
     return(

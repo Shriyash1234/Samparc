@@ -1,8 +1,11 @@
 import { useState } from "react";
 import "./CSS/registration.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { setUserName} from '../actions/index';
 function Registration() {
   const Navigate = useNavigate();
+  const dispatch = useDispatch();
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
@@ -19,6 +22,7 @@ function Registration() {
       const handleSubmit = async (e) => {
         e.preventDefault();
         const jsonData = JSON.stringify(formData);
+        dispatch(setUserName(formData.name,formData.email))
         console.log(jsonData)
         try {
           const response = await fetch('https://samparc.onrender.com/addRegistration', {
@@ -124,15 +128,16 @@ function Registration() {
       }
       
     function closeForm(){
-        document.getElementsByClassName('registeration-form')[0].style.display = 'none'
-        document.getElementsByClassName('form-1')[0].style.display = 'block'
-        document.getElementsByClassName('form-2')[0].style.display = 'none'
-        document.getElementsByClassName('form-3')[0].style.display = 'none'
-        document.getElementsByClassName('cm-header-wrap')[0].style.filter = 'brightness(100%)'
-        document.getElementsByClassName('comapny-logo')[0].style.filter = 'brightness(100%)'
-        document.getElementsByClassName('caro')[0].style.filter = 'brightness(100%)'
-        document.getElementsByClassName('popular-exams')[0].style.filter = 'brightness(100%)'
-        document.getElementsByClassName('Daily-contests')[0].style.filter = 'brightness(100%)'
+        // document.getElementsByClassName('registeration-form')[0].style.display = 'none'
+        // document.getElementsByClassName('form-1')[0].style.display = 'block'
+        // document.getElementsByClassName('form-2')[0].style.display = 'none'
+        // document.getElementsByClassName('form-3')[0].style.display = 'none'
+        // document.getElementsByClassName('cm-header-wrap')[0].style.filter = 'brightness(100%)'
+        // document.getElementsByClassName('comapny-logo')[0].style.filter = 'brightness(100%)'
+        // document.getElementsByClassName('caro')[0].style.filter = 'brightness(100%)'
+        // document.getElementsByClassName('popular-exams')[0].style.filter = 'brightness(100%)'
+        // document.getElementsByClassName('Daily-contests')[0].style.filter = 'brightness(100%)'
+        Navigate('/')
     }
     return(
         <div>
@@ -162,6 +167,8 @@ function Registration() {
                                 <span className="validation-message"></span>
                             </div>
                             <div onClick={form1Next} className="Continue-button">Next</div>
+                            <p style={{fontsize:'3rem',textAlign:'center',margin:'4px'}}>or</p>
+                            <div className="login-form-button">Login</div>
                         </div>
                         <div className="form-2">
                             <div className="icon-input">
@@ -199,6 +206,7 @@ function Registration() {
                     </form>
                 </div>
             </section>
+            <div className="registeration-background"></div>
         </div>
     )
 }

@@ -109,7 +109,8 @@
 }
 .submit-block{
     display: none;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
 }
 .quiz-submit{
@@ -121,6 +122,10 @@
     color: #fff;
     background-color: #9000ff;
     border-radius: 20px;
+}
+.alarm-clock{
+    width: 40px;
+    margin-bottom: 10px;
 }
 @media all and (max-width:768px) {
     .question-block{

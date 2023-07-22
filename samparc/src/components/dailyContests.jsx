@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AnimationWrapper from './AnimationWrapper';
+import { useSelector } from 'react-redux';
 import './CSS/dailyContests.css'
 function DailyContests(){
     const [remainingTime, setRemainingTime] = useState(findremainingTime());
@@ -13,7 +14,7 @@ function DailyContests(){
           clearInterval(timer);
         };
       }, []);
-
+    const myState = useSelector((state)=>state.setUserNameMail)  
     function findremainingTime(){
         var currentTime = new Date();
         var targetTime = new Date();
@@ -56,7 +57,7 @@ function DailyContests(){
                             <p className='Duration'>Duration: 40 min</p>
                             <p className='No-Q'>No. of Questions:20</p>
                             <p className='Fee'>Fee:100rs</p>
-                            <Link to='/quiz' className='contest-link-button'><button className='contest-register'>Join</button></Link>
+                            <Link to={myState.name?'/quiz':'/Login'} className='contest-link-button'><button className='contest-register'>Join</button></Link>
                         </div>
                     </div>
                 </div>
@@ -72,7 +73,7 @@ function DailyContests(){
                             <p className='Duration'>Duration: 30 min</p>
                             <p className='No-Q'>No. of Questions:30</p>
                             <p className='Fee'>Fee:100rs</p>
-                            <Link to='/quiz' className='contest-link-button'><button className='contest-register'>Join</button></Link>
+                            <Link to={myState.name?'/quiz':'/Login'} className='contest-link-button'><button className='contest-register'>Join</button></Link>
                         </div>
                     </div>
                 </div>
@@ -88,7 +89,7 @@ function DailyContests(){
                             <p className='Duration'>Duration: 60 min</p>
                             <p className='No-Q'>No. of Questions:60</p>
                             <p className='Fee'>Fee:100rs</p>
-                            <Link to='/quiz' className='contest-link-button'><button className='contest-register'>Join</button></Link>
+                            <Link to={myState.name?'/quiz':'/Login'} className='contest-link-button'><button className='contest-register'>Join</button></Link>
                         </div>
                     </div>
                 </div>
@@ -104,7 +105,7 @@ function DailyContests(){
                             <p className='Duration'>Duration: 120 min</p>
                             <p className='No-Q'>No. of Questions:120</p>
                             <p className='Fee'>Fee:200rs</p>
-                            <Link to='/quiz' className='contest-link-button'><button className='contest-register'>Join</button></Link>
+                            <Link to={myState.name?'/quiz':'/Login'} className='contest-link-button'><button className='contest-register'>Join</button></Link>
                         </div>
                     </div>
                 </div>
