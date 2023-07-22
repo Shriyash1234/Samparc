@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Samparc/static/css/main.1a255f6a.css",
-    "main.js": "/Samparc/static/js/main.085a1053.js",
+    "main.css": "/Samparc/static/css/main.cbd55b2d.css",
+    "main.js": "/Samparc/static/js/main.07937e4e.js",
     "static/js/787.ab512afd.chunk.js": "/Samparc/static/js/787.ab512afd.chunk.js",
     "static/media/banner-3.png": "/Samparc/static/media/banner-3.e9197d66cc1a2a78504f.png",
     "static/media/banner-1.png": "/Samparc/static/media/banner-1.2f59cf3ca80973707039.png",
@@ -11,6 +11,7 @@
     "static/media/cat.png": "/Samparc/static/media/cat.ff6ff2e389e16849380e.png",
     "static/media/current-affairs.png": "/Samparc/static/media/current-affairs.d1e0d44f0aeb110ef88f.png",
     "static/media/ssc.png": "/Samparc/static/media/ssc.3a721cb073ec520ca3c9.png",
+    "static/media/alarm.png": "/Samparc/static/media/alarm.738f3c1e706e9e184635.png",
     "static/media/ibps.png": "/Samparc/static/media/ibps.8fe7b18c64614c7e7bc7.png",
     "static/media/exam.png": "/Samparc/static/media/exam.b05f2fd089d546f3e374.png",
     "static/media/location.png": "/Samparc/static/media/location.4ba2450b71e973e57b09.png",
@@ -23,12 +24,12 @@
     "static/media/work.png": "/Samparc/static/media/work.c68ab58a993a4e8ef309.png",
     "static/media/categories.png": "/Samparc/static/media/categories.c5587b259d4e4a001ba8.png",
     "index.html": "/Samparc/index.html",
-    "main.1a255f6a.css.map": "/Samparc/static/css/main.1a255f6a.css.map",
-    "main.085a1053.js.map": "/Samparc/static/js/main.085a1053.js.map",
+    "main.cbd55b2d.css.map": "/Samparc/static/css/main.cbd55b2d.css.map",
+    "main.07937e4e.js.map": "/Samparc/static/js/main.07937e4e.js.map",
     "787.ab512afd.chunk.js.map": "/Samparc/static/js/787.ab512afd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1a255f6a.css",
-    "static/js/main.085a1053.js"
+    "static/css/main.cbd55b2d.css",
+    "static/js/main.07937e4e.js"
   ]
 }
