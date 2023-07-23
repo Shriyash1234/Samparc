@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Samparc/static/css/main.cbd55b2d.css",
-    "main.js": "/Samparc/static/js/main.07937e4e.js",
+    "main.css": "/Samparc/static/css/main.4eeae0fe.css",
+    "main.js": "/Samparc/static/js/main.675b1382.js",
     "static/js/787.ab512afd.chunk.js": "/Samparc/static/js/787.ab512afd.chunk.js",
     "static/media/banner-3.png": "/Samparc/static/media/banner-3.e9197d66cc1a2a78504f.png",
     "static/media/banner-1.png": "/Samparc/static/media/banner-1.2f59cf3ca80973707039.png",
@@ -24,12 +24,12 @@
     "static/media/work.png": "/Samparc/static/media/work.c68ab58a993a4e8ef309.png",
     "static/media/categories.png": "/Samparc/static/media/categories.c5587b259d4e4a001ba8.png",
     "index.html": "/Samparc/index.html",
-    "main.cbd55b2d.css.map": "/Samparc/static/css/main.cbd55b2d.css.map",
-    "main.07937e4e.js.map": "/Samparc/static/js/main.07937e4e.js.map",
+    "main.4eeae0fe.css.map": "/Samparc/static/css/main.4eeae0fe.css.map",
+    "main.675b1382.js.map": "/Samparc/static/js/main.675b1382.js.map",
     "787.ab512afd.chunk.js.map": "/Samparc/static/js/787.ab512afd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cbd55b2d.css",
-    "static/js/main.07937e4e.js"
+    "static/css/main.4eeae0fe.css",
+    "static/js/main.675b1382.js"
   ]
 }
