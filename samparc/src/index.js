@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import Home from './App';
 import Quiz from './components/quiz';
 import Login from './components/Login'
+import Leaderboard from './components/leaderboard';
 
 import './index.css';
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
         <Route index path="/" element={<Home />} />
         <Route index path="/Login" element={<Login />} />
         <Route index path="/Quiz" element={<Quiz />} />
+        <Route index path="/Leaderboard" element={<Leaderboard />} />
       </Routes>
     </HashRouter>
   );

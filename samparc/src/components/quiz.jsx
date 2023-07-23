@@ -1,15 +1,23 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './CSS/quiz.css'
+import { useSelector} from 'react-redux';
+
 import quiz from './data/quizData/quiz.json'
+
+import './CSS/quiz.css'
 function Quiz(){
     const [selectedOptions, setSelectedOptions] = useState(Array(quiz.length).fill(''));
     const [questionNum,setQuestionNum] = useState(0);
-    const [quizResponses,setQuizResponses] = useState([]);
     const [reamainingTime, setReamainingTime] = useState(500);
     const Navigate = useNavigate();
 
+    const myState = useSelector((state)=>state.setUserNameMail)
+    const [quizResponses,setQuizResponses] = useState([{
+        name:myState.name,
+        mail:myState.mail,
+        time:new Date().toString()
+    }]);
     useEffect(() => {
         const timer = setTimeout(() => {
         if (reamainingTime > 0) {
@@ -50,7 +58,7 @@ function Quiz(){
           selectedOption: selectedOptions[questionNum],
         };
         const updatedResponses = [...quizResponses];
-        updatedResponses[questionNum] = response;
+        updatedResponses[questionNum+1] = response;
         console.log(updatedResponses)
         setQuizResponses(updatedResponses);
     
@@ -62,7 +70,7 @@ function Quiz(){
       }
       function handleSubmit(){
         console.log(quizResponses)
-        axios.post('https://samparc.onrender.com/addquizresponses', { quizResponses })
+        axios.post('http://localhost:4000/addquizresponses', { quizResponses })
             .then(() => {
                 console.log('Added');
                 alert('Quiz submiited')

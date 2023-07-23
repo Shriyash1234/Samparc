@@ -3,7 +3,7 @@
     width: 100vw;
   }
   .img-fluid{
-    height: 400px !important;
+    /* height: 400px !important; */
     width: 100vw;
     object-fit: fill;
   }
@@ -12,6 +12,9 @@
   }
   .carousel-control-prev-icon,.carousel-control-next-icon{
     margin-top: 7rem;
+    background-color: #000;
+    padding: 15px;
+    border-radius: 50%;
   }
   
   /*

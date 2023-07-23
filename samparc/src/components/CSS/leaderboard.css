@@ -1,0 +1,71 @@
+.leaderboard-heading{
+    font-size: 2.5rem;
+}
+.leaderbaord{
+    position: relative;
+    top: 85px;
+    padding: 40px 60px;
+}
+.leaderboard-table{
+    width: 100%;
+    min-height: 400px;
+    text-align: center; 
+}
+.table, th, td {
+    border:1px solid grey;
+    border-right:  0.5px solid #fff;
+    text-align: center;
+    color: #8a8f94;
+  }
+td{
+    font-size: 1.8rem;
+}
+th{
+    font-size: 2rem;
+    font-family: "poppins";
+    color: #fff;
+    border-right:  0.5px solid #c881ff;
+}
+
+.gold-style{
+    background-color: #FFD700;
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+    margin: auto;
+    color: #fff;
+    border-radius: 50%;
+}
+.silver-style{
+    background-color: #C0C0C0;
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+    margin: auto;
+    color: #fff;
+    border-radius: 50%;
+}
+.bronze-style{
+    background-color: #CD7F32;
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+    margin: auto;
+    color: #fff;
+    border-radius: 50%;
+}
+.score{
+border:0.5px solid grey;
+}
+.columns-name{
+    background-color: #c881ff;
+}
+.Participant-Name{
+    font-family: "poppins";
+}
+  /* .table{
+    border-top: 1px solid #000;
+  }
+.ranking,.participant,.leaderboard-time,.score{
+    border-top: 1px solid #000;
+} */

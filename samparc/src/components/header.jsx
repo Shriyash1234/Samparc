@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector} from 'react-redux';
 import './CSS/header.css'
 import './loader'
@@ -17,7 +17,9 @@ function Header(){
     }
     return(
     <div>
-        <div> <img className='comapny-logo' src={require("./Assests/Images/icons/logo.png")}></img></div>
+        <div> 
+           <Link to='/'> <img className='comapny-logo' src={require("./Assests/Images/icons/logo.png")}/></Link>
+        </div>
         <div className="cm-header-wrap">
             <div className="cm-menu-wrap">
                 <div className="cm-menu-btn fa fa-bars"></div>
