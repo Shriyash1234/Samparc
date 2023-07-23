@@ -9,21 +9,22 @@ import './CSS/quiz.css'
 function Quiz(){
     const [selectedOptions, setSelectedOptions] = useState(Array(quiz.length).fill(''));
     const [questionNum,setQuestionNum] = useState(0);
-    const [reamainingTime, setReamainingTime] = useState(500);
+    const [reamainingTime, setReamainingTime] = useState(180);
     const Navigate = useNavigate();
 
     const myState = useSelector((state)=>state.setUserNameMail)
     const [quizResponses,setQuizResponses] = useState([{
         name:myState.name,
         mail:myState.mail,
-        time:new Date().toString()
+        time:new Date().toString(),
+        score:0
     }]);
     useEffect(() => {
         const timer = setTimeout(() => {
         if (reamainingTime > 0) {
             setReamainingTime((prevSeconds) => prevSeconds - 1);
         }
-        if(reamainingTime == 0){
+        if(reamainingTime === 0){
             handleSubmit();
         }
         }, 1000);
@@ -59,7 +60,6 @@ function Quiz(){
         };
         const updatedResponses = [...quizResponses];
         updatedResponses[questionNum+1] = response;
-        console.log(updatedResponses)
         setQuizResponses(updatedResponses);
     
         if (questionNum < quiz.length - 1) {
@@ -68,8 +68,20 @@ function Quiz(){
           showSubmit();
         }
       }
+
+      function calculateScore(){
+        var score = 0;
+        for(let i =0;i<quiz.length;i++){
+            if(selectedOptions[i] === quiz[i].correct_option){
+                score++;
+            }
+        }
+        return score;
+      }
       function handleSubmit(){
         console.log(quizResponses)
+        var score = calculateScore();
+        quizResponses[0].score = score;
         axios.post('http://localhost:4000/addquizresponses', { quizResponses })
             .then(() => {
                 console.log('Added');
@@ -87,7 +99,7 @@ function Quiz(){
             <div className='question'>
                 <div className='question-block'>
                     <img className='alarm-clock' src={require('./Assests/Images/icons/alarm.png')}></img>
-                    <p className='time-remaining'>{reamainingTime}</p>
+                    <p className='time-remaining'>{Math.floor(reamainingTime/60)+':'+(reamainingTime%60)}</p>
                     <div className='question-number'>
                         <p className='question-number-text'>Question {quiz[questionNum].questionNumber} out of {quiz.length}</p>
                     </div>
