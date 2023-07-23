@@ -76,36 +76,6 @@ const Leaderboard = () => {
                 )
             })
         }
-        {/* <tr>
-            <td><p className='rank'>1</p></td>
-            <td className='Participant-Name'>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td className='score'>Germany</td>
-        </tr>
-        <tr>
-            <td><p className='rank'>2</p></td>
-            <td className='Participant-Name'>Centro comercial Moctezuma</td>
-            <td>Francisco Chang</td>
-            <td className='score'>Mexico</td>
-        </tr>
-        <tr>
-            <td><p className='rank'>3</p></td>
-            <td className='Participant-Name'>Centro comercial Moctezuma</td>
-            <td>Francisco Chang</td>
-            <td className='score'>Mexico</td>
-        </tr>
-        <tr>
-            <td><p className='rank'>4</p></td>
-            <td className='Participant-Name'>Centro comercial Moctezuma</td>
-            <td>Francisco Chang</td>
-            <td className='score'>Mexico</td>
-        </tr>
-        <tr>
-            <td><p className='rank'>5</p></td>
-            <td className='Participant-Name'>Centro comercial Moctezuma</td>
-            <td>Francisco Chang</td>
-            <td className='score'>Mexico</td>
-        </tr> */}
         </table>
       </section>
     </div>

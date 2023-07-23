@@ -178,9 +178,9 @@ function Quiz(){
                     </div>
                 </div>
                 <div className='question-block submit-block'>
-                    <p className='time-remaining'>{reamainingTime}</p>
+                    <p className='time-remaining'>{Math.floor(reamainingTime/60)+':'+(reamainingTime%60)}</p>
                     <button className={questionNum===quiz.length-1?'quiz-submit':'notvisible'} onClick={handleSubmit} >Submit The Quiz</button>
-                    <div className={questionNum===0?'notvisible':'prev-next'} onClick={handleLastPrevious}><img src={require('./Assests/Images/icons/previous.png')}></img> Previous</div>
+                    {/* <div className={questionNum===0?'notvisible':'prev-next'} onClick={handleLastPrevious}><img src={require('./Assests/Images/icons/previous.png')}></img> Previous</div> */}
                 </div>
             </div>
         </section>
