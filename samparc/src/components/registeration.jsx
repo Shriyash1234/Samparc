@@ -25,7 +25,7 @@ function Registration() {
         dispatch(setUserName(formData.name,formData.email))
         console.log(jsonData)
         try {
-          const response = await fetch('http://localhost:4000/addRegistration', {
+          const response = await fetch('http://samparc.onrender.com/addRegistration', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

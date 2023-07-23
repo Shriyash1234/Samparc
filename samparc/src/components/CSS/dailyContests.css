@@ -109,6 +109,19 @@
 .contest-link-button:hover{
     text-decoration: none;
 }
+.check-leaderboard{
+    margin-bottom: 30px;
+    text-align: center;
+    color: #fff;
+    font-size: 2.5rem;
+    background-color: #9000ff;
+    padding: 10px 15px;
+    border-radius: 10px;
+    text-decoration: none !important;
+}
+.check-leaderboard:hover{
+    background-color: #47007e;
+}
 @media all and (max-width:576px){
     .Daily-contents-rectangle{
         width: 90%;

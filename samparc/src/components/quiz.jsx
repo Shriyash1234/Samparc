@@ -17,6 +17,7 @@ function Quiz(){
         name:myState.name,
         mail:myState.mail,
         time:new Date().toString(),
+        timetaken:0,
         score:0
     }]);
     useEffect(() => {
@@ -78,11 +79,28 @@ function Quiz(){
         }
         return score;
       }
+      function calculateTime(time){
+        var timedata = []
+
+        time = 200 - time;
+        var hour = parseInt(time/3600);
+        var minute = (parseInt(time/60))%60;
+        var seconds = time%60;
+
+        timedata.push(minute);
+        timedata.push(seconds)
+        if(hour>0) timedata.push(hour);
+
+        if(timedata.length === 3 && minute !==0) return hour+'h '+minute+'m '+ seconds+'s'
+        else if(timedata.length === 3 && minute ===0) return hour+'h '+ seconds+'s'
+        else if(minute !==0) return minute+'m '+seconds+'s'
+        else return seconds+'s'
+      }
       function handleSubmit(){
         console.log(quizResponses)
-        var score = calculateScore();
-        quizResponses[0].score = score;
-        axios.post('http://localhost:4000/addquizresponses', { quizResponses })
+        quizResponses[0].score = calculateScore(); 
+        quizResponses[0].timetaken = calculateTime(reamainingTime);
+        axios.post('http://samparc.onrender.com/addquizresponses', { quizResponses })
             .then(() => {
                 console.log('Added');
                 alert('Quiz submiited')

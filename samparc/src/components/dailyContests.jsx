@@ -126,6 +126,7 @@ function DailyContests(){
                     </div>
                 </div>
             </div>
+           <Link to='/leaderboard'><div className='check-leaderboard'>Check Leaderboard</div></Link>
         </section>
         </AnimationWrapper>
     )
