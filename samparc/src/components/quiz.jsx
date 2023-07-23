@@ -100,7 +100,7 @@ function Quiz(){
         console.log(quizResponses)
         quizResponses[0].score = calculateScore(); 
         quizResponses[0].timetaken = calculateTime(reamainingTime);
-        axios.post('http://samparc.onrender.com/addquizresponses', { quizResponses })
+        axios.post('https://samparc.onrender.com/addquizresponses', { quizResponses })
             .then(() => {
                 console.log('Added');
                 alert('Quiz submiited')
