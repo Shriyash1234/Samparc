@@ -95,8 +95,17 @@
     margin-bottom: 10px;
     padding-bottom: 5px;
   }
-  .form-2,.form-3{
+  .form-2,.form-3,.form-4{
     display: none;
+  }
+  .password-input{
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .password-img{
+    margin-left: 2rem;
   }
   .dropdown{
     border: 0px;

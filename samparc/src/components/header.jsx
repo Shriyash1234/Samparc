@@ -13,7 +13,7 @@ function Header(){
         // document.getElementsByClassName('popular-exams')[0].style.filter = 'brightness(15%)'
         // document.getElementsByClassName('Daily-contests')[0].style.filter = 'brightness(15%)'
         // document.getElementsByClassName('registeration-form')[0].style.display = 'block'
-        Navigate(myState.name?'/':'/Login')
+        Navigate(myState.name?'/':'/Register')
     }
     return(
     <div>

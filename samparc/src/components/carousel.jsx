@@ -1,10 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import "./CSS/carousel.css";
+import { useEffect } from 'react';
 function Carousel() {
   const Navigate = useNavigate();
   function registerationForm(){
-    Navigate('/Login')
+    Navigate('/Register')
 }
+  useEffect(()=>{
+    document.getElementsByClassName('cm-header-wrap')[0].style.filter = 'brightness(100%)'
+  },[])
   return (
     <div>
       <section className="caro">

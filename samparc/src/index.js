@@ -7,7 +7,8 @@ import { Provider } from 'react-redux';
 
 import Home from './App';
 import Quiz from './components/quiz';
-import Login from './components/Login'
+import Register from './components/Register'
+import Login from './components/Login';
 import Leaderboard from './components/leaderboard';
 
 import './index.css';
@@ -16,6 +17,7 @@ export default function App() {
     <HashRouter>
       <Routes>
         <Route index path="/" element={<Home />} />
+        <Route index path="/Register" element={<Register />} />
         <Route index path="/Login" element={<Login />} />
         <Route index path="/Quiz" element={<Quiz />} />
         <Route index path="/Leaderboard" element={<Leaderboard />} />
@@ -25,11 +27,9 @@ export default function App() {
 }
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>
 );
 
 reportWebVitals();

@@ -27,7 +27,7 @@ function Exams() {
         };
       }, []);
     function registerationForm(){
-        Navigate('/Login')
+        Navigate('/Register')
     }
     
     return(
