@@ -4,6 +4,15 @@ import { useDispatch ,useSelector} from 'react-redux';
 import { setUserName} from '../actions/index';
 import { Link } from "react-router-dom";
 
+import { UserCircle2 } from 'lucide-react';
+import { Smartphone } from 'lucide-react';
+import { Mail } from 'lucide-react';
+import { Lock } from 'lucide-react';
+import { Calendar } from 'lucide-react';
+import { GraduationCap } from 'lucide-react';
+import { Wallet } from 'lucide-react';
+
+
 import "./CSS/registration.css";
 function Registration() {
   const Navigate = useNavigate();
@@ -219,6 +228,7 @@ function Registration() {
         <div>
             <section className="registeration-form">
                 <div className="registeration-form-images">
+                  
                     <img className='registeration-form-logo' src={require("./Assests/Images/icons/logo.png")}></img>
                     <img className="close-form" onClick={closeForm} src={require("./Assests/Images/icons/close.png")}></img>
                 </div>
@@ -228,12 +238,12 @@ function Registration() {
                     <form className="mobile-from-form">
                         <div className="form-1">
                             <div className="icon-input">
-                                <img className="mobile-icon" src={require("./Assests/Images/icons/name.png")} alt="Name Icon" />
+                                <UserCircle2 className="mobile-icon"/>
                                 <input type="text" name="name" className="input-mobile" placeholder="Please Enter your name" value={formData.name} onChange={handleChange} />
                                 <span className="validation-message"></span>
                             </div>
                             <div className="icon-input">
-                                <img className="mobile-icon" src={require("./Assests/Images/icons/smartphone.png")} alt="Phone Icon" />
+                                <Smartphone  className="mobile-icon"/>
                                 <input type="text" name="phone" className="input-mobile" placeholder="Please Enter your mobile number" value={formData.phone} onChange={handleChange} />
                                 <span className="validation-message"></span>
                             </div>
@@ -243,12 +253,12 @@ function Registration() {
                         </div>
                         <div className="form-2">
                             <div className="icon-input">
-                                <img className="mail-icon" src={require("./Assests/Images/icons/mail.png")} alt="Email Icon" />
+                                <Mail className="mobile-icon"/>
                                 <input type="text" name="email" className="input-mobile" placeholder="Please Enter your email address" value={formData.email} onChange={handleChange} />
                                 <span className="validation-message"></span>
                             </div>
                             <div className="icon-input">
-                                <img className="mail-icon" src={require("./Assests/Images/icons/password.png")} alt="Phone Icon" />
+                                <Lock className="mobile-icon"/>
                                 <div className="password-input">
                                     <input type={showPassword ? 'text' : 'password'} name="password" className="input-mobile" placeholder="Please Enter your password" value={formData.password} onChange={handleChange} />
                                     <img className='mail-icon password-img' src={require('./Assests/Images/icons/visibility-button' + (showPassword ? '-on.png' : '-off.png'))} onClick={togglePasswordVisibility}/>
@@ -259,12 +269,12 @@ function Registration() {
                         </div>
                         <div className="form-3">
                             <div className="icon-input">
-                                <img className="mobile-icon" src={require("./Assests/Images/icons/DOB.png")} alt="DOB Icon" />
+                                <Calendar className="mobile-icon"/>
                                 <input type="date" name="DOB" className="input-mobile" placeholder="Date of Birth" value={formData.DOB} onChange={handleChange} />
                                 <span className="validation-message"></span>
                             </div>
                             <div className="icon-input">
-                                <img className="mobile-icon" src={require("./Assests/Images/icons/class.png")} alt="Class Icon" />
+                                <GraduationCap className="mobile-icon"/>
                                 <select id="class" name="class" className="dropdown" value={formData.class} onChange={handleChange}>
                                     <option value="Choose">Choose your class</option>
                                     <option value="Class 5">Class 5</option>
@@ -288,7 +298,7 @@ function Registration() {
                         </div>                
                         <div className="form-4">
                             <div className="icon-input-payment">
-                                <img className='payment-icon' src={require("./Assests/Images/icons/payment.png")}></img>
+                                <Wallet className='payment-icon'/>
                                 <h2 className='registeration-form-continue'>Payment Amonut:1000</h2>
                             </div>
                             <button type="submit" onClick={handleSubmit} className="Continue-button">Pay & Continue</button>
