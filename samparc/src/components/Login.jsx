@@ -37,7 +37,7 @@ const Login = () => {
         const jsonData = JSON.stringify(formData);
 
         try {
-          const response = await fetch('http://localhost:4000/checkpassword', {
+          const response = await fetch('https://samparc.onrender.com/checkpassword', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

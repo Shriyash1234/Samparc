@@ -14,9 +14,9 @@ function Registration() {
         name: '',
         phone: '',
         email: '',
-        work: '',
+        DOB: '',
         password:'',
-        category: 'Choose',
+        class: 'Choose',
         address: ''
       });
     
@@ -33,21 +33,31 @@ function Registration() {
       const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
       };
-    
+  
+
+      function removePasswordField(){
+        const formDataCopy = { ...formData };
+        delete formDataCopy.password;
+        setFormData(formDataCopy);
+        return JSON.stringify(formDataCopy);
+      };
+      
       const handleSubmit = async (e) => {
         e.preventDefault();
-        const jsonData = JSON.stringify(formData);
+
         dispatch(setUserName(formData.name, formData.email));
         const jsonUserPasswordData = {
           name:formData.name,
           email: formData.email,
           password: formData.password
         };
-        console.log(jsonUserPasswordData);
+        removePasswordField();
+        const jsonData = removePasswordField();
+        
 
         try {
           // First fetch request
-          const response1 = await fetch('http://localhost:4000/addRegistration', {
+          const response1 = await fetch('https://samparc.onrender.com/addRegistration', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -63,7 +73,7 @@ function Registration() {
             throw new Error('Error submitting form for the first link');
           }
       
-          const response2 = await fetch('http://localhost:4000/addUserPassword', {
+          const response2 = await fetch('https://samparc.onrender.com/addUserPassword', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -153,8 +163,8 @@ function Registration() {
       }
   }
     function form3Next() {
-        var workInput = document.querySelector('input[name="work"]');
-        var categoriesInput = document.querySelector('select[name="category"]');
+        var workInput = document.querySelector('input[name="DOB"]');
+        var categoriesInput = document.querySelector('select[name="class"]');
         var addressInput = document.querySelector('input[name="address"]');
       
         // Reset validation messages
@@ -249,20 +259,23 @@ function Registration() {
                         </div>
                         <div className="form-3">
                             <div className="icon-input">
-                                <img className="mobile-icon" src={require("./Assests/Images/icons/work.png")} alt="Work Icon" />
-                                <input type="text" name="work" className="input-mobile" placeholder="Type of work" value={formData.work} onChange={handleChange} />
+                                <img className="mobile-icon" src={require("./Assests/Images/icons/DOB.png")} alt="DOB Icon" />
+                                <input type="date" name="DOB" className="input-mobile" placeholder="Date of Birth" value={formData.DOB} onChange={handleChange} />
                                 <span className="validation-message"></span>
                             </div>
                             <div className="icon-input">
-                                <img className="mobile-icon" src={require("./Assests/Images/icons/categories.png")} alt="Category Icon" />
-                                <select id="cars" name="category" className="dropdown" value={formData.category} onChange={handleChange}>
-                                    <option value="Choose">Choose a category</option>
-                                    <option value="Domestic">Domestic workers</option>
-                                    <option value="Farmers">Farmers</option>
-                                    <option value="Labours">Labours</option>
-                                    <option value="Drivers">Drivers</option>
-                                    <option value="Students">Students</option>
-                                    <option value="Others">Others</option>
+                                <img className="mobile-icon" src={require("./Assests/Images/icons/class.png")} alt="Class Icon" />
+                                <select id="class" name="class" className="dropdown" value={formData.class} onChange={handleChange}>
+                                    <option value="Choose">Choose your class</option>
+                                    <option value="Class 5">Class 5</option>
+                                    <option value="Class 6">Class 6</option>
+                                    <option value="Class 7">Class 7</option>
+                                    <option value="Class 8">Class 8</option>
+                                    <option value="Class 9">Class 9</option>
+                                    <option value="Class 10">Class 10</option>
+                                    <option value="Class 11">Class 11</option>
+                                    <option value="Class 12">Class 12</option>
+                                    <option value="Not Applicable">Not Applicable</option>
                                 </select>
                                 <span className="validation-message"></span>
                                 </div>

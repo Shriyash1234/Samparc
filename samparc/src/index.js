@@ -10,6 +10,7 @@ import Quiz from './components/quiz';
 import Register from './components/Register'
 import Login from './components/Login';
 import Leaderboard from './components/leaderboard';
+import Profile from './components/profile';
 
 import './index.css';
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
         <Route index path="/Register" element={<Register />} />
         <Route index path="/Login" element={<Login />} />
         <Route index path="/Quiz" element={<Quiz />} />
+        <Route index path="/Profile" element={<Profile />} />
         <Route index path="/Leaderboard" element={<Leaderboard />} />
       </Routes>
     </HashRouter>
