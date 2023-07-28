@@ -7,13 +7,7 @@ function Header(){
     const Navigate = useNavigate();
     const myState = useSelector((state)=>state.setUserNameMail)
     function registerationForm(){
-        // document.getElementsByClassName('cm-header-wrap')[0].style.filter = 'brightness(15%)'
-        // document.getElementsByClassName('comapny-logo')[0].style.filter = 'brightness(15%)'
-        // document.getElementsByClassName('caro')[0].style.filter = 'brightness(15%)'
-        // document.getElementsByClassName('popular-exams')[0].style.filter = 'brightness(15%)'
-        // document.getElementsByClassName('Daily-contests')[0].style.filter = 'brightness(15%)'
-        // document.getElementsByClassName('registeration-form')[0].style.display = 'block'
-        Navigate(myState.name?'/':'/Register')
+        Navigate(myState.name?'/Profile':'/Register')
     }
     return(
     <div>
@@ -134,7 +128,7 @@ function Header(){
                                 </li> */}
                             </ul>
                         </li>
-                        <button onClick={registerationForm} className="get-started">{myState.name?'Registered':'Register'}</button>
+                        <button onClick={registerationForm} className="get-started">{myState.name?'Profile':'Register'}</button>
                     </ul>
                 </div>
             </div>

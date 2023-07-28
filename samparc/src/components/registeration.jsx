@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch ,useSelector} from 'react-redux';
 import { setUserName} from '../actions/index';
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { UserCircle2 } from 'lucide-react';
 import { Smartphone } from 'lucide-react';
@@ -10,7 +12,7 @@ import { Mail } from 'lucide-react';
 import { Lock } from 'lucide-react';
 import { Calendar } from 'lucide-react';
 import { GraduationCap } from 'lucide-react';
-import { Wallet } from 'lucide-react';
+import { Home } from 'lucide-react'
 
 
 import "./CSS/registration.css";
@@ -18,7 +20,38 @@ function Registration() {
   const Navigate = useNavigate();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+  const [RegisterInProcess,setRegisterInProcess] = useState(false);
   const myState = useSelector((state)=>state.setUserNameMail)
+  const notifySucess = () => {toast.success('Registeration Sucessful  ', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    onClose: closeForm
+    })};
+  const notifyLogin = () => {toast.success('Already Logged in  ', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    onClose: closeForm
+    })};  
+  const notifyError = () => {toast.error('Registeration Failed  ', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    onClose: closeForm
+    })};  
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
@@ -26,7 +59,8 @@ function Registration() {
         DOB: '',
         password:'',
         class: 'Choose',
-        address: ''
+        address: '',
+        AccountBalance:0
       });
     
       const togglePasswordVisibility = () => {
@@ -35,8 +69,13 @@ function Registration() {
     
       function checkLoggedIn(){
         if(myState.name){
-            alert('Already Logged in');
             Navigate('/')
+            alert('Already Logged in')
+           
+        }
+        else{
+          setTimeout(()=>{
+            document.getElementsByClassName('cm-header-wrap')[0].style.filter = 'brightness(40%)'},300)
         }
     }
       const handleChange = (e) => {
@@ -53,8 +92,8 @@ function Registration() {
       
       const handleSubmit = async (e) => {
         e.preventDefault();
+        setRegisterInProcess(true)
 
-        dispatch(setUserName(formData.name, formData.email));
         const jsonUserPasswordData = {
           name:formData.name,
           email: formData.email,
@@ -66,7 +105,7 @@ function Registration() {
 
         try {
           // First fetch request
-          const response1 = await fetch('https://samparc.onrender.com/addRegistration', {
+          const response1 = await fetch('http://localhost:4000/addRegistration', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -75,14 +114,16 @@ function Registration() {
           });
       
           if (response1.ok) {
+            dispatch(setUserName(formData.name, formData.email));
+            setRegisterInProcess(false);
+            notifySucess();
+            
             const data1 = await response1.json();
-            alert('Registration successful');
-            closeForm();
           } else {
             throw new Error('Error submitting form for the first link');
           }
       
-          const response2 = await fetch('https://samparc.onrender.com/addUserPassword', {
+          const response2 = await fetch('http://localhost:4000/addUserPassword', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -92,14 +133,13 @@ function Registration() {
       
           if (response2.ok) {
             const data2 = await response2.json();
-            console.log(data2); 
+            
           } else {
             throw new Error('Error submitting form for the second link');
           }
         } catch (error) {
           console.error(error); 
-          alert('Registration failed');
-          closeForm();
+          notifyError();
         }
       };
       
@@ -276,7 +316,7 @@ function Registration() {
                             <div className="icon-input">
                                 <GraduationCap className="mobile-icon"/>
                                 <select id="class" name="class" className="dropdown" value={formData.class} onChange={handleChange}>
-                                    <option value="Choose">Choose your class</option>
+                                    <option value="Choose">Choose your standard</option>
                                     <option value="Class 5">Class 5</option>
                                     <option value="Class 6">Class 6</option>
                                     <option value="Class 7">Class 7</option>
@@ -298,15 +338,50 @@ function Registration() {
                         </div>                
                         <div className="form-4">
                             <div className="icon-input-payment">
-                                <Wallet className='payment-icon'/>
-                                <h2 className='registeration-form-continue'>Payment Amonut:1000</h2>
+                                <div className="form-details">
+                                    <div className=""><UserCircle2 className="mobile-icon"/>Name: </div>
+                                    <div className="detail">{formData.name}</div>
+                                </div>
+                                <div className="form-details">
+                                    <div className=""><Smartphone  className="mobile-icon"/>Phone: </div>
+                                    <div className="detail">{formData.phone}</div>
+                                </div>
+                                <div className="form-details">
+                                    <div className=""><Mail  className="mobile-icon"/>Email: </div>
+                                    <div className="detail">{formData.email}</div>
+                                </div>
+                                <div className="form-details">
+                                    <div className=""><Calendar  className="mobile-icon"/>DOB: </div>
+                                    <div className="detail">{formData.DOB}</div>
+                                </div>
+                                <div className="form-details">
+                                    <div className=""><GraduationCap  className="mobile-icon"/>Standard: </div>
+                                    <div className="detail">{formData.class}</div>
+                                </div>
+                                <div className="form-details">
+                                    <div className=""><Home  className="mobile-icon"/>Address: </div>
+                                    <div className="detail">{formData.address}</div>
+                                </div>
                             </div>
-                            <button type="submit" onClick={handleSubmit} className="Continue-button">Pay & Continue</button>
+                            <button type="submit" onClick={handleSubmit} className="Continue-button">{RegisterInProcess?'Registering':'Register'}</button>
+                            <img className='loadingGif' style={{display:RegisterInProcess?'block':'none'}} src={require('./Assests/Images/icons/loading.gif')}/>
                         </div>
                     </form>
                 </div>
             </section>
             <div className="registeration-background"></div>
+            <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+              />
         </div>
     )
 }

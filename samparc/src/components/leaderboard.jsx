@@ -13,7 +13,7 @@ const Leaderboard = () => {
     }
     useEffect(() => {
         rankcolor();
-        fetch("https://samparc.onrender.com/responses")
+        fetch("http://localhost:4000/responses")
         .then(response => response.json())
         .then(data =>setLeaderboardData(rankingParticipants(data)));
     }, [leaderboardData]);

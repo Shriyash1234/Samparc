@@ -2,68 +2,107 @@ import React,{useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch ,useSelector} from 'react-redux';
 import { setUserName} from '../actions/index';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Header from './header';
 import './CSS/login.css'
+import { data } from 'jquery';
 const Login = () => {
     const dispatch = useDispatch();
     const Navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
+    const [LogInProcess,setLogInProcess] = useState(false);
     const myState = useSelector((state)=>state.setUserNameMail)
     const [formData, setFormData] = useState({
         email: '',
         password:''
       });
     
-      const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
-      };
-      const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-      };
-    function closeForm(){
-        Navigate('/')
-    }
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  function closeForm(){
+      Navigate('/')
+  }
 
-    function checkLoggedIn(){
-        if(myState.name){
-            alert('Already Logged in');
-            Navigate('/')
-        }
-    }
+  const notifySucess = () => {toast.success('Authentication Sucessful', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    onClose: closeForm
+    })};
+  const notifyWarning = () => {toast.warning('Incorrect Password', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    })};
+  const notifyError = () => {toast.error('Authentication Failed', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    })};    
+  function checkLoggedIn(){
+      if(myState.name){
+          alert('Already Logged in');
+          Navigate('/')
+      }
+  }
     
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        const jsonData = JSON.stringify(formData);
+  const handleLogin = async (e) => {
+      e.preventDefault();
+      setLogInProcess(true);
+      const jsonData = JSON.stringify(formData);
 
-        try {
-          const response = await fetch('https://samparc.onrender.com/checkpassword', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: jsonData
-          });
-      
-          if (response.ok) {
-            const data = await response.json();
-            if (data.message === 'ok') {
-              const name = data.userName;
-              console.log(data)
-              dispatch(setUserName(name, formData.email));
-              alert('Authentication successful');
-              closeForm()
-            } else {
-              alert('Incorrect password');
-            }
+      try {
+        const response = await fetch('http://localhost:4000/checkpassword', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: jsonData
+        });
+    
+        if (response.ok) {
+          setLogInProcess(false)
+          const data = await response.json();
+          if (data.message === 'ok') {
+            const name = data.userName;
+            console.log(data)
+            dispatch(setUserName(name, formData.email));
+            notifySucess();
+            setTimeout(()=>{
+              Navigate('/')
+            },1500)
           } else {
-            throw new Error('Authentication failed');
+            notifyWarning();
           }
-        } catch (error) {
-          console.error(error);
-          alert('Authentication failed');
+        } else {
+          console.log(response.status)
+          if(response.status===401) notifyWarning();
+          else if(response.status===500) notifyError();
+          throw new Error('Authentication failed');
         }
-      };
+      } catch (error) {
+        console.error(error);
+        setLogInProcess(false);
+      }
+    };
     useEffect(()=>{
         checkLoggedIn()
         document.getElementsByClassName('cm-header-wrap')[0].style.filter = 'brightness(40%)'
@@ -71,6 +110,18 @@ const Login = () => {
   return (
     <div className='Login'>
       <Header/>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        />
       <section className="registeration-form">
                 <div className="registeration-form-images">
                     <img className='registeration-form-logo' src={require("./Assests/Images/icons/logo.png")}></img>
@@ -94,7 +145,7 @@ const Login = () => {
                                 </div>
                                 <span className="validation-message"></span>
                             </div>
-                            <div className="login-form-button" onClick={handleLogin}>Login</div>
+                            <div className="login-form-button" onClick={handleLogin}>{LogInProcess?'Logging In':'Login'}</div>
                         </div>
                     </form>
                 </div>

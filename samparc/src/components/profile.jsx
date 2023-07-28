@@ -13,10 +13,10 @@ const Profile = () => {
         email: '',
         DOB: '',
         class: 'Choose',
-        address: ''
+        address: '',
+        AccountBalance:''
       });;
     function extractData(data){
-        console.log()
         for(let i =0;i<data.length;i++){
             if (data[i].responses.email === myState.mail) {
             const updatedUserData = {
@@ -26,7 +26,8 @@ const Profile = () => {
                 email: data[i].responses.email,
                 DOB: data[i].responses.DOB,
                 class:data[i].responses.class,
-                address: data[i].responses.address
+                address: data[i].responses.address,
+                AccountBalance:data[i].responses.AccountBalance
               };
               setuserData(updatedUserData);
               break;
@@ -52,7 +53,7 @@ const Profile = () => {
       }
       
     useEffect(() => {
-        fetch("https://samparc.onrender.com/registerations")
+        fetch("http://localhost:4000/registerations")
         .then(response => response.json())
         .then(data =>extractData(data));
     }, []);
@@ -72,7 +73,7 @@ const Profile = () => {
             <div className='profile-Info'>
                 <p className='profile-name'>{userData.name}</p>
                 <div className='Account-balance-withdraw'>
-                    <p className='Account-balance'>Account Balance: 0</p>
+                    <p className='Account-balance'>Account Balance: {userData.AccountBalance}</p>
                     <div className='withdraw'>Withdraw</div>
                 </div>
                 <hr className='horizontal-line'/>

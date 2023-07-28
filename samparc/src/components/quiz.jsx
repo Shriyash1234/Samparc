@@ -2,6 +2,8 @@ import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useSelector} from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import quiz from './data/quizData/quiz.json'
 
@@ -31,6 +33,15 @@ function Quiz(){
         }, 1000);
         return () => clearTimeout(timer);
     }, [reamainingTime]);
+    const notifySucess = () => {toast.success('Quiz Submitted', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light"
+        })};
     function handleOptionChange(event) {
         const updatedSelectedOptions = [...selectedOptions];
         updatedSelectedOptions[questionNum] = event.target.value;
@@ -100,20 +111,36 @@ function Quiz(){
         console.log(quizResponses)
         quizResponses[0].score = calculateScore(); 
         quizResponses[0].timetaken = calculateTime(reamainingTime);
-        axios.post('https://samparc.onrender.com/addquizresponses', { quizResponses })
+        axios.post('http://localhost:4000/addquizresponses', { quizResponses })
             .then(() => {
-                console.log('Added');
-                alert('Quiz submiited')
-                Navigate('/Samparc')
+                notifySucess()
+                setTimeout(()=>{
+                    Navigate('/')
+                },2000)
+               
             })
             .catch(error => {
                 console.error('Error:', error);
                 alert('Quiz submiited')
-                Navigate('/')
+                setTimeout(()=>{
+                    Navigate('/')
+                },2000)
             });
       }
     return(
         <section className="quiz">
+            <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+              />
             <div className='question'>
                 <div className='question-block'>
                     <img className='alarm-clock' src={require('./Assests/Images/icons/alarm.png')}></img>

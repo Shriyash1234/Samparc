@@ -57,7 +57,7 @@ function DailyContests(){
                             <p className='Duration'>Duration: 40 min</p>
                             <p className='No-Q'>No. of Questions:20</p>
                             <p className='Fee'>Fee:100rs</p>
-                            <Link to={myState.name?'/quiz':'/Register'} className='contest-link-button'><button className='contest-register'>Join</button></Link>
+                            <Link to={myState.name?'/quiz':'/Register'} className='contest-link-button'><button className='contest-register'>Register</button></Link>
                         </div>
                     </div>
                 </div>
@@ -73,7 +73,7 @@ function DailyContests(){
                             <p className='Duration'>Duration: 30 min</p>
                             <p className='No-Q'>No. of Questions:30</p>
                             <p className='Fee'>Fee:100rs</p>
-                            <Link to={myState.name?'/quiz':'/Register'} className='contest-link-button'><button className='contest-register'>Join</button></Link>
+                            <Link to={myState.name?'/quiz':'/Register'} className='contest-link-button'><button className='contest-register'>Register</button></Link>
                         </div>
                     </div>
                 </div>
@@ -89,7 +89,7 @@ function DailyContests(){
                             <p className='Duration'>Duration: 60 min</p>
                             <p className='No-Q'>No. of Questions:60</p>
                             <p className='Fee'>Fee:100rs</p>
-                            <Link to={myState.name?'/quiz':'/Register'} className='contest-link-button'><button className='contest-register'>Join</button></Link>
+                            <Link to={myState.name?'/quiz':'/Register'} className='contest-link-button'><button className='contest-register'>Register</button></Link>
                         </div>
                     </div>
                 </div>
@@ -105,7 +105,7 @@ function DailyContests(){
                             <p className='Duration'>Duration: 120 min</p>
                             <p className='No-Q'>No. of Questions:120</p>
                             <p className='Fee'>Fee:200rs</p>
-                            <Link to={myState.name?'/quiz':'/Register'} className='contest-link-button'><button className='contest-register'>Join</button></Link>
+                            <Link to={myState.name?'/quiz':'/Register'} className='contest-link-button'><button className='contest-register'>Register</button></Link>
                         </div>
                     </div>
                 </div>
@@ -121,7 +121,7 @@ function DailyContests(){
                             <p className='Duration'>Duration: 120 min</p>
                             <p className='No-Q'>No. of Questions:120</p>
                             <p className='Fee'>Fee:200rs</p>
-                            <button className='contest-register'>Join</button>
+                            <button className='contest-register'>Register</button>
                         </div>
                     </div>
                 </div>
