@@ -208,3 +208,66 @@
     display: flex;
     width: 70%;
 }
+@media all and (max-width:1200px) {
+  .profile-div{
+    width: 85vw;
+  }
+  .profile-img-div{
+    width: 30%;
+  }
+  .profile-Info{
+    width: 70%;
+  }
+  .profile-img{
+    height: 220px;
+  }
+}
+@media all and (max-width:991px) {
+  .profile-div{
+    flex-direction: column;
+    height: fit-content;
+  }
+  .profile-img-div{
+    width: 100%;
+  }
+  .container{
+    width: 250px
+  }
+  .profile-Info{
+    width: 100%;
+  }
+
+}
+@media all and (max-width:676px) {
+  .profile-details-div{
+    flex-direction: column;
+  }
+  .verifiable-details{
+    width: 100%;
+  }
+  .profile-div{
+  }
+  .verifiable-details{
+    flex-direction: column;
+  }
+  .verfied{
+    margin-top: 20px;
+    width: fit-content;
+  }
+}
+@media all and (max-width:479px) {
+  .profile-div{
+    margin: 10vh 0px 500px 0px;
+  }
+  .Profile-page{
+    height: 1000px;
+  }
+}
+@media all and (max-width:380px) {
+  .profile-div{
+    margin: 200px 0px 500px 0px;
+  }
+  .Profile-page{
+    height: 1000px;
+  }
+}

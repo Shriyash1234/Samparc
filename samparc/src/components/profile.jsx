@@ -3,10 +3,14 @@ import Header from './header'
 
 import './CSS/profile.css'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+
 
 const Profile = () => {
 
     const myState = useSelector((state)=>state.setUserNameMail)
+    const userName = myState.name?myState.name:''
+    const Navigate = useNavigate();
     const [userData,setuserData] = useState({
         name: '',
         phone: '',
@@ -16,6 +20,14 @@ const Profile = () => {
         address: '',
         AccountBalance:''
       });;
+    function redirect(){
+        if(userName===''){
+            Navigate('/Register')
+        }
+    }
+    useEffect(()=>{
+        redirect()
+    },[])
     function extractData(data){
         for(let i =0;i<data.length;i++){
             if (data[i].responses.email === myState.mail) {

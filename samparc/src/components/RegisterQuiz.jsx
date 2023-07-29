@@ -5,9 +5,21 @@ import { useSelector } from 'react-redux';
 import {FooterContainer}  from './footercontainer';
 
 import './CSS/RegisterQuiz.css'
+import { useNavigate } from 'react-router-dom';
 const RegisterQuiz = () => {
     const [remainingTime, setRemainingTime] = useState(findremainingTime());
     const myState = useSelector((state)=>state.setUserNameMail)  
+    const Navigate = useNavigate()
+    const userName = myState.name?myState.name:''
+    console.log(userName)
+    function redirect(){
+        if(userName===''){
+            Navigate('/Register')
+        }
+    }
+    useEffect(()=>{
+        redirect()
+    },[])
     useEffect(() => {
         const timer = setInterval(() => {
           setRemainingTime(findremainingTime());
