@@ -2,7 +2,7 @@
     background-color: #fff;
     position: fixed;
     min-height: 450px;
-    width: 350px;
+    width: 370px;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
@@ -49,21 +49,27 @@
     flex-direction: column;
     align-items: center;
     margin-top: 30px;
-    width: 100%;
-    border: 1px solid grey;
-    border-radius: 10px;
-    padding:15px 15px 5px 15px;
+    width: 90%;
+    margin: auto;
+    border: 1px solid #e3e3e3;
+    padding-bottom:30px ;
+    /* border-radius: 10px; */
+    /* padding:0px 15px 5px 15px; */
   }
   .mobile-from-form{
     width: 100%;
   }
   .Continue-button{
     text-align: center;
-    width: 100%;
+    width: 80%;
+    margin: auto;
     color: #fff;
     border: 0px;
-    background-color: #21b765;
-    padding: 5px 0px;
+    background-image: linear-gradient(to bottom, #2bbe60, #0f9d58);
+    cursor: pointer;
+    padding: 7px 0px;
+    border-radius: 5px;
+    font-size: 1.5rem;
   }
   .mobile-icon{
     width: 25px;
@@ -83,11 +89,16 @@
   }
   .icon-input{
     display: flex;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
     align-items: center;
     flex-wrap: wrap;
-    border-bottom: 1px solid #808080;
     margin-bottom: 10px;
     padding-bottom: 5px;
+    padding: 0px 10px;
+    border: 1px solid #c2c7d0;
+    border-radius: 5px;
   }
   .form-details{
     width: 100%;
@@ -111,7 +122,7 @@
     margin-bottom: 10px;
     padding-bottom: 5px;
   }
-  .form-2,.form-3,.form-4{
+  .form-2,.form-3,.form-4,.form-5{
     display: none;
   }
   .password-input{
@@ -159,14 +170,38 @@
     font-weight: 600;
   }
   .login-form-button{
-    background-color: #940dfe;
+    background-image: linear-gradient(to bottom, #2bbe60, #0f9d58);
     color: #fff;
     padding: 5px 0px;
     text-align: center;
     margin: 0px;
+    width: 80%;
+    cursor: pointer;
+    margin: 30px auto 0px auto;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 1.6rem;
   }
   .loadingGif{
     width: 80px;
     margin: auto;
   }
+  .sign-up-buttons{
+    display: flex;
+    width: 100%;
+  }
+  .sign-up{
+    width: 50%;
+    padding: 10px 15px;
+    text-align: center;
+    color: #888895;
+    font-weight: 600;
+    background-color: #e9ebee;
+  }
+  .active-btn{
+    border-top:2px solid #0f9d58 ;
+    color: #555555;
+    background-color: #fff;
+  }
+
   

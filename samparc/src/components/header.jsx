@@ -128,7 +128,7 @@ function Header(){
                                 </li> */}
                             </ul>
                         </li>
-                        <button onClick={registerationForm} className="get-started">{myState.name?'Profile':'Register'}</button>
+                        <button onClick={registerationForm} className="get-started"><img src={myState.image}></img>{myState.name?'Profile':'Register'}</button>
                     </ul>
                 </div>
             </div>

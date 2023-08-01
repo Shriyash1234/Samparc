@@ -83,7 +83,6 @@ const Login = () => {
           const data = await response.json();
           if (data.message === 'ok') {
             const name = data.userName;
-            console.log(data)
             dispatch(setUserName(name, formData.email));
             notifySucess();
             setTimeout(()=>{

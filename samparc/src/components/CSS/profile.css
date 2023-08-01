@@ -21,6 +21,7 @@
     align-items: center;
 }
 .profile-img{
+    border-radius: 50%;
     height: 250px;
 }
 .fileUploadInput {
@@ -125,6 +126,7 @@
     padding: 30px;
 }
 .profile-details-div-div{
+    overflow-x: hidden;
     overflow-y: scroll;
     height: 230px;
 }
@@ -162,6 +164,7 @@
 }
 .Address{
     overflow-y: scroll;
+    overflow-x: hidden;
     margin-bottom: 20px;
 }
 .verfied{
@@ -202,10 +205,12 @@
 }
 .profile-details-div{
     display: flex;
+    min-height: 50px;
     justify-content: space-between;
 }
 .verifiable-details{
     display: flex;
+    justify-content: space-between;
     width: 70%;
 }
 @media all and (max-width:1200px) {
@@ -239,13 +244,14 @@
 
 }
 @media all and (max-width:676px) {
+  .Address{
+    width: 100%;
+  }
   .profile-details-div{
     flex-direction: column;
   }
   .verifiable-details{
     width: 100%;
-  }
-  .profile-div{
   }
   .verifiable-details{
     flex-direction: column;

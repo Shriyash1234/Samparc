@@ -50,7 +50,6 @@ function Quiz(){
     
       function handleSubmit(event) {
         event.preventDefault();
-        console.log('Selected Option:', selectedOptions);
       }
       function handlePrevious(event) {
         event.preventDefault();
@@ -108,7 +107,6 @@ function Quiz(){
         else return seconds+'s'
       }
       function handleSubmit(){
-        console.log(quizResponses)
         quizResponses[0].score = calculateScore(); 
         quizResponses[0].timetaken = calculateTime(reamainingTime);
         axios.post('http://localhost:4000/addquizresponses', { quizResponses })

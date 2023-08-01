@@ -4,7 +4,7 @@ import Header from './header'
 import './CSS/profile.css'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-
+import { BadgeX } from 'lucide-react';
 
 const Profile = () => {
 
@@ -18,7 +18,8 @@ const Profile = () => {
         DOB: '',
         class: 'Choose',
         address: '',
-        AccountBalance:''
+        AccountBalance:'',
+        userImage:'',
       });;
     function redirect(){
         if(userName===''){
@@ -39,7 +40,8 @@ const Profile = () => {
                 DOB: data[i].responses.DOB,
                 class:data[i].responses.class,
                 address: data[i].responses.address,
-                AccountBalance:data[i].responses.AccountBalance
+                AccountBalance:data[i].responses.AccountBalance,
+                userImage:data[i].responses.userImage
               };
               setuserData(updatedUserData);
               break;
@@ -74,7 +76,7 @@ const Profile = () => {
         <Header/>
         <div className='profile-div'>
             <div className='profile-img-div'>
-                <img className='profile-img' src={require('./Assests/Images/icons/profile-photo.png')}></img>
+                <img className='profile-img' src={userData.userImage}></img>
                 <div class="container">
                     <div class="fileUploadInput">
                     <label>Upload File</label>
@@ -98,7 +100,7 @@ const Profile = () => {
                         <div className='profile-detail profile-details-input'>Email:</div>
                         <div className='verifiable-details'>
                             <div className='profile-details'>{userData.email}</div>
-                            <div className='verfied'>Verifiy</div>
+                            <BadgeX style={{marginTop:"5px"}}/>
                         </div>
                     </div>
                     <div className='profile-details-div'>
@@ -117,7 +119,7 @@ const Profile = () => {
                         <div className='profile-detail profile-details-input'>Phone:</div>
                         <div className='verifiable-details'>
                             <div className='profile-details'>{userData.phone}</div>
-                            <div className='verfied'>Verifiy</div>
+                            <BadgeX />
                         </div>
                     </div>
                     

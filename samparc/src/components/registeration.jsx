@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch ,useSelector} from 'react-redux';
 import { setUserName} from '../actions/index';
-import { Link } from "react-router-dom";
+import { GoogleLoginButton } from "react-social-login-buttons";
+import { LoginSocialGoogle } from "reactjs-social-login";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -21,6 +22,9 @@ function Registration() {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [RegisterInProcess,setRegisterInProcess] = useState(false);
+  const [signupactiveButton,signupsetActiveButton] = useState(true);
+  const [signinactiveButton,signinsetActiveButton] = useState(false);
+  const [LogInProcess,setLogInProcess] = useState(false);
   const myState = useSelector((state)=>state.setUserNameMail)
   const notifySucess = () => {toast.success('Registeration Sucessful  ', {
     position: "top-right",
@@ -32,7 +36,7 @@ function Registration() {
     theme: "light",
     onClose: closeForm
     })};
-  const notifyLogin = () => {toast.success('Already Logged in  ', {
+  const notifyLoginSucess = () => {toast.success('Login Sucessful  ', {
     position: "top-right",
     autoClose: 5000,
     hideProgressBar: false,
@@ -41,6 +45,15 @@ function Registration() {
     progress: undefined,
     theme: "light",
     onClose: closeForm
+    })};  
+  const notifyWarning = () => {toast.warning('Incorrect Password', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
     })};  
   const notifyError = () => {toast.error('Registeration Failed  ', {
     position: "top-right",
@@ -60,6 +73,7 @@ function Registration() {
         password:'',
         class: 'Choose',
         address: '',
+        userImage:'',
         AccountBalance:0
       });
     
@@ -142,10 +156,18 @@ function Registration() {
           notifyError();
         }
       };
-      
+    
+    function form1googlenext(){
+      document.getElementsByClassName('form-1')[0].style.display = 'none'
+      document.getElementsByClassName('form-3')[0].style.display = 'none'
+      document.getElementsByClassName('form-4')[0].style.display = 'none'
+      document.getElementsByClassName('form-5')[0].style.display = 'none';
+      document.getElementsByClassName('google-login')[0].style.display = 'block';
+      document.getElementsByClassName('form-2')[0].style.display = 'block'
+    }
     function form1Next(){
         var nameInput = document.querySelector('input[name="name"]');
-        var phoneInput = document.querySelector('input[name="phone"]');
+        var phoneInput = document.querySelector('input[name="email"]');
         var inputs = [nameInput, phoneInput];
         inputs.forEach(function(input) {
             var parentNode = input.parentNode;
@@ -174,13 +196,15 @@ function Registration() {
             document.getElementsByClassName('form-1')[0].style.display = 'none'
             document.getElementsByClassName('form-3')[0].style.display = 'none'
             document.getElementsByClassName('form-4')[0].style.display = 'none'
+            document.getElementsByClassName('form-5')[0].style.display = 'none';
+            document.getElementsByClassName('google-login')[0].style.display = 'none';
             document.getElementsByClassName('form-2')[0].style.display = 'block'
         }
     }
     function form2Next(){
-      var passwordInput = document.querySelector('input[name="phone"]');
-      var emailInput = document.querySelector('input[name="email"]');
-      var inputs = [passwordInput, emailInput];
+      var phoneInput = document.querySelector('input[name="phone"]');
+      var passwordInput = document.querySelector('input[name="password"]');
+      var inputs = [passwordInput, phoneInput];
       inputs.forEach(function(input) {
           var parentNode = input.parentNode;
           parentNode.classList.remove('invalid');
@@ -208,6 +232,8 @@ function Registration() {
           document.getElementsByClassName('form-1')[0].style.display = 'none'
           document.getElementsByClassName('form-2')[0].style.display = 'none'
           document.getElementsByClassName('form-4')[0].style.display = 'none'
+          document.getElementsByClassName('form-5')[0].style.display = 'none';
+          document.getElementsByClassName('google-login')[0].style.display = 'none';
           document.getElementsByClassName('form-3')[0].style.display = 'block'
       }
   }
@@ -254,12 +280,110 @@ function Registration() {
           document.getElementsByClassName('form-1')[0].style.display = 'none';
           document.getElementsByClassName('form-2')[0].style.display = 'none';
           document.getElementsByClassName('form-3')[0].style.display = 'none'
+          document.getElementsByClassName('form-5')[0].style.display = 'none';
+          document.getElementsByClassName('google-login')[0].style.display = 'none';
           document.getElementsByClassName('form-4')[0].style.display = 'block';
         }
       }
+      const handleLogin = async (e) => {
+        e.preventDefault();
+        setLogInProcess(true);
+        const jsonData = JSON.stringify(formData);
+  
+        try {
+          const response = await fetch('http://localhost:4000/checkpassword', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: jsonData
+          });
       
+          if (response.ok) {
+            setLogInProcess(false)
+            const data = await response.json();
+            if (data.message === 'ok') {
+              const name = data.userName;
+              dispatch(setUserName(name, formData.email));
+              notifySucess();
+              setTimeout(()=>{
+                Navigate('/')
+              },1500)
+            } else {
+              notifyWarning();
+            }
+          } else {
+            if(response.status===401) notifyWarning();
+            else if(response.status===500) notifyError();
+            throw new Error('Authentication failed');
+          }
+        } catch (error) {
+          console.error(error);
+          setLogInProcess(false);
+        }
+      };
+      const checkUserRegistered = async (updatedData) => {
+        setLogInProcess(true);
+        const jsonData = JSON.stringify(updatedData);
+  
+        try {
+          const response = await fetch('http://localhost:4000/checkmail', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: jsonData
+          });
+      
+          if (response.ok) {
+            setLogInProcess(false)
+            const data = await response.json();
+            if (data.message === 'Found') {
+              dispatch(setUserName(updatedData.name, updatedData.email));
+              notifyLoginSucess();
+              setTimeout(()=>{
+                Navigate('/')
+              },1500)
+            } else if(data.message==='NotFound') {
+              form1googlenext()
+            }
+          } else {
+            if(response.status===401) notifyWarning();
+            else if(response.status===500) notifyError();
+            throw new Error('Authentication failed');
+          }
+        } catch (error) {
+          console.error(error);
+          setLogInProcess(false);
+        }
+      };
+     
     function closeForm(){
         Navigate('/')
+    }
+    const signupactive = () =>{
+      if(!signupactiveButton){
+        signupsetActiveButton(true);
+        signinsetActiveButton(false);
+        document.getElementsByClassName('form-1')[0].style.display = 'block';
+        document.getElementsByClassName('form-2')[0].style.display = 'none';
+        document.getElementsByClassName('form-3')[0].style.display = 'none'
+        document.getElementsByClassName('form-4')[0].style.display = 'none';
+        document.getElementsByClassName('form-5')[0].style.display = 'none';
+        document.getElementsByClassName('google-login')[0].style.display = 'block';
+      }
+    }
+    const signinactive= ()=> {
+      if(!signinactiveButton){
+        signinsetActiveButton(true);
+        signupsetActiveButton(false);
+        document.getElementsByClassName('form-1')[0].style.display = 'none';
+        document.getElementsByClassName('form-2')[0].style.display = 'none';
+        document.getElementsByClassName('form-3')[0].style.display = 'none'
+        document.getElementsByClassName('form-4')[0].style.display = 'none';
+        document.getElementsByClassName('google-login')[0].style.display = 'block';
+        document.getElementsByClassName('form-5')[0].style.display = 'block';
+      }
     }
     useEffect(()=>{
       checkLoggedIn()
@@ -275,35 +399,41 @@ function Registration() {
                 <h2 className="registeration-form-get-started">Get Started with Samparc!</h2>
                 <h3 className='registeration-form-continue' >Continue with your mobile number</h3>
                 <div className="mobile-form">
+                  <div className="mobile-form-div">
+
+                  </div>
+                    <div className="sign-up-buttons">
+                        <div onClick={signupactive} className={`sign-up ${signupactiveButton ? 'active-btn' : ''}`} >Sign up</div>
+                        <div onClick={signinactive} className={`sign-up ${signinactiveButton ? 'active-btn' : ''}`}>Sign In</div>
+                    </div>
                     <form className="mobile-from-form">
                         <div className="form-1">
                             <div className="icon-input">
                                 <UserCircle2 className="mobile-icon"/>
-                                <input type="text" name="name" className="input-mobile" placeholder="Please Enter your name" value={formData.name} onChange={handleChange} />
+                                <input type="text" name="name" className="input-mobile" placeholder="Name" value={formData.name} onChange={handleChange} />
                                 <span className="validation-message"></span>
                             </div>
                             <div className="icon-input">
-                                <Smartphone  className="mobile-icon"/>
-                                <input type="text" name="phone" className="input-mobile" placeholder="Please Enter your mobile number" value={formData.phone} onChange={handleChange} />
+                                <Mail className="mobile-icon"/>
+                                <input type="text" name="email" className="input-mobile" placeholder="Email address" value={formData.email} onChange={handleChange} />
                                 <span className="validation-message"></span>
                             </div>
                             <div onClick={form1Next} className="Continue-button">Next</div>
-                            <p style={{fontsize:'3rem',textAlign:'center',margin:'4px'}}>or</p>
-                            <Link to='/Login'><div className="login-form-button">Login</div></Link>
+                            <p style={{textAlign:'center',fontSize:"2rem"}}>or</p>
                         </div>
                         <div className="form-2">
                             <div className="icon-input">
-                                <Mail className="mobile-icon"/>
-                                <input type="text" name="email" className="input-mobile" placeholder="Please Enter your email address" value={formData.email} onChange={handleChange} />
+                                <Smartphone  className="mobile-icon"/>
+                                <input type="text" name="phone" className="input-mobile" placeholder="Mobile number" value={formData.phone} onChange={handleChange} />
                                 <span className="validation-message"></span>
                             </div>
                             <div className="icon-input">
                                 <Lock className="mobile-icon"/>
                                 <div className="password-input">
-                                    <input type={showPassword ? 'text' : 'password'} name="password" className="input-mobile" placeholder="Please Enter your password" value={formData.password} onChange={handleChange} />
+                                    <input type={showPassword ? 'text' : 'password'} name="password" className="input-mobile" placeholder="Password" value={formData.password} onChange={handleChange} />
                                     <img className='mail-icon password-img' src={require('./Assests/Images/icons/visibility-button' + (showPassword ? '-on.png' : '-off.png'))} onClick={togglePasswordVisibility}/>
+                                    <span className="validation-message"></span>
                                 </div>
-                                <span className="validation-message"></span>
                             </div>
                             <div onClick={form2Next} className="Continue-button">Next</div>
                         </div>
@@ -331,7 +461,7 @@ function Registration() {
                                 </div>
                             <div className="icon-input">
                                 <img className="mail-icon" src={require("./Assests/Images/icons/location.png")} alt="Address Icon" />
-                                <input type="text" name="address" className="input-mobile" placeholder="Please Enter your address" value={formData.address} onChange={handleChange} />
+                                <input type="text" name="address" className="input-mobile" placeholder="Address" value={formData.address} onChange={handleChange} />
                                 <span className="validation-message"></span>
                             </div>
                             <div onClick={form3Next} className="Continue-button">Next</div>
@@ -366,6 +496,43 @@ function Registration() {
                             <button type="submit" onClick={handleSubmit} className="Continue-button">{RegisterInProcess?'Registering':'Register'}</button>
                             <img className='loadingGif' style={{display:RegisterInProcess?'block':'none'}} src={require('./Assests/Images/icons/loading.gif')}/>
                         </div>
+                        <div className="form-5">
+                          <div className="icon-input">
+                                  <Mail className="mobile-icon"/>
+                                  <input type="text" name="email" className="input-mobile" placeholder="Email address" value={formData.email} onChange={handleChange} />
+                                  <span className="validation-message"></span>
+                              </div>
+                              <div className="icon-input">
+                                  <Lock className="mobile-icon"/>
+                                  <div className="password-input">
+                                      <input type={showPassword ? 'text' : 'password'} name="password" className="input-mobile" placeholder="Password" value={formData.password} onChange={handleChange} />
+                                      <img className='mail-icon password-img' src={require('./Assests/Images/icons/visibility-button' + (showPassword ? '-on.png' : '-off.png'))} onClick={togglePasswordVisibility}/>
+                                  </div>
+                                  <span className="validation-message"></span>
+                              </div>
+                              <div className="login-form-button" onClick={handleLogin}>{LogInProcess?'Logging In':'Login'}</div>
+                              <p style={{textAlign:'center',fontSize:"2rem"}}>or</p>
+                        </div>
+                        <LoginSocialGoogle
+                              client_id={"788648728192-v7nlmffh6ejh9tv4bu151c1t2mr7crs9.apps.googleusercontent.com"}
+                              scope="openid profile email"
+                              discoveryDocs="claims_supported"
+                              access_type="offline"
+                              onResolve={({ provider, data }) => {
+                                  const updatedUserData = {
+                                    ...formData,
+                                    name:data.name,
+                                    email: data.email,
+                                    userImage:data.picture
+                                  };
+                                  setFormData(updatedUserData);
+                                  checkUserRegistered(updatedUserData);
+                              }}
+                              onReject={(err) => {
+                              console.log(err);
+                              }}>
+                              <GoogleLoginButton className='google-login' style={{width:'80%',margin:'auto',height:'40px'}}/>
+                          </LoginSocialGoogle>
                     </form>
                 </div>
             </section>

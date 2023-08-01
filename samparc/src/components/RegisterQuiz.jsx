@@ -5,31 +5,93 @@ import { useSelector } from 'react-redux';
 import {FooterContainer}  from './footercontainer';
 
 import './CSS/RegisterQuiz.css'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate ,useLocation} from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 const RegisterQuiz = () => {
     const [remainingTime, setRemainingTime] = useState(findremainingTime());
-    const myState = useSelector((state)=>state.setUserNameMail)  
     const Navigate = useNavigate()
+    const location = useLocation()
+    const myState = useSelector((state)=>state.setUserNameMail)  
     const userName = myState.name?myState.name:''
-    console.log(userName)
+    const { contestName, contestCode } = location.state;
+    const [formData, setFormData] = useState({
+        name: myState.name,
+        email: myState.mail,
+        contestName:contestName,
+        contestCode:contestCode,
+        time:''
+      });
+    function closeForm(){
+        Navigate('/')
+    }  
+    const notifySucess = () => {toast.success('Registeration Sucessful', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        onClose: closeForm
+    })};
+    const notifyError = () => {toast.error('Registeration Failed Server Error', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        onClose: closeForm
+    })}; 
     function redirect(){
         if(userName===''){
             Navigate('/Register')
         }
     }
-    useEffect(()=>{
-        redirect()
-    },[])
     useEffect(() => {
+        redirect();
+    
         const timer = setInterval(() => {
-          setRemainingTime(findremainingTime());
+            setRemainingTime(findremainingTime());
         }, 1000);
     
         return () => {
-          clearInterval(timer);
+            clearInterval(timer);
         };
-      }, []);
+    }, []);
     
+    
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        setFormData({ ...formData, time: new Date().toLocaleTimeString() });
+        const jsonData = JSON.stringify(formData);
+        console.log(jsonData)
+        
+
+        try {
+          const response1 = await fetch('http://localhost:4000/addContestRegistration', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: jsonData
+          });
+      
+          if (response1.ok) {
+
+            notifySucess();
+            
+            const data1 = await response1.json();
+          } else {
+            throw new Error('Error submitting form for the first link');
+            notifyError();
+          }
+        } catch (error) {
+          console.error(error); 
+          notifyError();
+        }
+      };
     function findremainingTime(){
         var currentTime = new Date();
         var targetTime = new Date();
@@ -60,13 +122,13 @@ const RegisterQuiz = () => {
                         <li className='point'>Best of luck for the quiz!</li>
                     </ol>
                 </div>
-                <div className='get-started points-button'>Regsiter</div>
+                <div onClick={handleRegister} className='get-started points-button'>Regsiter</div>
             </div>
             <div className='contest-details-personal-info'>
                 <div className='points-contest-details'>
                     <div className='points-contest-details-rectangle'>
                         <p className='total-registerations'><span>Total Registerations:</span> 151</p>
-                        <p className='points-contest-name'>JEE Advanced<br/>Samparc round 1</p>
+                        <p className='points-contest-name'>{contestName}<br/>Samparc round {contestCode}</p>
                         <p className='total-registerations'><span>Time remaining:</span> {remainingTime}</p>
                         <p className='total-registerations'><span>Duration:</span> 2hours</p>
                         <p className='total-registerations'><span>Registeration fee:</span>100rs</p>
@@ -79,6 +141,18 @@ const RegisterQuiz = () => {
                 </div>
             </div>
         </div>
+        <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+        />
         <FooterContainer/>
     </div>
   )
