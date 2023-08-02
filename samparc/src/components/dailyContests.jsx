@@ -122,7 +122,6 @@ function DailyContests(){
                             <p className='No-Q'>No. of Questions:120</p>
                             <p className='Fee'>Fee:200rs</p>
                             <Link to='/RegisterQuiz' state={{contestName:"Current Affairs",contestCode:"1CA"}} className='contest-link-button'><button className='contest-register'>Register</button></Link>
-                            <button className='contest-register'>Register</button>
                         </div>
                     </div>
                 </div>
