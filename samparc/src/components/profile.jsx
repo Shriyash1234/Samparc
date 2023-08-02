@@ -67,7 +67,7 @@ const Profile = () => {
       }
       
     useEffect(() => {
-        fetch("http://localhost:4000/registerations")
+        fetch("https://samparc.onrender.com/registerations")
         .then(response => response.json())
         .then(data =>extractData(data));
     }, []);

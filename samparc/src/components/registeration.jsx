@@ -119,7 +119,7 @@ function Registration() {
 
         try {
           // First fetch request
-          const response1 = await fetch('http://localhost:4000/addRegistration', {
+          const response1 = await fetch('https://samparc.onrender.com/addRegistration', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -137,7 +137,7 @@ function Registration() {
             throw new Error('Error submitting form for the first link');
           }
       
-          const response2 = await fetch('http://localhost:4000/addUserPassword', {
+          const response2 = await fetch('https://samparc.onrender.com/addUserPassword', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -291,7 +291,7 @@ function Registration() {
         const jsonData = JSON.stringify(formData);
   
         try {
-          const response = await fetch('http://localhost:4000/checkpassword', {
+          const response = await fetch('https://samparc.onrender.com/checkpassword', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -327,7 +327,7 @@ function Registration() {
         const jsonData = JSON.stringify(updatedData);
   
         try {
-          const response = await fetch('http://localhost:4000/checkmail', {
+          const response = await fetch('https://samparc.onrender.com/checkmail', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

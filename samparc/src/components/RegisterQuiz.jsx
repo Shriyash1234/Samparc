@@ -70,7 +70,7 @@ const RegisterQuiz = () => {
         
 
         try {
-          const response1 = await fetch('http://localhost:4000/addContestRegistration', {
+          const response1 = await fetch('https://samparc.onrender.com/addContestRegistration', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

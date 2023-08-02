@@ -109,7 +109,7 @@ function Quiz(){
       function handleSubmit(){
         quizResponses[0].score = calculateScore(); 
         quizResponses[0].timetaken = calculateTime(reamainingTime);
-        axios.post('http://localhost:4000/addquizresponses', { quizResponses })
+        axios.post('https://samparc.onrender.com/addquizresponses', { quizResponses })
             .then(() => {
                 notifySucess()
                 setTimeout(()=>{
