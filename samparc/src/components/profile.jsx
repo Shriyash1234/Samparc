@@ -32,6 +32,7 @@ const Profile = () => {
     function extractData(data){
         for(let i =0;i<data.length;i++){
             if (data[i].responses.email === myState.mail) {
+            const img = data[i].responses.userImage !== '' ? data[i].responses.userImage : require('./Assests/Images/icons/profile-photo.png');
             const updatedUserData = {
                 ...userData,
                 name: data[i].responses.name,
@@ -41,9 +42,10 @@ const Profile = () => {
                 class:data[i].responses.class,
                 address: data[i].responses.address,
                 AccountBalance:data[i].responses.AccountBalance,
-                userImage:data[i].responses.userImage
+                userImage:img
               };
               setuserData(updatedUserData);
+              console.log(userData)
               break;
             }
         }
@@ -77,12 +79,12 @@ const Profile = () => {
         <div className='profile-div'>
             <div className='profile-img-div'>
                 <img className='profile-img' src={userData.userImage}></img>
-                <div class="container">
+                {/* <div class="container">
                     <div class="fileUploadInput">
                     <label>Upload File</label>
                     <input type="file" />
                     <button>+</button></div>
-                </div>
+                </div> */}
             </div>
             <div className='profile-Info'>
                 <p className='profile-name'>{userData.name}</p>
