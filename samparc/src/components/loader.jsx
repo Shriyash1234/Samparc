@@ -3,11 +3,11 @@ $(function(){
 
 	$('li.has-child > a').after('<div class="child-menu-btn fa fa-plus"></div>');
 
-	$('.cm-menu-btn').on("click",function(){
-		$('.cm-menu-inner').slideToggle();
-		$('.cm-menu-inner > ul ul.menu-ul').slideUp();
-		$('.child-menu-btn').removeClass('fa-minus');
-	});
+	$(document).on("click", '.cm-menu-btn', function(){
+        $('.cm-menu-inner').slideToggle();
+        $('.cm-menu-inner > ul ul.menu-ul').slideUp();
+        $('.child-menu-btn').removeClass('fa-minus');
+    });
 
 	$('.child-menu-btn').on("click",function(){
 
