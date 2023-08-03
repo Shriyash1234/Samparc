@@ -24,7 +24,7 @@
   }
   .close-form{
     height: 15px;
-  
+    cursor: pointer;
   }
   .registeration-form-logo{
     width: 130px;

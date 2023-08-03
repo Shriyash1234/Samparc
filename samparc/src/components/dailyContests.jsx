@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import './CSS/dailyContests.css'
 function DailyContests(){
     const [remainingTime, setRemainingTime] = useState(findremainingTime());
+
     useEffect(() => {
         const timer = setInterval(() => {
           setRemainingTime(findremainingTime());
@@ -12,6 +13,7 @@ function DailyContests(){
     
         return () => {
           clearInterval(timer);
+          window.scrollTo(0, 0)
         };
       }, []);
     const myState = useSelector((state)=>state.setUserNameMail)  

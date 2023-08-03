@@ -1,12 +1,18 @@
 import React,{useState,useEffect} from 'react'
 import Header from './header'
 import { useSelector } from 'react-redux';
+import { useNavigate ,useLocation} from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 import {FooterContainer}  from './footercontainer';
 
 import './CSS/RegisterQuiz.css'
-import { useNavigate ,useLocation} from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { UserCircle2 } from 'lucide-react';
+import { Mail } from 'lucide-react';
+import { CreditCard } from 'lucide-react';
+import { Calendar } from 'lucide-react';
+import { X } from 'lucide-react';
+
 const RegisterQuiz = () => {
     const [remainingTime, setRemainingTime] = useState(findremainingTime());
     const Navigate = useNavigate()
@@ -14,6 +20,9 @@ const RegisterQuiz = () => {
     const myState = useSelector((state)=>state.setUserNameMail)  
     const userName = myState.name?myState.name:''
     const { contestName, contestCode } = location.state;
+    const [registerationData, setRegisterationData] = useState([])
+    const [isDatafetched,setisDatafetched] = useState(false);
+    const [uesrRegistered,setUserRegistered] = useState(false);
     const [formData, setFormData] = useState({
         name: myState.name,
         email: myState.mail,
@@ -44,10 +53,24 @@ const RegisterQuiz = () => {
         theme: "light",
         onClose: closeForm
     })}; 
+    const sendNote = () => {toast.info('You are already registered to this contest', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      onClose: closeForm
+  })}; 
     function redirect(){
         if(userName===''){
             Navigate('/Register')
         }
+    }
+    function closeForm(){
+      document.getElementsByClassName('register-popup')[0].style.display='none';
+      document.getElementsByClassName('register-to-quiz')[0].style.filter = 'brightness(100%)';
     }
     useEffect(() => {
         redirect();
@@ -61,10 +84,14 @@ const RegisterQuiz = () => {
         };
     }, []);
     
-    
+    const openpopup = () =>{
+      document.getElementsByClassName('register-popup')[0].style.display = 'block';
+      document.getElementsByClassName('register-to-quiz')[0].style.filter = 'brightness(40%)';
+    }
     const handleRegister = async (e) => {
         e.preventDefault();
         setFormData({ ...formData, time: new Date().toLocaleTimeString() });
+        await new Promise((resolve) => setTimeout(resolve, 0));
         const jsonData = JSON.stringify(formData);
         console.log(jsonData)
         
@@ -103,8 +130,31 @@ const RegisterQuiz = () => {
         let str = hours.toString()+':'+minutes.toString()+':'+ seconds.toString();
         return str;
     }
+    function checkUserRegisteration(){
+      if(!isDatafetched){
+        fetch("https://samparc.onrender.com/contestRegisterations")
+        .then(response => response.json())
+        .then(data =>setRegisterationData(data));
+        setTimeout(()=>{setisDatafetched(true)},1000)
+      }
+    }
+    const isUserRegistered = async (e) => {
+      checkUserRegisteration()
+      await new Promise((resolve) => setTimeout(resolve, 0));
+      for(let i = 0;i<registerationData.length;i++){
+        if(registerationData[i].responses.email=== myState.mail){
+          setUserRegistered(true);
+        } 
+      }
+
+    }
+    useEffect(()=>{
+      isUserRegistered()
+    })
+    
   return (
-    <div className='register-to-quiz'>
+    <section className='registeration-quiz'>
+      <div className='register-to-quiz'>
         <Header/>
         <div className='register-quiz-div'>
             <div className='points-to-remember-div'>
@@ -122,7 +172,7 @@ const RegisterQuiz = () => {
                         <li className='point'>Best of luck for the quiz!</li>
                     </ol>
                 </div>
-                <div onClick={handleRegister} className='get-started points-button'>Regsiter</div>
+                <div onClick={uesrRegistered?sendNote:openpopup} className='get-started points-button'>{uesrRegistered?'Registered':'Register'}</div>
             </div>
             <div className='contest-details-personal-info'>
                 <div className='points-contest-details'>
@@ -154,7 +204,34 @@ const RegisterQuiz = () => {
               theme="light"
         />
         <FooterContainer/>
-    </div>
+      </div>
+      <div className='register-popup'>
+          <div className="registeration-form-images">
+            <img className='registeration-form-logo' src={require("./Assests/Images/icons/logo.png")}></img>
+            <X className="close-form" onClick={closeForm} src={require("./Assests/Images/icons/close.png")}></X>  
+          </div>
+          <div className='form-details-div'>
+            <div className="form-details register-quiz-form-details">
+                  <div className=""><UserCircle2 className="mobile-icon"/>Name: </div>
+                  <div className="detail">{myState.name}</div>
+            </div>
+            <div className="form-details register-quiz-form-details">
+                <div className=""><Mail  className="mobile-icon"/>Email: </div>
+                <div className="detail">{myState.mail}</div>
+            </div>
+            <div className="form-details register-quiz-form-details">
+                <div className=""><CreditCard className="mobile-icon"/>Fee: </div>
+                <div className="detail">100</div>
+            </div>
+            <div className="form-details register-quiz-form-details">
+                <div className=""><Calendar className="mobile-icon"/>Date: </div>
+                <div className="detail">08/07/2023</div>
+            </div>
+            <button type="submit" onClick={handleRegister} className="Continue-button registerQuiz-but">Register</button>
+          </div>
+      </div>
+    </section>
+    
   )
 }
 
