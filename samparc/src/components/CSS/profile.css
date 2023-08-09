@@ -1,17 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Recursive&display=swap');
 .profile-page{
     font-family: "open sans";
 }
+.profile-details-page{
+  position: absolute;
+  top: 80px;
+  margin-top: 50px;
+  flex-wrap: wrap;
+  display: flex;
+  width: 100vw;
+  height: 70vh;
+  align-items: center;
+  justify-content: space-evenly;
+}
 .profile-div{
-    position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    width: 65vw;
-    height: 450px;
-    background-color: #fff;
-    box-shadow: 0 0 20px rgba(66, 50, 98, 0.35);
-    border-radius: 10px;
-    display: flex;
+  width: 65vw;
+  height: 450px;
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(66, 50, 98, 0.35);
+  border-radius: 10px;
+  display: flex;
 }
 .profile-img-div{
     width: 40%;
@@ -183,7 +191,7 @@
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
   }
   
 
@@ -213,6 +221,62 @@
     justify-content: space-between;
     width: 70%;
 }
+.registered-contest-information{
+  width: 400px;
+  height: 450px;
+  background-color: #000;
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(66, 50, 98, 0.35);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.profile-Contests{
+  color: #9000ff;
+  text-align: center;
+  margin: 0px auto;
+  margin-bottom: 20px;
+}
+.registered-contests-div{
+  height: 120px;
+  overflow-y: scroll;
+}
+.registered-contests-div::-webkit-scrollbar-track{
+  background: #e6e8ff;
+  margin-left: 5px;
+}
+.profile-contests-div{
+  background-color: #e6e8ff;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  padding: 20px 30px;
+}
+.registered-contests-heading{
+  font-size: 2.2rem;
+  font-weight: 500;
+}
+.registered-contest-name-div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1.8rem;
+  background-color: #fff;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.registered-contest-name,.registered-contest-rank{
+  margin-bottom: 0px;
+}
+.registered-contest-rank{
+  font-family: Merriweather;
+  font-size: 2.2rem;
+  background-color: #e6c8ff;
+  padding: 10px 20px;
+  border-radius: 10px 0px 0px 10px;
+}
 @media all and (max-width:1200px) {
   .profile-div{
     width: 85vw;
@@ -241,7 +305,12 @@
   .profile-Info{
     width: 100%;
   }
-
+  .profile-div{
+    margin-bottom: 40px;
+   }
+   .registered-contest-information{
+    margin-bottom: 40px;
+   }
 }
 @media all and (max-width:676px) {
   .Address{
@@ -262,17 +331,17 @@
   }
 }
 @media all and (max-width:479px) {
-  .profile-div{
-    margin: 10vh 0px 500px 0px;
-  }
   .Profile-page{
     height: 1000px;
   }
+  .profile-img{
+    margin-top: 25px;
+  }
+  .registered-contest-information{
+    width: 85%;
+  }
 }
 @media all and (max-width:380px) {
-  .profile-div{
-    margin: 200px 0px 500px 0px;
-  }
   .Profile-page{
     height: 1000px;
   }

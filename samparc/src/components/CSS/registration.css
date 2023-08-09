@@ -103,9 +103,7 @@
   .form-details{
     width: 100%;
     justify-content: space-between;
-    align-items: flex-start;
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
     margin-bottom: 10px;
     padding-bottom: 5px;

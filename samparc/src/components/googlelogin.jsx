@@ -7,7 +7,7 @@ function GoogleLogin(){
     return(
         <div>
             <LoginSocialGoogle
-                client_id={"413814460306-rmb30pb16r8eo3gemo0r5lnplbemqnu5.apps.googleusercontent.com"}
+                client_id={"788648728192-35pubns5v8n7lbc40lkv2rdqadicbdch.apps.googleusercontent.com"}
                 scope="openid profile email"
                 discoveryDocs="claims_supported"
                 access_type="offline"

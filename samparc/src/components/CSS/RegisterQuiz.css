@@ -85,10 +85,10 @@ ol li {
     display: none;
     padding: 30px;
     border-radius: 10px;
-    height: 550px;
+    height: 580px;
     width: 450px;
     max-width: 80%;
-    max-height: 70%;
+    max-height: 80%;
     top:50%;
     left: 50%;
     transform: translate(-50%,-50%);
@@ -110,7 +110,12 @@ ol li {
     font-size: 2rem;
     margin-top: 20px;
 }
-
+.join-quiz{
+    cursor: not-allowed !important;
+}
+.visible{
+    display: none;
+}
 @media all and (max-width:768px) {
     .point,.total-registerations,.points-contest-name{
         font-size: 1.6rem;

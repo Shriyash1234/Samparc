@@ -20,6 +20,8 @@ const Profile = () => {
         address: '',
         AccountBalance:'',
         userImage:'',
+        Registrations:[],
+        GivenContests:[]
       });;
     function redirect(){
         if(userName===''){
@@ -32,6 +34,7 @@ const Profile = () => {
     function extractData(data){
         for(let i =0;i<data.length;i++){
             if (data[i].responses.email === myState.mail) {
+            console.log(data[i].responses.Registrations)
             const img = data[i].responses.userImage !== '' ? data[i].responses.userImage : require('./Assests/Images/icons/profile-photo.png');
             const updatedUserData = {
                 ...userData,
@@ -42,10 +45,12 @@ const Profile = () => {
                 class:data[i].responses.class,
                 address: data[i].responses.address,
                 AccountBalance:data[i].responses.AccountBalance,
+                Registrations:data[i].responses.Registrations,
+                GivenContests:data[i].responses.GivenRegistrations,
                 userImage:img
               };
               setuserData(updatedUserData);
-              console.log(userData)
+              console.log(userData.Registrations)
               break;
             }
         }
@@ -74,61 +79,90 @@ const Profile = () => {
         .then(data =>extractData(data));
     }, []);
   return (
-    <div className='Profile-page'>
+    <section className='Profile-page'>
         <Header/>
-        <div className='profile-div'>
-            <div className='profile-img-div'>
-                <img className='profile-img' src={userData.userImage}></img>
-                {/* <div class="container">
-                    <div class="fileUploadInput">
-                    <label>Upload File</label>
-                    <input type="file" />
-                    <button>+</button></div>
-                </div> */}
-            </div>
-            <div className='profile-Info'>
-                <p className='profile-name'>{userData.name}</p>
-                <div className='Account-balance-withdraw'>
-                    <p className='Account-balance'>Account Balance: {userData.AccountBalance}</p>
-                    <div className='withdraw'>Withdraw</div>
+        <div className='profile-details-page'>
+            <div className='profile-div'>
+                <div className='profile-img-div'>
+                    <img className='profile-img' src={userData.userImage}></img>
+                    {/* <div class="container">
+                        <div class="fileUploadInput">
+                        <label>Upload File</label>
+                        <input type="file" />
+                        <button>+</button></div>
+                    </div> */}
                 </div>
-                <hr className='horizontal-line'/>
-                <div className='profile-details-div-div'>
-                    <div className='profile-details-div'>
-                        <div className='profile-detail profile-details-input'>Address:</div>
-                        <div className='Address profile-details'>{userData.address}</div>
+                <div className='profile-Info'>
+                    <p className='profile-name'>{userData.name}</p>
+                    <div className='Account-balance-withdraw'>
+                        <p className='Account-balance'>Account Balance: {userData.AccountBalance}</p>
+                        <div className='withdraw'>Withdraw</div>
                     </div>
-                    <div className='profile-details-div'>
-                        <div className='profile-detail profile-details-input'>Email:</div>
-                        <div className='verifiable-details'>
-                            <div className='profile-details'>{userData.email}</div>
-                            <BadgeX style={{marginTop:"5px"}}/>
+                    <hr className='horizontal-line'/>
+                    <div className='profile-details-div-div'>
+                        <div className='profile-details-div'>
+                            <div className='profile-detail profile-details-input'>Address:</div>
+                            <div className='Address profile-details'>{userData.address}</div>
                         </div>
-                    </div>
-                    <div className='profile-details-div'>
-                        <div className='profile-detail profile-details-input'>Class:</div>
-                        <div className='Address profile-details'>{userData.class}</div>
-                    </div>
-                    <div className='profile-details-div'>
-                        <div className='profile-detail profile-details-input'>Date of birth:</div>
-                        <div className='Address profile-details'>{userData.DOB}</div>
-                    </div>
-                    <div className='profile-details-div'>
-                        <div className='profile-detail profile-details-input'>Age:</div>
-                        <div className='Address profile-details'>{calculateAge(userData.DOB)}</div>
-                    </div>
-                    <div className='profile-details-div'>
-                        <div className='profile-detail profile-details-input'>Phone:</div>
-                        <div className='verifiable-details'>
-                            <div className='profile-details'>{userData.phone}</div>
-                            <BadgeX />
+                        <div className='profile-details-div'>
+                            <div className='profile-detail profile-details-input'>Email:</div>
+                            <div className='verifiable-details'>
+                                <div className='profile-details'>{userData.email}</div>
+                                <BadgeX style={{marginTop:"5px"}}/>
+                            </div>
                         </div>
+                        <div className='profile-details-div'>
+                            <div className='profile-detail profile-details-input'>Class:</div>
+                            <div className='Address profile-details'>{userData.class}</div>
+                        </div>
+                        <div className='profile-details-div'>
+                            <div className='profile-detail profile-details-input'>Date of birth:</div>
+                            <div className='Address profile-details'>{userData.DOB}</div>
+                        </div>
+                        <div className='profile-details-div'>
+                            <div className='profile-detail profile-details-input'>Age:</div>
+                            <div className='Address profile-details'>{calculateAge(userData.DOB)}</div>
+                        </div>
+                        <div className='profile-details-div'>
+                            <div className='profile-detail profile-details-input'>Phone:</div>
+                            <div className='verifiable-details'>
+                                <div className='profile-details'>{userData.phone}</div>
+                                <BadgeX />
+                            </div>
+                        </div>
+                        
                     </div>
-                    
+                </div>
+            </div>
+            <div className='registered-contest-information'>
+                <h2 className='profile-Contests'>Contests</h2>
+                <div className='profile-contests-div'>
+                    <p className='registered-contests-heading'>Registered contests</p>
+                    <div className='registered-contests-div'>
+                        {
+                        userData.Registrations.map(data=>{
+                            return(
+                            <div className='registered-contest-name-div'>
+                                <p className='registered-contest-rank'>1</p>
+                                <p className='registered-contest-name'>&nbsp;&nbsp;&nbsp;&nbsp; {data.ContestName} {data.ContestCode}</p>
+                            </div> )}
+                        )}
+                    </div>
+                    <p className='registered-contests-heading'>Given contests</p>
+                    <div className='registered-contests-div'>
+                        {
+                        userData.GivenContests.map(data=>{
+                            return(
+                            <div className='registered-contest-name-div'>
+                                <p className='registered-contest-rank'>1</p>
+                                <p className='registered-contest-name'>&nbsp;&nbsp;&nbsp;&nbsp; {data.ContestName} {data.ContestCode}</p>
+                            </div> )}
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
   )
 }
 

@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import { useSelector} from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,7 +13,9 @@ function Quiz(){
     const [questionNum,setQuestionNum] = useState(0);
     const [reamainingTime, setReamainingTime] = useState(180);
     const Navigate = useNavigate();
+    const location = useLocation();
 
+    const { contestName, contestCode,contestTime,contestEndTime } = location.state;
     const myState = useSelector((state)=>state.setUserNameMail)
     const [quizResponses,setQuizResponses] = useState([{
         name:myState.name,
@@ -48,9 +50,6 @@ function Quiz(){
         setSelectedOptions(updatedSelectedOptions);
     }
     
-      function handleSubmit(event) {
-        event.preventDefault();
-      }
       function handlePrevious(event) {
         event.preventDefault();
         setQuestionNum(questionNum-1)
@@ -106,24 +105,40 @@ function Quiz(){
         else if(minute !==0) return minute+'m '+seconds+'s'
         else return seconds+'s'
       }
-      function handleSubmit(){
+      const handleSubmit = async (e) => {
         quizResponses[0].score = calculateScore(); 
         quizResponses[0].timetaken = calculateTime(reamainingTime);
+        const registerationResponse = {
+            email:myState.mail,
+            contestName:contestName,
+            contestCode:contestCode,
+            time:new Date().toLocaleTimeString()
+        }
         axios.post('https://samparc.onrender.com/addquizresponses', { quizResponses })
             .then(() => {
                 notifySucess()
-                setTimeout(()=>{
-                    Navigate('/')
-                },2000)
-               
             })
             .catch(error => {
                 console.error('Error:', error);
                 alert('Quiz submiited')
+                
+            });
+        const response1 = await fetch('https://samparc.onrender.com/updateProfileGivenRegisteration', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ registerationResponse }),
+            });
+        
+            if (response1.ok) {
                 setTimeout(()=>{
                     Navigate('/')
                 },2000)
-            });
+            const data1 = await response1.json();
+            } else {
+            throw new Error('Error submitting form for the first link'); 
+            }
       }
     return(
         <section className="quiz">

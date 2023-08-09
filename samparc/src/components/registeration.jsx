@@ -74,6 +74,7 @@ function Registration() {
         class: 'Choose',
         address: '',
         userImage:'',
+        Registrations:[],
         AccountBalance:0
       });
     

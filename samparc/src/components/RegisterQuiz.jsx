@@ -19,10 +19,11 @@ const RegisterQuiz = () => {
     const location = useLocation()
     const myState = useSelector((state)=>state.setUserNameMail)  
     const userName = myState.name?myState.name:''
-    const { contestName, contestCode } = location.state;
+    const { contestName, contestCode,contestTime,contestEndingTime } = location.state;
     const [registerationData, setRegisterationData] = useState([])
     const [isDatafetched,setisDatafetched] = useState(false);
     const [uesrRegistered,setUserRegistered] = useState(false);
+    const [RegisterInProcess,setRegisterInProcess] = useState(false);
     const [formData, setFormData] = useState({
         name: myState.name,
         email: myState.mail,
@@ -30,6 +31,10 @@ const RegisterQuiz = () => {
         contestCode:contestCode,
         time:''
       });
+    const [userData,setuserData] = useState({
+      AccountBalance:'',
+      Registrations:[]
+    });;
     function closeForm(){
         Navigate('/')
     }  
@@ -52,7 +57,17 @@ const RegisterQuiz = () => {
         progress: undefined,
         theme: "light",
         onClose: closeForm
-    })}; 
+    })};
+    const notifyWarning = () => {toast.warning('You have not registered for the contest', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      onClose: closeForm
+  })}; 
     const sendNote = () => {toast.info('You are already registered to this contest', {
       position: "top-right",
       autoClose: 5000,
@@ -74,6 +89,7 @@ const RegisterQuiz = () => {
     }
     useEffect(() => {
         redirect();
+        isUserRegistered();
     
         const timer = setInterval(() => {
             setRemainingTime(findremainingTime());
@@ -83,18 +99,43 @@ const RegisterQuiz = () => {
             clearInterval(timer);
         };
     }, []);
-    
+    function extractData(data){
+      for(let i =0;i<data.length;i++){
+          if (data[i].responses.email === myState.mail) {
+          console.log(data[i].responses.Registrations)
+          const img = data[i].responses.userImage !== '' ? data[i].responses.userImage : require('./Assests/Images/icons/profile-photo.png');
+          const updatedUserData = {
+              ...userData,
+              AccountBalance:data[i].responses.AccountBalance,
+              Registrations:data[i].responses.Registrations,
+            };
+            setuserData(updatedUserData);
+            break;
+          }
+      }
+  }
+    useEffect(() => {
+      fetch("https://samparc.onrender.com/registerations")
+      .then(response => response.json())
+      .then(data =>extractData(data));
+  }, []);
     const openpopup = () =>{
       document.getElementsByClassName('register-popup')[0].style.display = 'block';
       document.getElementsByClassName('register-to-quiz')[0].style.filter = 'brightness(40%)';
     }
     const handleRegister = async (e) => {
         e.preventDefault();
+        setRegisterInProcess(true)
         setFormData({ ...formData, time: new Date().toLocaleTimeString() });
         await new Promise((resolve) => setTimeout(resolve, 0));
         const jsonData = JSON.stringify(formData);
-        console.log(jsonData)
-        
+        const registerationResponse = {
+          email:formData.email,
+          contestName:contestName,
+          contestCode:contestCode,
+          time:new Date().toLocaleTimeString()
+        }
+        console.log(registerationResponse)
 
         try {
           const response1 = await fetch('https://samparc.onrender.com/addContestRegistration', {
@@ -106,13 +147,34 @@ const RegisterQuiz = () => {
           });
       
           if (response1.ok) {
-
+            setUserRegistered(true);
+            setRegisterInProcess(false);
             notifySucess();
+
+            fetch("https://samparc.onrender.com/registerations")
+            .then(response => response.json())
+            .then(data =>extractData(data));
             
             const data1 = await response1.json();
           } else {
-            throw new Error('Error submitting form for the first link');
             notifyError();
+            throw new Error('Error submitting form for the first link');
+            
+          }
+         
+          const response2 = await fetch('https://samparc.onrender.com/updateProfileRegisteration', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({ registerationResponse }),
+          });
+      
+          if (response2.ok) {
+            const data2 = await response2.json();
+            
+          } else {
+            throw new Error('Error submitting form for the second link');
           }
         } catch (error) {
           console.error(error); 
@@ -134,22 +196,58 @@ const RegisterQuiz = () => {
       if(!isDatafetched){
         fetch("https://samparc.onrender.com/contestRegisterations")
         .then(response => response.json())
-        .then(data =>setRegisterationData(data));
-        setTimeout(()=>{setisDatafetched(true)},1000)
+        .then(data =>setRegisterData(data));
       }
+    }
+    function setRegisterData(data){
+      setRegisterationData(data)
+      setTimeout(()=>{setisDatafetched(true)},1000)
+    }
+    function isTimePassed(){
+      const currentTime = contestTime;
+      if (new Date().toLocaleTimeString() > currentTime){
+        return true;
+      }
+      else return false;
+    }
+    function isContestEnded(){
+      const contestEndTime = contestEndingTime;
+      if (new Date().toLocaleTimeString() > contestEndTime){
+        return true;
+      }
+      else return false;
+    }
+    function isUserHaveGivenContest(){
+
     }
     const isUserRegistered = async (e) => {
       checkUserRegisteration()
       await new Promise((resolve) => setTimeout(resolve, 0));
       for(let i = 0;i<registerationData.length;i++){
-        if(registerationData[i].responses.email=== myState.mail){
+        if(registerationData[i].responses.email=== myState.mail && registerationData[i].responses.contestCode === formData.contestCode){
           setUserRegistered(true);
+          console.log('Yes')
         } 
       }
-
+    }
+    function JoinQuiz(){
+      if(!isContestEnded()){
+        if(isTimePassed()){
+          if(uesrRegistered){
+            Navigate('/Quiz',{state:{contestName:contestName,contestCode:contestCode,contestEndTime:contestEndingTime,contestTime:contestTime}});
+          }
+          else{
+            notifyWarning();
+          }
+        }
+      }
+      else{
+        Navigate('/Leaderboard')
+      }
     }
     useEffect(()=>{
-      isUserRegistered()
+      isTimePassed();
+      isUserRegistered();
     })
     
   return (
@@ -182,11 +280,21 @@ const RegisterQuiz = () => {
                         <p className='total-registerations'><span>Time remaining:</span> {remainingTime}</p>
                         <p className='total-registerations'><span>Duration:</span> 2hours</p>
                         <p className='total-registerations'><span>Registeration fee:</span>100rs</p>
+                        <p className={`total-registerations ${isContestEnded() ? '' : 'visible'}`}>Contest Ended</p>
+                        <button className={`get-started ${isTimePassed() ? '' : 'join-quiz'}`} onClick={JoinQuiz}>{isContestEnded()?'Leaderboard':'Join'}</button>
                     </div>
                     <div className='personal-info-rectangle'>
                         <p className='points-contest-name'>{myState.name}</p>
-                        <p className='total-registerations'><span> Wallet Money: </span>0rs</p>
-                        <p className='total-registerations'><span> Registered Contests: </span>No data available</p>
+                        <p className='total-registerations'><span> Wallet Money: </span>{userData.AccountBalance} rs</p>
+                        <p className='total-registerations'><span> Registered Contests: </span>
+                        {
+                          userData.Registrations.map(data=>{
+                            return(
+                              <p>{data.ContestName} {data.ContestCode}</p>
+                            )
+                          })
+                        }
+                        </p>
                     </div>
                 </div>
             </div>
@@ -220,6 +328,10 @@ const RegisterQuiz = () => {
                 <div className="detail">{myState.mail}</div>
             </div>
             <div className="form-details register-quiz-form-details">
+                <div className=""><Mail  className="mobile-icon"/>Contest: </div>
+                <div className="detail">{formData.contestName}</div>
+            </div>
+            <div className="form-details register-quiz-form-details">
                 <div className=""><CreditCard className="mobile-icon"/>Fee: </div>
                 <div className="detail">100</div>
             </div>
@@ -227,7 +339,7 @@ const RegisterQuiz = () => {
                 <div className=""><Calendar className="mobile-icon"/>Date: </div>
                 <div className="detail">08/07/2023</div>
             </div>
-            <button type="submit" onClick={handleRegister} className="Continue-button registerQuiz-but">Register</button>
+            <button type="submit" onClick={handleRegister} className="Continue-button registerQuiz-but">{RegisterInProcess?'Registering':'Register'}</button>
           </div>
       </div>
     </section>
