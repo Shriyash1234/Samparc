@@ -59,7 +59,7 @@ function DailyContests(){
                             <p className='Duration'>Duration: 40 min</p>
                             <p className='No-Q'>No. of Questions:20</p>
                             <p className='Fee'>Fee:100rs</p>
-                            <Link to='/RegisterQuiz' state={{contestName:"JEE Advanced",contestCode:"1J",contestTime:"6:30:00 PM",contestEndingTime:"7:10:00 PM"}} className='contest-link-button'><button className='contest-register'>Register</button></Link>
+                            <Link to='/RegisterQuiz' state={{contestName:"JEE Advanced",contestCode:"1J",contestTime:"12:01:00 AM",contestEndingTime:"12:59:00 AM"}} className='contest-link-button'><button className='contest-register'>Register</button></Link>
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@ function DailyContests(){
                             <p className='Duration'>Duration: 30 min</p>
                             <p className='No-Q'>No. of Questions:30</p>
                             <p className='Fee'>Fee:100rs</p>
-                            <Link to='/RegisterQuiz' state={{contestName:"UPSC",contestCode:"1U",contestTime:"6:30:00 PM",contestEndingTime:"8:00:00 PM"}} className='contest-link-button'><button className='contest-register'>Register</button></Link>
+                            <Link to='/RegisterQuiz' state={{contestName:"UPSC",contestCode:"1U",contestTime:"2:30:00 PM",contestEndingTime:"3:30:00 PM"}} className='contest-link-button'><button className='contest-register'>Register</button></Link>
                         </div>
                     </div>
                 </div>

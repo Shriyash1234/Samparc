@@ -75,6 +75,7 @@ function Registration() {
         address: '',
         userImage:'',
         Registrations:[],
+        GivenRegistrations:[],
         AccountBalance:0
       });
     
@@ -283,7 +284,7 @@ function Registration() {
           document.getElementsByClassName('form-3')[0].style.display = 'none'
           document.getElementsByClassName('form-5')[0].style.display = 'none';
           document.getElementsByClassName('google-login')[0].style.display = 'none';
-          document.getElementsByClassName('form-4')[0].style.display = 'block';
+          document.getElementsByClassName('form-4')[0].style.display = 'flex';
         }
       }
       const handleLogin = async (e) => {

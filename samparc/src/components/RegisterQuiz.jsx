@@ -24,6 +24,7 @@ const RegisterQuiz = () => {
     const [isDatafetched,setisDatafetched] = useState(false);
     const [uesrRegistered,setUserRegistered] = useState(false);
     const [RegisterInProcess,setRegisterInProcess] = useState(false);
+    const [isuserHaveGivenContest,setisUserHaveGivenContest] = useState(false);
     const [formData, setFormData] = useState({
         name: myState.name,
         email: myState.mail,
@@ -33,7 +34,8 @@ const RegisterQuiz = () => {
       });
     const [userData,setuserData] = useState({
       AccountBalance:'',
-      Registrations:[]
+      Registrations:[],
+      givenContests:[]
     });;
     function closeForm(){
         Navigate('/')
@@ -68,6 +70,16 @@ const RegisterQuiz = () => {
       theme: "light",
       onClose: closeForm
   })}; 
+    const notifyGivenContestWarning = () => {toast.warning('You have already given the contest', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      onClose: closeForm
+    })};
     const sendNote = () => {toast.info('You are already registered to this contest', {
       position: "top-right",
       autoClose: 5000,
@@ -102,12 +114,12 @@ const RegisterQuiz = () => {
     function extractData(data){
       for(let i =0;i<data.length;i++){
           if (data[i].responses.email === myState.mail) {
-          console.log(data[i].responses.Registrations)
-          const img = data[i].responses.userImage !== '' ? data[i].responses.userImage : require('./Assests/Images/icons/profile-photo.png');
+           
           const updatedUserData = {
               ...userData,
               AccountBalance:data[i].responses.AccountBalance,
               Registrations:data[i].responses.Registrations,
+              givenContests:data[i].responses.GivenRegistrations
             };
             setuserData(updatedUserData);
             break;
@@ -218,7 +230,12 @@ const RegisterQuiz = () => {
       else return false;
     }
     function isUserHaveGivenContest(){
-
+      for(let i = 0;i<userData.givenContests.length;i++){
+        if(userData.givenContests[i].ContestCode ===contestCode ){
+          console.log('contestcode',userData.givenContests[i].ContestCode);
+          setisUserHaveGivenContest(true);
+        }
+      }
     }
     const isUserRegistered = async (e) => {
       checkUserRegisteration()
@@ -226,14 +243,16 @@ const RegisterQuiz = () => {
       for(let i = 0;i<registerationData.length;i++){
         if(registerationData[i].responses.email=== myState.mail && registerationData[i].responses.contestCode === formData.contestCode){
           setUserRegistered(true);
-          console.log('Yes')
         } 
       }
     }
     function JoinQuiz(){
       if(!isContestEnded()){
         if(isTimePassed()){
-          if(uesrRegistered){
+          if(isuserHaveGivenContest){
+            notifyGivenContestWarning();
+          }
+          else if(uesrRegistered){
             Navigate('/Quiz',{state:{contestName:contestName,contestCode:contestCode,contestEndTime:contestEndingTime,contestTime:contestTime}});
           }
           else{
@@ -248,6 +267,7 @@ const RegisterQuiz = () => {
     useEffect(()=>{
       isTimePassed();
       isUserRegistered();
+      isUserHaveGivenContest();
     })
     
   return (

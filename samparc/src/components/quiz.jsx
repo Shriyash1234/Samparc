@@ -4,14 +4,16 @@ import { useNavigate,useLocation } from 'react-router-dom';
 import { useSelector} from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { WineOff, X } from 'lucide-react';
+import { AlignJustify } from 'lucide-react';
 import quiz from './data/quizData/quiz.json'
 
 import './CSS/quiz.css'
 function Quiz(){
     const [selectedOptions, setSelectedOptions] = useState(Array(quiz.length).fill(''));
     const [questionNum,setQuestionNum] = useState(0);
-    const [reamainingTime, setReamainingTime] = useState(180);
+    const [reamainingTime, setReamainingTime] = useState(5000);
+    const [Navigationbar,setNavigationbar] = useState(true);
     const Navigate = useNavigate();
     const location = useLocation();
 
@@ -24,6 +26,25 @@ function Quiz(){
         timetaken:0,
         score:0
     }]);
+   
+    // function removerSidebar(){
+    //     if(window.innerWidth<991){
+    //         document.getElementsByClassName('quiz-navigation-bar')[0].style.marginLeft = '-350px'
+    //         document.getElementsByClassName('quiz-navigation-bar')[0].style.zIndex = '5'
+    //         document.getElementsByClassName('question-block')[0].style.marginLeft = '0px'
+    //         document.getElementsByClassName('align-justify')[0].style.zIndex= '1'
+    //         setNavigationbar(false);
+    //     }
+    // }
+    // useEffect(() => {
+    //     window.onload = (event) => {
+    //         removerSidebar();
+    //     };
+    //     window.addEventListener("resize", removerSidebar);
+    //         return () => {
+    //             window.removeEventListener("resize", removerSidebar);
+    //         };
+    // }, []); 
     useEffect(() => {
         const timer = setTimeout(() => {
         if (reamainingTime > 0) {
@@ -105,6 +126,81 @@ function Quiz(){
         else if(minute !==0) return minute+'m '+seconds+'s'
         else return seconds+'s'
       }
+      function findremainingTime(endTime){
+        const currentTime = new Date();
+        const targetTimeParts = endTime.split(' ');
+        const targetTime = new Date();
+        
+        const timeParts = targetTimeParts[0].split(':');
+        let hours = parseInt(timeParts[0]);
+        const minutes = parseInt(timeParts[1]);
+        const seconds = parseInt(timeParts[2]);
+        
+        if (targetTimeParts[1].toUpperCase() === 'PM') {
+            hours += 12;
+        }
+
+        targetTime.setHours(hours, minutes, seconds);
+
+        const remainingTime = targetTime - currentTime;
+        if (remainingTime <= 0) {
+            return "Time has already passed.";
+        }
+
+        const remainingHours = Math.floor(remainingTime / (1000 * 60 * 60));
+        const remainingMinutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+        const remainingSeconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+        const str = remainingHours.toString().padStart(2, '0') + ':' + remainingMinutes.toString().padStart(2, '0') + ':' + remainingSeconds.toString().padStart(2, '0');
+        return str;
+    }
+    function toggleNavigationbar(){
+        if(window.innerWidth>991){
+            if(Navigationbar){
+                document.getElementsByClassName('quiz-navigation-bar')[0].style.marginLeft = '-350px'
+                document.getElementsByClassName('question-block')[0].style.marginLeft = '0px'
+                document.getElementsByClassName('align-justify')[0].style.zIndex= '1'
+                setNavigationbar(false)
+            }
+            else{
+                document.getElementsByClassName('quiz-navigation-bar')[0].style.marginLeft = '0px'
+                document.getElementsByClassName('question-block')[0].style.marginLeft = '150px'
+                document.getElementsByClassName('align-justify')[0].style.zIndex= '-1'
+                setNavigationbar(true)
+            }
+        }
+        else if(window.innerWidth<479){
+            if(Navigationbar){
+                document.getElementsByClassName('quiz-navigation-bar')[0].style.marginLeft = '-70%'
+                document.getElementsByClassName('quiz-navigation-bar')[0].style.zIndex = '5'
+                document.getElementsByClassName('question-block')[0].style.marginLeft = '0px'
+                document.getElementsByClassName('align-justify')[0].style.zIndex= '1'
+                setNavigationbar(false)
+            }
+            else{
+                document.getElementsByClassName('quiz-navigation-bar')[0].style.marginLeft = '0%'
+                document.getElementsByClassName('question-block')[0].style.marginLeft = '0px'
+                document.getElementsByClassName('align-justify')[0].style.zIndex= '-1'
+                setNavigationbar(true)
+            }
+        }
+        else if (window.innerWidth<991){
+            if(Navigationbar){
+                document.getElementsByClassName('quiz-navigation-bar')[0].style.marginLeft = '-50%'
+                document.getElementsByClassName('quiz-navigation-bar')[0].style.zIndex = '5'
+                document.getElementsByClassName('question-block')[0].style.marginLeft = '0px'
+                document.getElementsByClassName('align-justify')[0].style.zIndex= '1'
+                setNavigationbar(false)
+            }
+            else{
+                document.getElementsByClassName('quiz-navigation-bar')[0].style.marginLeft = '0%'
+                document.getElementsByClassName('question-block')[0].style.marginLeft = '0px'
+                document.getElementsByClassName('align-justify')[0].style.zIndex= '-1'
+                setNavigationbar(true)
+            }
+        }
+        
+    }
       const handleSubmit = async (e) => {
         quizResponses[0].score = calculateScore(); 
         quizResponses[0].timetaken = calculateTime(reamainingTime);
@@ -155,9 +251,30 @@ function Quiz(){
               theme="light"
               />
             <div className='question'>
+                <AlignJustify className='align-justify' onClick={toggleNavigationbar}/>
+                <div className='quiz-navigation-bar'>
+                    <div className='open-close'>
+                        <div className='close-btn' onClick={toggleNavigationbar}><X /></div>
+                        <img className='samparc-logo' src={require('./Assests/Images/icons/logo.png')}></img>
+                    </div>
+                    <div className='contest-name-code'>
+                        <p className='quiz-contestName'>{contestName}</p>
+                        <p className='quiz-contestCode'>Contest Code - {contestCode} </p>
+                        <p className='Attempted'>Attempted - 7/10</p>
+                        <p> Time remaining: {findremainingTime(contestEndTime)}</p>
+                    </div>
+                    <div className='quiz-questions'>
+                        {quiz.map(question=>{
+                            return(
+                                <p className='quiz-navigation-question'>{question.questionNumber}. &nbsp;{question.question}</p>
+                            )
+                        })}
+                    </div>
+                    <button className='quiz-submit navigation-but'>Submit</button>
+                </div>
                 <div className='question-block'>
                     <img className='alarm-clock' src={require('./Assests/Images/icons/alarm.png')}></img>
-                    <p className='time-remaining'>{Math.floor(reamainingTime/60)+':'+(reamainingTime%60)}</p>
+                    <p className='time-remaining'>{findremainingTime(contestEndTime)}</p>
                     <div className='question-number'>
                         <p className='question-number-text'>Question {quiz[questionNum].questionNumber} out of {quiz.length}</p>
                     </div>
@@ -218,7 +335,7 @@ function Quiz(){
                     </div>
                 </div>
                 <div className='question-block submit-block'>
-                    <p className='time-remaining'>{Math.floor(reamainingTime/60)+':'+(reamainingTime%60)}</p>
+                    <p className='time-remaining'>{findremainingTime(contestEndTime)}</p>
                     <button className={questionNum===quiz.length-1?'quiz-submit':'notvisible'} onClick={handleSubmit} >Submit The Quiz</button>
                     {/* <div className={questionNum===0?'notvisible':'prev-next'} onClick={handleLastPrevious}><img src={require('./Assests/Images/icons/previous.png')}></img> Previous</div> */}
                 </div>

@@ -9,6 +9,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    margin-left: 150px;
     transform: translate(-50%, -50%);
     border-radius: 35px;
     width: 70vw;
@@ -127,6 +128,75 @@
     width: 40px;
     margin-bottom: 10px;
 }
+.quiz-navigation-bar{
+    background-color: #F6F8F9;
+    height: 100vh;
+    width: 22%;
+    padding: 20px 30px;
+    position: relative;
+}
+svg.lucide {
+    width: 2em;
+    height: 2em;
+}
+.samparc-logo{
+    width: 130px;
+    margin-left: 30px;
+}
+.open-close{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+.contest-name-code{
+    margin-top: 30px;
+    text-align: left;
+    font-size: 2rem;
+}
+.quiz-questions{
+    max-height: 60vh;
+    width: 100%;
+    overflow: scroll;
+    padding: 10px 0px
+}
+.quiz-navigation-question{
+    background-color: #e6e8ff;
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space: nowrap;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    text-align: left;
+}
+.navigation-but{
+    padding: 5px 35px;
+    margin-top: 10px;
+}
+.align-justify{
+    position: fixed;
+    left: 30px;
+    top: 15px;
+    z-index: -1;
+    background-color: #fff;
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 5px;
+    padding: 5px;
+}
+@media all and (max-width:991px) {
+    .quiz-navigation-bar{
+        width: 50%;
+        margin-left: -50%;
+        z-index: 5;
+    }
+    .question-block{
+        margin-left: 0px;
+    }
+    .align-justify{
+        z-index: 1;
+    }
+}
 @media all and (max-width:768px) {
     .question-block{
         min-height: 550px;
@@ -156,6 +226,11 @@
     .question-block{
         min-height: 550px;
         width: 90%;
+    }
+    .quiz-navigation-bar{
+        width: 70%;
+        margin-left: -70%;
+        z-index: 5;
     }
     .quiz-form{
         height: 60%;
