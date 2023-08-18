@@ -17,6 +17,7 @@
     padding: 20px;
     background-color: #fafafe;
     box-shadow: 0px 0px 20px #c7caec;
+    transition: 400ms;
 }
 .question-box{
     height: fit-content;
@@ -111,7 +112,7 @@
 .submit-block{
     display: none;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 .quiz-submit{
@@ -183,6 +184,9 @@ svg.lucide {
     height: 2.5em;
     border-radius: 5px;
     padding: 5px;
+}
+.solved-question{
+    background-color: #A2FF86;
 }
 @media all and (max-width:991px) {
     .quiz-navigation-bar{

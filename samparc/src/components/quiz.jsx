@@ -11,6 +11,7 @@ import quiz from './data/quizData/quiz.json'
 import './CSS/quiz.css'
 function Quiz(){
     const [selectedOptions, setSelectedOptions] = useState(Array(quiz.length).fill(''));
+    const [noOfSolvedQuestion,setnoOfSolvedQuestions]= useState(0);
     const [questionNum,setQuestionNum] = useState(0);
     const [reamainingTime, setReamainingTime] = useState(5000);
     const [Navigationbar,setNavigationbar] = useState(true);
@@ -26,25 +27,6 @@ function Quiz(){
         timetaken:0,
         score:0
     }]);
-   
-    // function removerSidebar(){
-    //     if(window.innerWidth<991){
-    //         document.getElementsByClassName('quiz-navigation-bar')[0].style.marginLeft = '-350px'
-    //         document.getElementsByClassName('quiz-navigation-bar')[0].style.zIndex = '5'
-    //         document.getElementsByClassName('question-block')[0].style.marginLeft = '0px'
-    //         document.getElementsByClassName('align-justify')[0].style.zIndex= '1'
-    //         setNavigationbar(false);
-    //     }
-    // }
-    // useEffect(() => {
-    //     window.onload = (event) => {
-    //         removerSidebar();
-    //     };
-    //     window.addEventListener("resize", removerSidebar);
-    //         return () => {
-    //             window.removeEventListener("resize", removerSidebar);
-    //         };
-    // }, []); 
     useEffect(() => {
         const timer = setTimeout(() => {
         if (reamainingTime > 0) {
@@ -154,6 +136,52 @@ function Quiz(){
         const str = remainingHours.toString().padStart(2, '0') + ':' + remainingMinutes.toString().padStart(2, '0') + ':' + remainingSeconds.toString().padStart(2, '0');
         return str;
     }
+    //Calculating no. of solved questions
+    function numberOfSolveQuestions(){
+        let num = 0;
+        for(let i =0;i<selectedOptions.length;i++){
+            if(selectedOptions[i] !== ''){
+                num++;
+            }
+        }
+        setnoOfSolvedQuestions(num);
+    }
+    useEffect(()=>{
+        console.log('yes')
+        numberOfSolveQuestions();
+    },[selectedOptions])
+    //Function for navigating to the question.Sets questionNum.
+    //If ths screen size is less it removes navigation bar after selecting a question.
+    function NavigateToQuestion(queNum){
+        const questionBlockDisplay= document.getElementsByClassName('question-block')[0];
+        const submitBlockDisplay= document.getElementsByClassName('submit-block')[0];
+        if(questionBlockDisplay.style.display === 'none'){
+            questionBlockDisplay.style.display = 'block'
+            submitBlockDisplay.style.display = 'none'
+        }
+        setQuestionNum(queNum-1);
+        if(window.innerWidth<479){
+            if(Navigationbar){
+                document.getElementsByClassName('quiz-navigation-bar')[0].style.marginLeft = '-70%'
+                document.getElementsByClassName('quiz-navigation-bar')[0].style.zIndex = '5'
+                document.getElementsByClassName('question-block')[0].style.marginLeft = '0px'
+                document.getElementsByClassName('align-justify')[0].style.zIndex= '1'
+                setNavigationbar(false)
+            }
+        }
+        else if (window.innerWidth<991){
+            if(Navigationbar){
+                document.getElementsByClassName('quiz-navigation-bar')[0].style.marginLeft = '-50%'
+                document.getElementsByClassName('quiz-navigation-bar')[0].style.zIndex = '5'
+                document.getElementsByClassName('question-block')[0].style.marginLeft = '0px'
+                document.getElementsByClassName('align-justify')[0].style.zIndex= '1'
+                setNavigationbar(false)
+            }
+        }
+    }
+    // Handling Navigation bar for various screen sizes
+    // If the screen size becomes less then navigation bar goes to left.
+    // The z-indez of the align-justify becomes greater.
     function toggleNavigationbar(){
         if(window.innerWidth>991){
             if(Navigationbar){
@@ -199,7 +227,6 @@ function Quiz(){
                 setNavigationbar(true)
             }
         }
-        
     }
       const handleSubmit = async (e) => {
         quizResponses[0].score = calculateScore(); 
@@ -260,13 +287,13 @@ function Quiz(){
                     <div className='contest-name-code'>
                         <p className='quiz-contestName'>{contestName}</p>
                         <p className='quiz-contestCode'>Contest Code - {contestCode} </p>
-                        <p className='Attempted'>Attempted - 7/10</p>
+                        <p className='Attempted'>Attempted - {noOfSolvedQuestion}/{quiz.length}</p>
                         <p> Time remaining: {findremainingTime(contestEndTime)}</p>
                     </div>
                     <div className='quiz-questions'>
                         {quiz.map(question=>{
                             return(
-                                <p className='quiz-navigation-question'>{question.questionNumber}. &nbsp;{question.question}</p>
+                                <p className={`quiz-navigation-question ${selectedOptions[question.questionNumber-1] !=='' ? 'solved-question' : ''}`} onClick={() => NavigateToQuestion(question.questionNumber)}>{question.questionNumber}. &nbsp;{question.question}</p>
                             )
                         })}
                     </div>
@@ -335,9 +362,10 @@ function Quiz(){
                     </div>
                 </div>
                 <div className='question-block submit-block'>
-                    <p className='time-remaining'>{findremainingTime(contestEndTime)}</p>
+                    <p>Are you sure to submit the quiz?</p>
+                    <p>You have solved {noOfSolvedQuestion} out of {quiz.length} questions</p>
                     <button className={questionNum===quiz.length-1?'quiz-submit':'notvisible'} onClick={handleSubmit} >Submit The Quiz</button>
-                    {/* <div className={questionNum===0?'notvisible':'prev-next'} onClick={handleLastPrevious}><img src={require('./Assests/Images/icons/previous.png')}></img> Previous</div> */}
+                    
                 </div>
             </div>
         </section>
