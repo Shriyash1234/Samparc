@@ -20,24 +20,29 @@ function Quiz(){
 
     const { contestName, contestCode,contestTime,contestEndTime } = location.state;
     const myState = useSelector((state)=>state.setUserNameMail)
-    const [quizResponses,setQuizResponses] = useState([{
+    //Second one is for storing the quiz responses
+    const [quizResponses,setQuizResponses] = useState([
+    {
         name:myState.name,
         mail:myState.mail,
         time:new Date().toString(),
-        timetaken:0,
+        timetaken:'00:00:00',
         score:0
-    }]);
+    },
+    ...Array.from({ length: quiz.length }, () => ({ 
+        question: '',
+        selectedOption: null,
+      })),
+   ]);
+   //SUbmitting the quiz after time has passed
     useEffect(() => {
         const timer = setTimeout(() => {
-        if (reamainingTime > 0) {
-            setReamainingTime((prevSeconds) => prevSeconds - 1);
-        }
-        if(reamainingTime === 0){
+        if( findremainingTime(contestEndTime) === '00:00:00'){
             handleSubmit();
         }
         }, 1000);
         return () => clearTimeout(timer);
-    }, [reamainingTime]);
+    }, []);
     const notifySucess = () => {toast.success('Quiz Submitted', {
         position: "top-right",
         autoClose: 5000,
@@ -47,42 +52,42 @@ function Quiz(){
         progress: undefined,
         theme: "light"
         })};
+    // Change the options ans also store the response
     function handleOptionChange(event) {
         const updatedSelectedOptions = [...selectedOptions];
         updatedSelectedOptions[questionNum] = event.target.value;
         setSelectedOptions(updatedSelectedOptions);
+        const response = {
+            question: quiz[questionNum].question,
+            selectedOption: event.target.value,
+          };
+          const updatedResponses = [...quizResponses];
+          updatedResponses[questionNum+1] = response;
+          console.log(updatedResponses)
+          setQuizResponses(updatedResponses);
     }
-    
-      function handlePrevious(event) {
+    // Goes to the previous question
+    function handlePrevious(event) {
         event.preventDefault();
         setQuestionNum(questionNum-1)
-      }
-      function handleLastPrevious(event) {
-        event.preventDefault();
-        setQuestionNum(quiz.length-2)
-      }
-      function showSubmit(){
+    }
+    // To show the submit option
+    function showSubmit(){
         document.getElementsByClassName('question-block')[0].style.display = 'none'
         document.getElementsByClassName('submit-block')[0].style.display = 'flex'
-      }
-      function handleNext(event) {
+    }
+    // FOe going to next question
+    function handleNext(event) {
         event.preventDefault();
-        const response = {
-          question: quiz[questionNum].question,
-          selectedOption: selectedOptions[questionNum],
-        };
-        const updatedResponses = [...quizResponses];
-        updatedResponses[questionNum+1] = response;
-        setQuizResponses(updatedResponses);
-    
         if (questionNum < quiz.length - 1) {
-          setQuestionNum(questionNum + 1);
+            setQuestionNum(questionNum + 1);
         } else {
-          showSubmit();
+            showSubmit();
         }
-      }
+    }
 
-      function calculateScore(){
+    //Calculating scores. Checks responses from quiz
+    function calculateScore(){
         var score = 0;
         for(let i =0;i<quiz.length;i++){
             if(selectedOptions[i] === quiz[i].correct_option){
@@ -90,27 +95,12 @@ function Quiz(){
             }
         }
         return score;
-      }
-      function calculateTime(time){
-        var timedata = []
+    }
 
-        time = 200 - time;
-        var hour = parseInt(time/3600);
-        var minute = (parseInt(time/60))%60;
-        var seconds = time%60;
-
-        timedata.push(minute);
-        timedata.push(seconds)
-        if(hour>0) timedata.push(hour);
-
-        if(timedata.length === 3 && minute !==0) return hour+'h '+minute+'m '+ seconds+'s'
-        else if(timedata.length === 3 && minute ===0) return hour+'h '+ seconds+'s'
-        else if(minute !==0) return minute+'m '+seconds+'s'
-        else return seconds+'s'
-      }
-      function findremainingTime(endTime){
+    // Calulates remaining time based on the endtime of the contest. Time is is format of 1:00:00 PM.
+    function findremainingTime(endTime){
         const currentTime = new Date();
-        const targetTimeParts = endTime.split(' ');
+        const targetTimeParts = endTime.split(' '); 
         const targetTime = new Date();
         
         const timeParts = targetTimeParts[0].split(':');
@@ -126,7 +116,7 @@ function Quiz(){
 
         const remainingTime = targetTime - currentTime;
         if (remainingTime <= 0) {
-            return "Time has already passed.";
+            return "Submitting the Contest";
         }
 
         const remainingHours = Math.floor(remainingTime / (1000 * 60 * 60));
@@ -147,7 +137,6 @@ function Quiz(){
         setnoOfSolvedQuestions(num);
     }
     useEffect(()=>{
-        console.log('yes')
         numberOfSolveQuestions();
     },[selectedOptions])
     //Function for navigating to the question.Sets questionNum.
@@ -228,16 +217,21 @@ function Quiz(){
             }
         }
     }
-      const handleSubmit = async (e) => {
+
+    //Submitting the quiz. 
+    //Intially calculates score and time taken to finish the quiz.
+    //addquizresponses saves contest responses
+    //update profile registeratons add the contest in the given contests.So that user cannot participate more than once.
+    const handleSubmit = async (e) => {
         quizResponses[0].score = calculateScore(); 
-        quizResponses[0].timetaken = calculateTime(reamainingTime);
+        quizResponses[0].timetaken = findremainingTime(contestEndTime);
         const registerationResponse = {
             email:myState.mail,
             contestName:contestName,
             contestCode:contestCode,
             time:new Date().toLocaleTimeString()
         }
-        axios.post('https://samparc.onrender.com/addquizresponses', { quizResponses })
+        axios.post('http://localhost:4000/addquizresponses', { quizResponses })
             .then(() => {
                 notifySucess()
             })
@@ -246,7 +240,7 @@ function Quiz(){
                 alert('Quiz submiited')
                 
             });
-        const response1 = await fetch('https://samparc.onrender.com/updateProfileGivenRegisteration', {
+        const response1 = await fetch('http://localhost:4000/updateProfileGivenRegisteration', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -262,7 +256,7 @@ function Quiz(){
             } else {
             throw new Error('Error submitting form for the first link'); 
             }
-      }
+    }
     return(
         <section className="quiz">
             <ToastContainer

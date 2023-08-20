@@ -59,7 +59,7 @@ function DailyContests(){
                             <p className='Duration'>Duration: 40 min</p>
                             <p className='No-Q'>No. of Questions:20</p>
                             <p className='Fee'>Fee:100rs</p>
-                            <Link to='/RegisterQuiz' state={{contestName:"JEE Advanced",contestCode:"1J",contestTime:"1:00:00 AM",contestEndingTime:"1:40:00 AM"}} className='contest-link-button'><button className='contest-register'>Register</button></Link>
+                            <Link to='/RegisterQuiz' state={{contestName:"JEE Advanced",contestCode:"1J",contestTime:"3:00:00 PM",contestEndingTime:"5:00:00 PM"}} className='contest-link-button'><button className='contest-register'>Register</button></Link>
                         </div>
                     </div>
                 </div>

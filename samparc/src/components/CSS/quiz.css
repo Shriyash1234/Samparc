@@ -135,6 +135,7 @@
     width: 22%;
     padding: 20px 30px;
     position: relative;
+    transition: 400ms;
 }
 svg.lucide {
     width: 2em;
@@ -158,7 +159,8 @@ svg.lucide {
     max-height: 60vh;
     width: 100%;
     overflow: scroll;
-    padding: 10px 0px
+    padding: 10px 0px;
+    cursor: pointer;
 }
 .quiz-navigation-question{
     background-color: #e6e8ff;

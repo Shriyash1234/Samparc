@@ -147,7 +147,6 @@ const RegisterQuiz = () => {
           contestCode:contestCode,
           time:new Date().toLocaleTimeString()
         }
-        console.log(registerationResponse)
 
         try {
           const response1 = await fetch('https://samparc.onrender.com/addContestRegistration', {
@@ -232,7 +231,6 @@ const RegisterQuiz = () => {
     function isUserHaveGivenContest(){
       for(let i = 0;i<userData.givenContests.length;i++){
         if(userData.givenContests[i].ContestCode ===contestCode ){
-          console.log('contestcode',userData.givenContests[i].ContestCode);
           setisUserHaveGivenContest(true);
         }
       }
