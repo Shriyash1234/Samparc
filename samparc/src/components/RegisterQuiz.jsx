@@ -25,6 +25,7 @@ const RegisterQuiz = () => {
     const [uesrRegistered,setUserRegistered] = useState(false);
     const [RegisterInProcess,setRegisterInProcess] = useState(false);
     const [isuserHaveGivenContest,setisUserHaveGivenContest] = useState(false);
+    const [totalRegistrations,setTotalRegistrations] = useState(0);
     const [formData, setFormData] = useState({
         name: myState.name,
         email: myState.mail,
@@ -259,13 +260,23 @@ const RegisterQuiz = () => {
         }
       }
       else{
-        Navigate('/Leaderboard')
+        Navigate('/Leaderboard/'+ contestCode)
       }
+    }
+    function findTotalRegistrations() {
+      let count = 0;
+      for(let i =0;i<registerationData.length;i++){
+        if(registerationData[i].responses.contestCode === contestCode){
+          count++;
+        }
+      }
+      setTotalRegistrations(count);
     }
     useEffect(()=>{
       isTimePassed();
       isUserRegistered();
       isUserHaveGivenContest();
+      findTotalRegistrations();
     })
     
   return (
@@ -293,11 +304,11 @@ const RegisterQuiz = () => {
             <div className='contest-details-personal-info'>
                 <div className='points-contest-details'>
                     <div className='points-contest-details-rectangle'>
-                        <p className='total-registerations'><span>Total Registerations:</span> 151</p>
+                        <p className='total-registerations'><span>Total Registerations:</span> {totalRegistrations}</p>
                         <p className='points-contest-name'>{contestName}<br/>Samparc round {contestCode}</p>
-                        <p className='total-registerations'><span>Time remaining:</span> {remainingTime}</p>
-                        <p className='total-registerations'><span>Duration:</span> 2hours</p>
-                        <p className='total-registerations'><span>Registeration fee:</span>100rs</p>
+                        <p className={`total-registerations ${isContestEnded() ? 'visible' : ''}`}><span>Time remaining:</span> {remainingTime}</p>
+                        <p className={`total-registerations ${isContestEnded() ? 'visible' : ''}`}><span>Duration:</span> 2hours</p>
+                        <p className={`total-registerations ${isContestEnded() ? 'visible' : ''}`}><span>Registeration fee:</span>100rs</p>
                         <p className={`total-registerations ${isContestEnded() ? '' : 'visible'}`}>Contest Ended</p>
                         <button className={`get-started ${isTimePassed() ? '' : 'join-quiz'}`} onClick={JoinQuiz}>{isContestEnded()?'Leaderboard':'Join'}</button>
                     </div>

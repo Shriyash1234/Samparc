@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Header from './header'
+import { useParams } from 'react-router-dom'
 import './CSS/leaderboard.css'
 const Leaderboard = () => {
     const [leaderboardData,setLeaderboardData] = useState([]);
+    let {contestcode} = useParams();
     function rankcolor(){
         const gold = document.getElementsByClassName('rank')[0]
         const silver = document.getElementsByClassName('rank')[1]
@@ -36,13 +38,15 @@ const Leaderboard = () => {
     function rankingParticipants(data){
         const upadtedData = [];
         for(let i =0;i<data.length;i++){
+          if(data[i].details.personal.contestCode === contestcode){
             const scoredata = {
-                participantName:data[i].details.personal.name,
-                timetaken:data[i].details.personal.timetaken,
-                score:parseInt(data[i].score.scores.score),
-                totalQuestions:data[i].score.scores.numberOfQuestions
-            }
-            upadtedData.push(scoredata)
+              participantName:data[i].details.personal.name,
+              timetaken:data[i].details.personal.timetaken,
+              score:parseInt(data[i].score.scores.score),
+              totalQuestions:data[i].score.scores.numberOfQuestions
+          }
+          upadtedData.push(scoredata)
+          }
         }
         upadtedData.sort((a, b) => {
             if (b.score === a.score) {
@@ -67,7 +71,7 @@ const Leaderboard = () => {
         {
             leaderboardData.map(data=>{
                 return(
-                    <tr>
+                    <tr className='student-ranks'>
                         <td><p className='rank'>{leaderboardData.indexOf(data)+1}</p></td>
                         <td className='Participant-Name'>{data.participantName}</td>
                         <td>{data.timetaken}</td>

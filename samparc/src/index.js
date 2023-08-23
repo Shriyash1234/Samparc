@@ -23,7 +23,7 @@ export default function App() {
         <Route index path="/Login" element={<Login />} />
         <Route index path="/Quiz" element={<Quiz />} />
         <Route index path="/Profile" element={<Profile />} />
-        <Route index path="/Leaderboard" element={<Leaderboard />} />
+        <Route index path="/Leaderboard/:contestcode" element={<Leaderboard />} />
         <Route index path="/RegisterQuiz" element={<RegisterQuiz />} />
       </Routes>
     </HashRouter>

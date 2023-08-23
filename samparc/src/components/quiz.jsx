@@ -13,12 +13,13 @@ function Quiz(){
     const [selectedOptions, setSelectedOptions] = useState(Array(quiz.length).fill(''));
     const [noOfSolvedQuestion,setnoOfSolvedQuestions]= useState(0);
     const [questionNum,setQuestionNum] = useState(0);
-    const [reamainingTime, setReamainingTime] = useState(5000);
+    const location = useLocation();
+    const { contestName, contestCode,contestTime,contestEndTime } = location.state;
+    const [remainingTime, setRemainingTime] = useState(findremainingTime(contestEndTime));
     const [Navigationbar,setNavigationbar] = useState(true);
     const Navigate = useNavigate();
-    const location = useLocation();
 
-    const { contestName, contestCode,contestTime,contestEndTime } = location.state;
+    
     const myState = useSelector((state)=>state.setUserNameMail)
     //Second one is for storing the quiz responses
     const [quizResponses,setQuizResponses] = useState([
@@ -26,6 +27,7 @@ function Quiz(){
         name:myState.name,
         mail:myState.mail,
         time:new Date().toString(),
+        contestCode:contestCode,
         timetaken:'00:00:00',
         score:0
     },
@@ -36,13 +38,16 @@ function Quiz(){
    ]);
    //SUbmitting the quiz after time has passed
     useEffect(() => {
-        const timer = setTimeout(() => {
+        const timer = setInterval(() => {
+            const timeRemaining = findremainingTime(contestEndTime);
+            setRemainingTime(timeRemaining);
         if( findremainingTime(contestEndTime) === '00:00:00'){
             handleSubmit();
+            clearInterval(timer);
         }
         }, 1000);
-        return () => clearTimeout(timer);
-    }, []);
+        return () => clearInterval(timer);
+    }, [contestEndTime]);
     const notifySucess = () => {toast.success('Quiz Submitted', {
         position: "top-right",
         autoClose: 5000,

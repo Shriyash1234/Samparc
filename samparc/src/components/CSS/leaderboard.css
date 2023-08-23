@@ -59,7 +59,9 @@ border:0.5px solid grey;
 }
 .columns-name{
     background-color: #c881ff;
+    height: 60px;
 }
+
 .Participant-Name{
     font-family: "poppins";
 }
