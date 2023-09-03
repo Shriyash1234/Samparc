@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.921a9a67.css",
-    "main.js": "/static/js/main.3341cded.js",
+    "main.css": "/static/css/main.9299fb76.css",
+    "main.js": "/static/js/main.d6e2013d.js",
     "static/js/787.ab512afd.chunk.js": "/static/js/787.ab512afd.chunk.js",
     "static/media/banner-3.png": "/static/media/banner-3.e9197d66cc1a2a78504f.png",
     "static/media/banner-1.png": "/static/media/banner-1.2f59cf3ca80973707039.png",
     "static/media/banner-2.png": "/static/media/banner-2.00f56df5ab753a11fa89.png",
     "static/media/logo.png": "/static/media/logo.b3179ee9e0eb1c2b5fa4.png",
     "static/media/upsc.png": "/static/media/upsc.f314f926b0ddff4a780d.png",
+    "static/media/Testseries.jpg": "/static/media/Testseries.a33fbec0c8a1fd7e7aff.jpg",
     "static/media/cat.png": "/static/media/cat.ff6ff2e389e16849380e.png",
     "static/media/current-affairs.png": "/static/media/current-affairs.d1e0d44f0aeb110ef88f.png",
     "static/media/ssc.png": "/static/media/ssc.3a721cb073ec520ca3c9.png",
@@ -22,12 +23,12 @@
     "static/media/loading.gif": "/static/media/loading.270c6e697af5c50ae9d8.gif",
     "static/media/school.png": "/static/media/school.e3a187223a4407cef519.png",
     "index.html": "/index.html",
-    "main.921a9a67.css.map": "/static/css/main.921a9a67.css.map",
-    "main.3341cded.js.map": "/static/js/main.3341cded.js.map",
+    "main.9299fb76.css.map": "/static/css/main.9299fb76.css.map",
+    "main.d6e2013d.js.map": "/static/js/main.d6e2013d.js.map",
     "787.ab512afd.chunk.js.map": "/static/js/787.ab512afd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.921a9a67.css",
-    "static/js/main.3341cded.js"
+    "static/css/main.9299fb76.css",
+    "static/js/main.d6e2013d.js"
   ]
 }
