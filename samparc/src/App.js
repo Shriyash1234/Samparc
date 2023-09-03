@@ -4,6 +4,7 @@ import Exams from './components/exams'
 import Carousel from './components/carousel'
 import DailyContests from './components/dailyContests';
 import MonthlyExams from './components/monthlyExams';
+import TestseriesInfo from './components/testseriesInfo';
 import Loans from './components/loans';
 import {FooterContainer}  from './components/footercontainer';
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <DailyContests/>
       <MonthlyExams/>
       <Exams/>
+      <TestseriesInfo/>
       <Loans/>
       <FooterContainer/>
     </div>

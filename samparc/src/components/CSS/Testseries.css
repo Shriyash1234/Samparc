@@ -1,0 +1,86 @@
+.Testseries-info{
+    display: flex;
+    padding: 10% 10%;
+    background-color: #f9fbfb;
+}
+.Testseries-info-image{
+    width: 50%;
+}
+.testseriesinfo-div{
+    padding-left: 40px;
+}
+.enroll-in-testeries{
+    font-size: 2.8rem;
+    font-weight: 500;
+}
+.samparc-text{
+    font-size: 4rem;
+    font-weight: 600;
+    padding: 20px 0px;
+}
+.get-access-to{
+    font-size: 2.5rem;
+    font-weight: 400;
+}
+.what-you-get{
+    padding-top: 20px;
+    font-size: 2rem;
+    font-weight: 500;
+}
+.features-div{
+    display: flex;
+    flex-wrap: wrap;
+}
+.feature-div{
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 600;
+    width: 200px;
+    height: 100px;
+    margin-right:80px;
+}
+.feature-img{
+    width: 70px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+.ranking-img{
+    background-color: #ffe9a9;
+}
+.analysis-img{
+    background-color: #ffbb97;
+}
+.exam-img{
+    background-color: #ddb7ff;
+}
+.prices-img{
+    background-color: #dbffda;
+}
+@media all and (max-width:991px) {
+    .Testseries-info{
+        flex-direction: column;
+        justify-content: center;
+        padding: 5%;
+        padding-left: 0px;
+    }
+    .Testseries-info-image{
+        height: 250px;
+        width: 250px;
+        margin: 50px auto;
+    }
+    .testseriesinfo-div{
+        justify-content: center;
+    }
+    .enroll-in-testeries{
+        font-size: 2rem;
+    }
+    .samparc-text{
+        font-size: 2.5rem;
+        padding: 10px 0px;
+    }
+    .get-access-to{
+        font-size: 2rem;
+    }
+}

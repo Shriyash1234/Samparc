@@ -59,7 +59,7 @@ function DailyContests(){
                             <p className='Duration'>Duration: 40 min</p>
                             <p className='No-Q'>No. of Questions:20</p>
                             <p className='Fee'>Fee:100rs</p>
-                            <Link to='/RegisterQuiz' state={{contestName:"JEE Advanced",contestCode:"1J",contestTime:"11:00:00 PM",contestEndingTime:"12:00:00 PM"}} className='contest-link-button'><button className='contest-register'>Register</button></Link>
+                            <Link to='/RegisterQuiz' state={{contestName:"JEE Advanced",contestCode:"1J",contestTime:"1:00:00 PM",contestEndingTime:"3:00:00 PM"}} className='contest-link-button'><button className='contest-register'>Register</button></Link>
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@ function DailyContests(){
                             <p className='Duration'>Duration: 30 min</p>
                             <p className='No-Q'>No. of Questions:30</p>
                             <p className='Fee'>Fee:100rs</p>
-                            <Link to='/RegisterQuiz' state={{contestName:"UPSC",contestCode:"1U",contestTime:"2:30:00 PM",contestEndingTime:"3:30:00 PM"}} className='contest-link-button'><button className='contest-register'>Register</button></Link>
+                            <Link to='/RegisterQuiz' state={{contestName:"UPSC",contestCode:"1U",contestTime:"1:00:00 PM",contestEndingTime:"3:30:00 PM"}} className='contest-link-button'><button className='contest-register'>Register</button></Link>
                         </div>
                     </div>
                 </div>
@@ -91,7 +91,7 @@ function DailyContests(){
                             <p className='Duration'>Duration: 60 min</p>
                             <p className='No-Q'>No. of Questions:60</p>
                             <p className='Fee'>Fee:100rs</p>
-                            <Link to='/RegisterQuiz' state={{contestName:"SSC",contestCode:"1S",contestTime:"8:00:00 PM"}} className='contest-link-button'><button className='contest-register'>Register</button></Link>
+                            <Link to='/RegisterQuiz' state={{contestName:"SSC",contestCode:"1S",contestTime:"1:00:00 PM",contestEndingTime:"3:30:00 PM"}} className='contest-link-button'><button className='contest-register'>Register</button></Link>
                         </div>
                     </div>
                 </div>
