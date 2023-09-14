@@ -58,6 +58,66 @@
 .prices-img{
     background-color: #dbffda;
 }
+
+/* Testseries section starts */
+.Testseries-section{
+    width: 100%;
+    padding: 50px 10%;
+    margin: auto;
+    background-image: linear-gradient(#fff, #f1e0ff);
+}
+.Testseries-heading{
+    font-size: 3rem;
+    font-weight: 600;
+    text-align: center;
+}
+.TestSeries-div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 50px 0px;
+}
+.testseries{
+    box-shadow: 0px 0px 10px #000;
+    width: 300px;
+    height: 400px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+.testseries-name{
+    font-size: 2.2rem;
+    font-weight: 500;
+}
+.testseries-info-img{
+    width: 70px;
+    aspect-ratio: 1/1;
+}
+.Total-tests{
+    font-size: 2rem;
+}
+.benfits-point{
+    font-size: 1.8rem;
+}
+hr{
+    opacity: 2;
+    margin: 10px 0px;
+    border-top: 1px solid #000;
+}
+.view-testseries{
+    width: 100%;
+    background-color: #0acdf1;
+    text-align: center;
+    color: #fff;
+    font-size: 2rem;
+    margin-top: 20px;
+    padding: 10px 0px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.view-testseries:hover{
+    background-color: #09bbdc;
+}
 @media all and (max-width:991px) {
     .Testseries-info{
         flex-direction: column;

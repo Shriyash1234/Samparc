@@ -90,7 +90,7 @@
         width: auto;
         height: 50%; }
   
-  * {
+  /* * {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
@@ -104,10 +104,9 @@
     font-style: inherit;
     font-family: inherit;
     text-decoration: none;
-    list-style: none;
     user-select: text;
     line-height: 1.333em; }
-  
+   */
   /* body {
     display: flex;
     align-items: center;

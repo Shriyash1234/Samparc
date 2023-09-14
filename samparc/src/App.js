@@ -5,6 +5,7 @@ import Carousel from './components/carousel'
 import DailyContests from './components/dailyContests';
 import MonthlyExams from './components/monthlyExams';
 import TestseriesInfo from './components/testseriesInfo';
+import Testseries from './components/testseries';
 import Loans from './components/loans';
 import {FooterContainer}  from './components/footercontainer';
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <MonthlyExams/>
       <Exams/>
       <TestseriesInfo/>
+      <Testseries/>
       <Loans/>
       <FooterContainer/>
     </div>
