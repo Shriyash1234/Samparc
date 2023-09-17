@@ -12,6 +12,7 @@ import Login from './components/Login';
 import Leaderboard from './components/leaderboard';
 import Profile from './components/profile';
 import RegisterQuiz from './components/RegisterQuiz';
+import TestSeriesRegistrationWinodw from './components/testSeriesRegistrationWinodw';
 
 import './index.css';
 export default function App() {
@@ -25,6 +26,7 @@ export default function App() {
         <Route index path="/Profile" element={<Profile />} />
         <Route index path="/Leaderboard/:contestcode" element={<Leaderboard />} />
         <Route index path="/RegisterQuiz" element={<RegisterQuiz />} />
+        <Route index path="/TestSeriesRegistrationWinodw" element={<TestSeriesRegistrationWinodw />} />
       </Routes>
     </HashRouter>
   );

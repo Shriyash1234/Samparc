@@ -1,0 +1,150 @@
+.testSeriesregistration-window{
+    background-color: #e6e8ff;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 30vh;
+    font-family: 'open sans';
+    padding-left: 15%;
+}
+.testSeriesregistration-series-window{
+    display: flex;
+}
+.testSeriesregistration-img{
+    width: 100px;
+    height: 100px;
+}
+.testSeriesregistration-testName{
+    font-size: 2.5rem;
+}
+.testSeriesregistration-name-img{
+    display: flex;
+    align-items: center;
+}
+.testSeriesregistration-series-info-div{
+    margin-top: 50px;
+}
+.testSeriesregistration-series-but{
+    margin-top: 50px;
+}
+.testSeriesregistration-series-info{
+    display: flex;
+    width: 50vw;
+    justify-content: space-between;
+}
+.series-info,.preparation-material{
+    font-size: 2rem;
+    padding: 5px 10px;
+    text-align: center;
+}
+.preparation-material{
+    color: #fff;
+    border-radius: 10px;
+    background-image: linear-gradient(136deg,#75cd25 2%,#25cd71 64%);
+}
+.horizontal-line{
+    width: 100%;
+    border-top: 4px solid #fff;
+    /* background-color: #fff; */
+}
+.add-this-testseries{
+    width: 40%;
+    font-size: 1.8rem;
+    margin: 0PX;
+}
+.testSeriesregistration-signup{
+    position: relative;
+    bottom: 80px;
+    background-color: #f4f5f6;
+    width: 30%;
+    height: 380px;
+    border-radius: 10px;
+    margin: auto;
+    padding: 30px ;
+}
+.sign-up-text{
+    font-size: 2.5rem;
+    text-align: center;
+}
+.Enter-mobile-no-div{
+    background-color: #fff;
+    width: 90%;
+    height: 70%;
+    padding: 40px 20px;
+    margin: auto;
+    border: 2px solid #dfe4e7;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.mobile-input{
+    font-size: 1.5rem;
+    width: 80%;
+    margin: 0px auto;
+    border: 0px;
+   
+}
+.testSeriesregistration-input-field{
+    border-bottom: 2px solid #dfe4e7;
+    padding-bottom: 5px;
+}
+.sign-up-take-series{
+    margin-top: 60px;
+    font-size: 1.7rem;
+}
+@media all and (max-width:1200px) {
+    .testSeriesregistration-window{
+        padding-left: 5%;
+    }
+    .testSeriesregistration-series-info-div{
+        width: 70%;
+    }
+    .preparation-material{
+        width: fit-content
+    }
+    .horizontal-line{
+        width: 80%;
+    }
+    .testSeriesregistration-signup{
+        width: 40%;
+    }
+}
+@media all and (max-width:770px) {
+    .testSeriesregistration-series-window{
+        flex-direction: column;
+    }
+    .testSeriesregistration-window{
+        height: fit-content;
+    }
+    .testSeriesregistration-series-info-div{
+        width: 90%;
+    }
+    .testSeriesregistration-signup{
+        margin-top: 130px;
+        width: 400px;
+    }
+    .testSeriesregistration-series-info{
+        width: 100%;
+    }
+    .horizontal-line{
+        width: 100%;
+    }
+}
+@media all and (max-width:576px) {
+.add-this-testseries{
+    width: 80%;
+    margin: auto;
+}
+}
+@media all and (max-width:479px) {
+    .testSeriesregistration-signup{
+        margin-top: 130px;
+        width: 350px;
+    }
+    .preparation-material{
+        height: 75px;
+    }
+    .testSeriesregistration-signup{
+        margin:unset;
+        margin-top: 130px;
+    }
+}
