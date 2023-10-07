@@ -1,0 +1,70 @@
+.testseries-section{
+    margin-top: 80px;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+}
+.subject-name-div{
+    width: 80%;
+    margin: auto;
+}
+.subject-name{
+    font-size: 4rem;
+    font-family: Poppins;
+    color: #9f2bfb;
+}
+.study-material-subject{
+    font-family: 'open sans';
+    font-size: 2.2rem;
+}
+.greaterThan-icon{
+    font-size: 2rem;
+}
+.caret{
+    display: none;
+}
+.options-material-tests{
+    margin-top: 30px !important;
+    width: 80%;
+    margin: auto;
+    display: flex;
+}
+
+.btn-primary{
+    color: #000;
+    background-color: #fff;
+    border: 2px solid #dee0e1;
+    font-family: Poppins;
+    font-size: 1.8rem;
+    margin-right: 20px;
+}
+.active-btn{
+    background-color: #fff;
+    color: #9f2bfb ;
+    font-weight: 600;
+    border: 2px solid #9f2bfb ;
+}
+.btn-primary:hover{
+    color: #fff;
+    background-color: #9f2bfb;
+    border: 2px solid #9f2bfb ;
+}
+.btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary {
+    color: #fff !important;
+    background-color: #9f2bfb !important;
+}
+.study-material-info{
+    width: 70%;
+    margin:30px 20% 0% 10%;
+    font-family: Poppins;
+    font-size: 2.2rem;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+.study-material-info-heading{
+    font-weight: 600;
+}
+.study-material-info-text{
+    font-family: Poppins;
+    font-size: 1.8rem;
+}
